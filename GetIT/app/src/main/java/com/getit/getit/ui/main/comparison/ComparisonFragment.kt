@@ -7,6 +7,6 @@ import com.getit.getit.ui.BaseFragment
 class ComparisonFragment(): BaseFragment<FragmentComparisonBinding>(FragmentComparisonBinding::inflate) {
 
     override fun initAfterBinding() {
-
+        binding.toolbar.root.title = "비교하기"
     }
 }

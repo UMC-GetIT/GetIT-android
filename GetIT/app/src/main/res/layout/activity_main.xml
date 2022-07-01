@@ -7,6 +7,9 @@
     tools:context=".ui.main.MainActivity">
 
     <!-- ID must to be 'nav_host_fragment_container' -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_main"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_container"
