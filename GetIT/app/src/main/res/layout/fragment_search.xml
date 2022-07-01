@@ -20,42 +20,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <ImageButton
-            android:id="@+id/notebook_ib"
+            android:id="@+id/laptop_ib"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:src="@drawable/laptop_img"/>
         <ImageButton
             android:id="@+id/phone_ib"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:src="@drawable/smartphone_img"/>
         <ImageButton
-            android:id="@+id/audio_ib"
+            android:id="@+id/speaker_ib"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:src="@drawable/speaker_img"/>
         <ImageButton
             android:id="@+id/pc_ib"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/pc_img"/>
         <ImageButton
-            android:id="@+id/tab_ib"
+            android:id="@+id/tablet_ib"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
-
-        <ImageButton
-            android:id="@+id/tab_ect"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/black"/>
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:src="@drawable/tablet_img"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
