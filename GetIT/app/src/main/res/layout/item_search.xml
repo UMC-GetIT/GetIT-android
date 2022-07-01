@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_search_img_cardview"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#E1E1E1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_search_product_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:text="제품명"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/item_search_img_cardview"
+        app:layout_constraintTop_toBottomOf="@id/item_search_img_cardview"/>
+
+    <TextView
+        android:id="@+id/item_search_product_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="가격"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/item_search_product_name_tv"
+        app:layout_constraintTop_toBottomOf="@id/item_search_product_name_tv"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
