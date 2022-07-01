@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.Udemy_android_template">
+        android:theme="@style/Theme.GetIT">
 
         <activity
             android:name=".ui.main.MainActivity"

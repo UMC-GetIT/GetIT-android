@@ -10,9 +10,9 @@
         android:title="@string/menu_search"
         android:icon="@drawable/selector_navi_search"/>
     <item
-        android:id="@+id/matchFragment"
+        android:id="@+id/comparisonFragment"
         android:enabled="true"
-        android:title="@string/menu_matching"
+        android:title="@string/menu_comparison"
         android:icon="@drawable/selector_navi_match"/>
     <item
         android:id="@+id/mypageFragment"

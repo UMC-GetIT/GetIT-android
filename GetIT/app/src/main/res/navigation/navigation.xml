@@ -15,9 +15,9 @@
         android:label="searchFragment"/>
 
     <fragment
-        android:id="@+id/matchFragment"
-        android:name="com.getit.getit.ui.main.match.MatchFragment"
-        android:label="matchFragment"/>
+        android:id="@+id/comparisonFragment"
+        android:name="com.getit.getit.ui.main.comparison.ComparisonFragment"
+        android:label="comparisonFragment" />
 
     <fragment
         android:id="@+id/mypageFragment"
