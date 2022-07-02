@@ -15,7 +15,7 @@ class ApplicationClass : Application() {
         const val TAG: String = "TEMPLATE-APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val BASE_URL = "http://example.com"
+        const val BASE_URL = "http://10.10.130.249:8080"
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
