@@ -22,7 +22,7 @@ class ReviewRVAdatpter(private val reviewList: ArrayList<Reviews>) : RecyclerVie
     inner class ViewHolder(val binding: ItemProductReviewBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(review: Reviews) {
-            binding.itemProductReviewUserNameTv.text = review.name
+            binding.itemProductReviewUserNameTv.text = review.userName
             binding.itemProductReviewReviewContentTv.text = review.content
         }
     }

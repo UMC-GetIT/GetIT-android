@@ -1,6 +1,6 @@
 package com.getit.getit.ui.main.search
 
 data class Reviews(
-    var name: String? = "",
+    var userName: String? = "",
     var content: String? = ""
 )
