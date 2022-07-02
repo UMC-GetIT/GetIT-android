@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.databinding.FragmentProductDetailBinding
 import com.google.gson.Gson
+import java.text.DecimalFormat
 
 class ProductDetailActivity: AppCompatActivity() {
 lateinit var binding: FragmentProductDetailBinding
@@ -53,7 +54,10 @@ lateinit var binding: FragmentProductDetailBinding
     private fun setInit(product: Products) {
         binding.productDetailImgIv.setImageResource(product.coverImg!!)
         binding.productDetailProductNameTv.text = product.name
-        binding.productDetailProductPriceTv.text = product.price.toString()
+        // 천 단위 콤마 넣기
+        var price = product.price
+        val dec = DecimalFormat("#,###")
+        binding.productDetailProductPriceTv.text = dec.format(price).toString() + "원"
 
     }
 }

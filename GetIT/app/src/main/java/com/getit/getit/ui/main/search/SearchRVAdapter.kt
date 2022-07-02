@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.databinding.ItemSearchBinding
+import java.text.DecimalFormat
 
 class SearchRVAdapter(private val productList: ArrayList<Products>) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
 
@@ -37,7 +38,10 @@ class SearchRVAdapter(private val productList: ArrayList<Products>) : RecyclerVi
 
         fun bind(product: Products) {
             binding.itemSearchProductNameTv.text = product.name
-            binding.itemSearchProductPriceTv.text = product.price.toString()
+            // 천 단위 콤마 넣기
+            var price = product.price
+            val dec = DecimalFormat("#,###")
+            binding.itemSearchProductPriceTv.text = dec.format(price).toString() + "원"
             binding.itemSearchImgIv.setImageResource(product.coverImg!!)
         }
     }
