@@ -15,7 +15,7 @@
         android:theme="@style/Theme.GetIT">
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.login.LoginActivity"/>
-
+        <activity android:name=".ui.main.WindowActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
 
     </application>
 
