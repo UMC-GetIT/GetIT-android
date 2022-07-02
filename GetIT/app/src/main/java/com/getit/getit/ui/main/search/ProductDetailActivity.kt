@@ -27,8 +27,8 @@ class ProductDetailActivity: AppCompatActivity() {
             add(Reviews("이름1", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
         }
 
-        val testRVAdatpter = ReviewRVAdatpter(reviewDatas)
-        binding.productDetailReviewRv.adapter = testRVAdatpter
+        val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)
+        binding.productDetailReviewRv.adapter = reviewRVAdatpter
         binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
     }

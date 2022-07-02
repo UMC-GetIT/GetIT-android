@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageButton
+            android:id="@+id/product_detail_like_off_ib"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/like_off_img"
@@ -33,6 +34,19 @@
             android:layout_marginEnd="14dp"
             app:layout_constraintBottom_toBottomOf="@id/product_detail_img_iv"
             app:layout_constraintEnd_toEndOf="@id/product_detail_img_iv"/>
+
+        <ImageButton
+            android:id="@+id/product_detail_like_on_ib"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/like_on_img"
+            android:scaleType="fitCenter"
+            android:background="@color/transparent"
+            android:layout_marginBottom="14dp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintBottom_toBottomOf="@id/product_detail_img_iv"
+            app:layout_constraintEnd_toEndOf="@id/product_detail_img_iv"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/product_detail_product_name_tv"

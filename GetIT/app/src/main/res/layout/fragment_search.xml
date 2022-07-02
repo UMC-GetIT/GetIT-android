@@ -50,7 +50,6 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@color/transparent"
-            android:backgroundTint="@color/black"
             android:src="@drawable/pc_img"/>
         <ImageButton
             android:id="@+id/tablet_ib"
