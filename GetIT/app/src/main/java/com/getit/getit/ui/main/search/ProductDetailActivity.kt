@@ -26,13 +26,7 @@ lateinit var binding: FragmentProductDetailBinding
         var reviewDatas = ArrayList<Reviews>()
         // 더미데이터
         reviewDatas.apply {
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리리리리릴리뷰뷰뷰뷰"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
-            add(Reviews("이름", "리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용리뷰내용"))
+//            add(Reviews("이름"))
         }
 
         val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)

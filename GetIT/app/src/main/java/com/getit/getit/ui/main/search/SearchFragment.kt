@@ -20,15 +20,14 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
         var productDatas = ArrayList<Products>()
         // 더미데이터
         productDatas.apply {
-            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
-            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
-            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
-            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("삼성전자 2021 갤럭시북 프로 360 13.3 + S펜", 1787000, R.drawable.samsong_labtop_img))
+            add(Products("LG전자 2022 그램 16", 1454000, R.drawable.lg_labtop_img))
+            add(Products("삼성전자 2021 갤럭시 북 프로 360", 1787000, R.drawable.samsong_pro_labtop_img))
+            add(Products("2022 LG 그램 360 터치스크린 노트북", 1469000, R.drawable.lg_gram_labtop_img))
+            add(Products("Apple 2021 맥북프로 14", 2470000, R.drawable.apple_labtop_img))
+            add(Products("레노버 Legion i7", 2433150, R.drawable.legion_labtop_img))
+            add(Products("Apple 2021 맥북프로 14", 2960000, R.drawable.apple_labtop2_img))
+            add(Products("풀스펙 NT371B5J 램16G SSD512G 윈도우10", 1260000, R.drawable.samsong2_labtop_img))
         }
 
         val searchRVAdatpter = SearchRVAdapter(productDatas)
