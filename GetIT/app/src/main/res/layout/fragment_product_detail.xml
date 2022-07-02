@@ -18,7 +18,7 @@
             android:id="@+id/product_detail_img_iv"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:background="@color/grey"
+            android:src="@drawable/samsong_labtop_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

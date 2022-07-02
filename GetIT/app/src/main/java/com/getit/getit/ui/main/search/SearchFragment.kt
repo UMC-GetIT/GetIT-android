@@ -11,6 +11,7 @@ import com.getit.getit.R
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.MainActivity
+import com.google.gson.Gson
 
 class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
 
@@ -19,23 +20,29 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
         var productDatas = ArrayList<Products>()
         // 더미데이터
         productDatas.apply {
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
-            add(Products("삼성 노트북", 50000))
+            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
+            add(Products("삼성 노트북", 50000, R.drawable.samsong_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
+            add(Products("LG 노트북", 50000, R.drawable.lg_labtop_img))
         }
 
         val searchRVAdatpter = SearchRVAdapter(productDatas)
         binding.searchProductRv.adapter = searchRVAdatpter
         binding.searchProductRv.layoutManager = GridLayoutManager(context, 2)
 
-        binding.laptopIb.setOnClickListener {
-            startActivity(Intent(context, ProductDetailActivity::class.java))
-        }
+        // 상품 클릭
+        searchRVAdatpter.setMyItemClickListener(object: SearchRVAdapter.MyItemClickListener{
+            override fun onItemClick(products: Products) {
+                changeProductActivity(products)
+            }
+        })
+
+
 
         //카테고리 선택
         val company = binding.searchCompanySpinner
@@ -62,5 +69,13 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
             }
 
         }
+    }
+
+    private fun changeProductActivity(products: Products) {
+        val intent = Intent(context, ProductDetailActivity::class.java)
+        val gson = Gson()
+        val productJson = gson.toJson(products)
+        intent.putExtra("product", productJson)
+        startActivity(intent)
     }
 }
