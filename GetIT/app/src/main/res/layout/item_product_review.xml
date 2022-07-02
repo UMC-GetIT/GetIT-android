@@ -17,7 +17,7 @@
             android:id="@+id/item_review_img_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
             android:src="@drawable/samsong_labtop_img"/>
 
     </androidx.cardview.widget.CardView>
@@ -30,19 +30,18 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_marginStart="14dp"
-        app:layout_constraintBottom_toTopOf="@+id/item_product_review_review_content_tv"
         app:layout_constraintTop_toTopOf="@id/item_product_review_user_profile_img_iv"
         app:layout_constraintStart_toEndOf="@id/item_product_review_user_profile_img_iv"/>
 
     <TextView
         android:id="@+id/item_product_review_review_content_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
         android:text="리뷰내용"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/item_product_review_user_name_tv"
-        app:layout_constraintBottom_toBottomOf="@id/item_product_review_user_profile_img_iv"
-        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_name_tv"/>
+        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_name_tv" />
 
     <View
         android:id="@+id/item_product_review_divide_view"
@@ -52,7 +51,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_profile_img_iv"/>
+        app:layout_constraintTop_toBottomOf="@id/item_product_review_review_content_tv"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
