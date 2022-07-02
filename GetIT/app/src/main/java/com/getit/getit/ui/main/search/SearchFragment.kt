@@ -42,8 +42,6 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
             }
         })
 
-
-
         //카테고리 선택
         val company = binding.searchCompanySpinner
         val cpu = binding.searchCpuSpinner

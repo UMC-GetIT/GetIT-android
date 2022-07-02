@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.search
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.databinding.FragmentProductDetailBinding
@@ -36,6 +37,16 @@ lateinit var binding: FragmentProductDetailBinding
         val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)
         binding.productDetailReviewRv.adapter = reviewRVAdatpter
         binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        binding.productDetailLikeOnIb.setOnClickListener {
+            binding.productDetailLikeOnIb.visibility = View.INVISIBLE
+            binding.productDetailLikeOffIb.visibility = View.VISIBLE
+        }
+
+        binding.productDetailLikeOffIb.setOnClickListener {
+            binding.productDetailLikeOnIb.visibility = View.VISIBLE
+            binding.productDetailLikeOffIb.visibility = View.INVISIBLE
+        }
 
     }
 
