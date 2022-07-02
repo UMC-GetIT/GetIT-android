@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="companyList">
+        <item>LG</item>
+        <item>삼성전자</item>
+        <item>Apple</item>
+        <item>레노버</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="cpuList">
+        <item>코어i3</item>
+        <item>코어i5</item>
+        <item>코어i7</item>
+        <item>코어i9</item>
+        <item>라이젠3</item>
+        <item>라이젠5</item>
+        <item>라이젠7</item>
+        <item>라이젠9</item>
+        <item>실리콘 M1</item>
+        <item>실리콘 M2</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="ramList">
+        <item>2GB</item>
+        <item>4GB</item>
+        <item>8GB</item>
+        <item>12GB</item>
+        <item>16GB</item>
+        <item>20GB</item>
+        <item>24GB</item>
+        <item>32GB</item>
+        <item>36GB</item>
+        <item>40GB</item>
+        <item>48GB</item>
+        <item>64GB</item>
+        <item>128GB</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="releaseYearList">
+        <item>2016년</item>
+        <item>2017년</item>
+        <item>2018년</item>
+        <item>2019년</item>
+        <item>2020년</item>
+        <item>2021년</item>
+        <item>2022년</item>
+        <item>기타</item>
+    </string-array>
+</resources>

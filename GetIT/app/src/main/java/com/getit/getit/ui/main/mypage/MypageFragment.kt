@@ -9,6 +9,5 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
 
 
     override fun initAfterBinding() {
-        binding.toolbar.root.title = "마이페이지"
     }
 }
