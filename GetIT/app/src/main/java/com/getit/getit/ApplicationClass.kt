@@ -18,11 +18,16 @@ class ApplicationClass : Application() {
         const val BASE_URL = "http://example.com"
 
         lateinit var mSharedPreferences: SharedPreferences
+        lateinit var editor: SharedPreferences.Editor
         lateinit var retrofit: Retrofit
     }
 
     override fun onCreate() {
         super.onCreate()
+
+        mSharedPreferences =
+            applicationContext.getSharedPreferences("GETIT_APP", MODE_PRIVATE)
+        editor = mSharedPreferences.edit()
 
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.MILLISECONDS)
@@ -38,4 +43,5 @@ class ApplicationClass : Application() {
 
         mSharedPreferences = applicationContext.getSharedPreferences(TAG, Context.MODE_PRIVATE)
     }
+
 }
