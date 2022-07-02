@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_product_review_user_profile_img_iv"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        app:cardCornerRadius="76dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/item_product_review_user_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유저 이름"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/item_product_review_review_content_tv"
+        app:layout_constraintTop_toTopOf="@id/item_product_review_user_profile_img_iv"
+        app:layout_constraintStart_toEndOf="@id/item_product_review_user_profile_img_iv"/>
+
+    <TextView
+        android:id="@+id/item_product_review_review_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="리뷰내용"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/item_product_review_user_name_tv"
+        app:layout_constraintBottom_toBottomOf="@id/item_product_review_user_profile_img_iv"
+        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_name_tv"/>
+
+    <View
+        android:id="@+id/item_product_review_divide_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_profile_img_iv"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

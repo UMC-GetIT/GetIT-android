@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#DDDDDD</color>
 
     <!-- 공통 -->
     <color name="primary">#F84D17</color>
@@ -14,5 +15,5 @@
     <color name="form_error">#F44336</color>
 
     <!-- 로그인 -->
-    <color name="login_button">#FFC107</color>
+    <color name="login_button">#D8D8D8</color>
 </resources>
