@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.main.search.ProductDetailActivity"/>
 
         <activity
             android:name=".ui.login.SignUpActivity"/>
