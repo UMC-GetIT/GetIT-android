@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.main.WindowActivity"/>
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
 

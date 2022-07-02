@@ -13,8 +13,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     private lateinit var navHostFragment: NavHostFragment
 
     override fun initAfterBinding() {
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController: NavController = navHostFragment.findNavController()
 
         binding.mainBottomNavigation.setupWithNavController(navController)
