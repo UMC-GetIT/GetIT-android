@@ -24,6 +24,7 @@ class ReviewRVAdatpter(private val reviewList: ArrayList<Reviews>) : RecyclerVie
         fun bind(review: Reviews) {
             binding.itemProductReviewUserNameTv.text = review.userName
             binding.itemProductReviewReviewContentTv.text = review.content
+            binding.itemReviewImgIv.setImageResource(review.coverImg!!)
         }
     }
 }
