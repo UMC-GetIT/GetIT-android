@@ -2,7 +2,6 @@ package com.getit.getit.ui.main.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import com.example.flo.ui.main.home.BannerVPAdapter
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.MainActivity
-import com.getit.getit.ui.main.WindowActivity
 import me.relex.circleindicator.CircleIndicator3;
 
 
