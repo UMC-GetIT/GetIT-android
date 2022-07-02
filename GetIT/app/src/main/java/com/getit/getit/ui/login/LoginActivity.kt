@@ -47,11 +47,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         authService.login(User(email, pwd, ""))
     }
 
-    private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun saveJwt(jwt: String) {
         val spf = getSharedPreferences("auth" , MODE_PRIVATE)
         val editor = spf.edit()
@@ -61,16 +56,16 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun onLoginSuccess(code: Int, result: Result) {
-        when (code) {
-            1000 -> {
-                //로그인 시키기
-                startMainActivity()
-            }
-        }
+        saveJwt(result.jwt)
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onLoginFailure() {
-        //중복
         Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onServerFailure() {
+        Toast.makeText(this, "알 수 없는 오류, 나중에 다시 시도하세요.", Toast.LENGTH_SHORT).show()
     }
 }

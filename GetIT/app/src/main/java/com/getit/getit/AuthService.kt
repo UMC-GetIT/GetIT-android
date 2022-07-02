@@ -1,7 +1,9 @@
 package com.getit.getit
 
 import android.util.Log
+import android.widget.Toast
 import com.getit.getit.data.User
+import com.getit.getit.ui.login.LoginActivity
 import com.getit.getit.ui.login.LoginView
 import com.getit.getit.ui.login.SignUpView
 import com.getit.getit.utils.getRetrofit
@@ -29,8 +31,14 @@ class AuthService {
 
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
-                    1000 -> signUpView.onSignUpSuccess()
-                    else -> signUpView.onSignUpFailure()
+                    1000 -> {
+                        Log.d("진행 사항", "진입성공 1000")
+                        signUpView.onSignUpSuccess(resp.code, resp.result!!)
+                    }
+                    else -> {
+                        Log.d("진행 사항", resp.code.toString())
+                        signUpView.onSignUpFailure(resp.code)
+                    }
                 }
             }
 
@@ -49,11 +57,13 @@ class AuthService {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("LOGIN/SUCCESS", response.toString())
 
+                Log.d("진행", response.body().toString())
                 val resp: AuthResponse = response.body()!!
 
                 when(val code = resp.code){
                     1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                    else -> loginView.onLoginFailure()
+                    2006,2007 -> loginView.onLoginFailure()
+                    else -> loginView.onServerFailure()
                 }
             }
 
