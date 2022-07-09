@@ -4,9 +4,7 @@ import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
@@ -74,5 +72,11 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
         val productJson = gson.toJson(products)
         intent.putExtra("product", productJson)
         startActivity(intent)
+    }
+
+    // 툴바 타이틀 변경
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).setActionBarTitle("제품 조회")
     }
 }
