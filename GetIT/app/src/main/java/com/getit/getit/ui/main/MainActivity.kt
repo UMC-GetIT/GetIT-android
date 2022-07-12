@@ -1,5 +1,7 @@
 package com.getit.getit.ui.main
 
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -19,6 +21,12 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         val navController: NavController = navHostFragment.findNavController()
 
         binding.mainBottomNavigation.setupWithNavController(navController)
+
+        // 툴바
+        setSupportActionBar(binding.toolbar);
+        actionBar?.setDisplayShowCustomEnabled(true)
+        actionBar?.setDisplayShowTitleEnabled(false) //기본 제목을 없애줍니다.
+        actionBar?.setDisplayHomeAsUpEnabled(true) //자동 뒤로가기
     }
 
     override fun onBackPressed() {
@@ -30,4 +38,22 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         lastTimeBackPressed= System.currentTimeMillis();
     }
 
+    // 툴바 타이틀 변경 -> 프래그먼트에서 override하여 사용
+    fun setActionBarTitle(title: String?) {
+        supportActionBar?.title = title
+    }
+
+    // menu 파일 inflate
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    // 아이템(검색 버튼)이 클릭되었을 때 -> 구현해야 함
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> Toast.makeText(this, "검색 버튼 클릭", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

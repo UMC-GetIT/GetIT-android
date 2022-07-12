@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--삭제해야 할 뷰-->
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,7 +8,6 @@
     app:title="겟 IT"
     app:titleTextColor="@color/black"
     android:background="@color/purple_200"
-
     app:menu="@menu/menu_toolbar">
 
 </androidx.appcompat.widget.Toolbar>
