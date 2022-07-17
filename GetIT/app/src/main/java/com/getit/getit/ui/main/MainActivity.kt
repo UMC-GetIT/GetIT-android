@@ -38,11 +38,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         lastTimeBackPressed= System.currentTimeMillis();
     }
 
-    // 툴바 타이틀 변경 -> 프래그먼트에서 override하여 사용
-    fun setActionBarTitle(title: String?) {
-        supportActionBar?.title = title
-    }
-
     // menu 파일 inflate
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
@@ -52,8 +47,23 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     // 아이템(검색 버튼)이 클릭되었을 때 -> 구현해야 함
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_search -> Toast.makeText(this, "검색 버튼 클릭", Toast.LENGTH_SHORT).show()
+            R.id.menu_search -> showToast("검색 버튼 클릭")
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    // 툴바 타이틀 변경 -> 프래그먼트에서 override하여 사용
+    fun setActionBarTitle(title: String?) {
+        supportActionBar?.title = title
+    }
+
+    // 툴바 쓴다
+    fun showActionBar(){
+        supportActionBar?.show()
+    }
+
+    // 툴바 안쓴다
+    fun hideActionBar() {
+        supportActionBar?.hide()
     }
 }
