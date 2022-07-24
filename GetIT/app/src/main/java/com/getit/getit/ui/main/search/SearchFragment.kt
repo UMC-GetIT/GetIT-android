@@ -39,6 +39,10 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
             }
         })
 
+        // 상품 카테고리 클릭
+        // 휴대폰 클릭
+
+
         //카테고리 선택
 //        val company = binding.searchCompanySpinner
 //        val cpu = binding.searchCpuSpinner
