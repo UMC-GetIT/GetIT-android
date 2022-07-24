@@ -39,31 +39,35 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
             }
         })
 
+        // 상품 카테고리 클릭
+        // 휴대폰 클릭
+
+
         //카테고리 선택
-        val company = binding.searchCompanySpinner
-        val cpu = binding.searchCpuSpinner
-        val ram = binding.searchRamSpinner
-        val releaseYear = binding.searchReleaseYearSpinner
+//        val company = binding.searchCompanySpinner
+//        val cpu = binding.searchCpuSpinner
+//        val ram = binding.searchRamSpinner
+//        val releaseYear = binding.searchReleaseYearSpinner
 
         //어댑터 - resource, array.xml에 있는 아이템 목록을 추가
-        company.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.companyList, android.R.layout.simple_spinner_item)
-        cpu.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.cpuList, android.R.layout.simple_spinner_item)
-        ram.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.ramList, android.R.layout.simple_spinner_item)
-        releaseYear.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.releaseYearList, android.R.layout.simple_spinner_item)
+//        company.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.companyList, android.R.layout.simple_spinner_item)
+//        cpu.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.cpuList, android.R.layout.simple_spinner_item)
+//        ram.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.ramList, android.R.layout.simple_spinner_item)
+//        releaseYear.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.releaseYearList, android.R.layout.simple_spinner_item)
 
         //Listener - 어떤 아이템을 눌렀는지 확인
-        company.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when (position) {
-                    0 -> {
-                    }
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-
-        }
+//        company.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//                when (position) {
+//                    0 -> {
+//                    }
+//                }
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//
+//        }
     }
 
     private fun changeProductActivity(products: Products) {
@@ -74,9 +78,13 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
         startActivity(intent)
     }
 
-    // 툴바 타이틀 변경
+    // 타이틀 변경
     override fun onResume() {
         super.onResume()
+        (activity as MainActivity).showActionBar()
         (activity as MainActivity).setActionBarTitle("제품 조회")
     }
+
+
+
 }

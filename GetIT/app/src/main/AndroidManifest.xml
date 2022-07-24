@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".ui.main.home.WindowActivity"/>
         <activity android:name=".ui.login.SignUpActivity"/>
-        <!--        <activity android:name=".ui.login.LoginActivity"/>-->
+        <activity android:name=".ui.login.LoginActivity"/>
+<!--        <activity android:name=".ui.main.MainActivity"/>-->
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
 
     </application>

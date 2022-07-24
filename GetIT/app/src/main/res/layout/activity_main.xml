@@ -11,8 +11,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:titleTextColor="@color/white"
-        android:background="@color/purple_500"
+        app:titleTextColor="@color/normal"
+        android:background="@color/white"
+        android:elevation="4dp"
         app:title="GetIT"
         app:menu="@menu/menu_toolbar">
     </androidx.appcompat.widget.Toolbar>
