@@ -240,7 +240,7 @@
     <HorizontalScrollView
         android:id="@+id/search_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:layout_marginStart="16dp"
         android:scrollbars="none"
@@ -250,7 +250,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="82dp"
@@ -258,6 +259,7 @@
                 android:text="화면 크기"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -266,6 +268,7 @@
                 android:text="가격"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -274,6 +277,7 @@
                 android:text="브랜드"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -282,6 +286,7 @@
                 android:text="CPU"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -290,6 +295,7 @@
                 android:text="RAM"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -298,6 +304,7 @@
                 android:text="무게"
                 android:textColor="@color/normal"
                 android:layout_marginEnd="8dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/style_detailed_category_button"/>
         </LinearLayout>
 
