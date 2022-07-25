@@ -7,7 +7,7 @@
         android:width="1dp"
         android:color="@color/outline" />
     <size
-        android:width="82dp"
+        android:width="24dp"
         android:height="24dp" />
     <corners
         android:radius="5dp"/>

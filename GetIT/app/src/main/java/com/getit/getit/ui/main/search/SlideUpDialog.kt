@@ -53,7 +53,7 @@ open class SlideUpDialog(context: Context, builder: Builder) : Dialog(
 
                 val animSet = AnimatorSet()
                 animSet.interpolator = DecelerateInterpolator()
-                animSet.duration = 500
+                animSet.duration = 300
                 animSet.playTogether(transY, backAlpha)
                 animSet.start()
             }
