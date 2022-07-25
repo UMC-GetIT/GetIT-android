@@ -249,11 +249,13 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/search_detail_category_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_screensize_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="화면 크기"
@@ -263,6 +265,7 @@
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_price_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="가격"
@@ -272,6 +275,7 @@
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_brand_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="브랜드"
@@ -281,6 +285,7 @@
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_cpu_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="CPU"
@@ -290,6 +295,7 @@
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_ram_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="RAM"
@@ -299,6 +305,7 @@
                 android:background="@drawable/style_detailed_category_button"/>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/search_detail_category_weight_btn"
                 android:layout_width="82dp"
                 android:layout_height="32dp"
                 android:text="무게"
