@@ -18,6 +18,9 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
+
+        <!-- Status bar icon color. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
 </resources>
