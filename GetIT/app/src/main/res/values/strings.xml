@@ -14,12 +14,18 @@
     <!--에러처리-->
     <string name="default_fail">네트워크연결이 원활하지 않습니다</string>
 
+    <!--제품 조회-->
+    <string name="category_search">카테고리로 조회</string>
+
     <!--제품 카테고리-->
     <string name="laptop">노트북</string>
     <string name="phone">휴대폰</string>
     <string name="tablet">태블릿</string>
     <string name="speaker">스피커</string>
     <string name="desktop">PC</string>
+
+    <!--버튼-->
+    <string name="apply_btn">적용</string>
 
     <!--제품 상세 카테고리-->
     <string name="price">가격</string>
