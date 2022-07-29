@@ -24,6 +24,9 @@
     <string name="speaker">스피커</string>
     <string name="desktop">PC</string>
 
+    <!--검색창 힌트-->
+    <string name="search_hint">검색어를 입력해주세요</string>
+
     <!--버튼-->
     <string name="apply_btn">적용</string>
 
