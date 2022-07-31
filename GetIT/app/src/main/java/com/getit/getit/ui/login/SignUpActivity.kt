@@ -10,12 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.getit.getit.AuthService
 import com.getit.getit.Result
 import com.getit.getit.data.User
+import com.getit.getit.databinding.ActivityLoginBinding
 import com.getit.getit.databinding.ActivitySignupBinding
+import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
 import java.util.regex.Pattern
 
-class SignUpActivity : AppCompatActivity(), SignUpView {
-    lateinit var binding : ActivitySignupBinding
+class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,26 +24,29 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         setContentView(binding.root)
 
         binding.signUpSignUpBtn.setOnClickListener {
-            Log.d("진행 사항 보고", "버튼 클릭")
             signUp()
         }
 
-        binding.signUpBackIv.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+//        binding.signUpBackIv.setOnClickListener {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showActionBar() //지난번에 넣은 코드에서 이 부분만 추가
+        setActionBarTitle("회원가입")
     }
 
     private fun getUser(): User {
         val email: String = binding.signUpIdEt.text.toString().trim();
         val pwd: String = binding.signUpPasswordEt.text.toString().trim()
-        val name: String = binding.signUpNameEt.text.toString().trim()
-        Log.d("진행 사항 보고", "get User " + email+" " + pwd +" " + name)
+        val name: String = binding.signUpNicknameEt.text.toString().trim()
 
         return User(email, pwd, name)
     }
 
     private fun signUp() {
-        Log.d("진행 사항 보고", "회원가입 시작")
         val pattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!(pattern.matcher(binding.signUpIdEt.text.toString().trim()
             ).matches())) {
@@ -55,7 +59,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
             return
         }
 
-        if (binding.signUpNameEt.text.toString().isEmpty()){
+        if (binding.signUpNicknameEt.text.toString().isEmpty()){
             Toast.makeText(this, "이름이 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
             return
         }
@@ -68,7 +72,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
 
         val authService = AuthService()
         authService.setSignUpView(this)
-        Log.d("진행 사항 보고", "AuthService")
 
         authService.signUp(getUser())
     }
@@ -82,7 +85,6 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
     }
 
     override fun onSignUpSuccess(code: Int, result: Result) {
-        Log.d("진행 사항 보고", "1000")
         saveJwt(result.jwt)
 
         val intent = Intent(this, MainActivity::class.java)
@@ -100,5 +102,9 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
                 binding.signUpNicknameErrorTv.visibility = View.VISIBLE
             }
         }
+    }
+
+    override fun initAfterBinding() {
+
     }
 }

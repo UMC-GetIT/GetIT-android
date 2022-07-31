@@ -8,22 +8,29 @@ import com.getit.getit.AuthService
 import com.getit.getit.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivityLoginBinding
+import com.getit.getit.databinding.ActivitySplashBinding
+import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
 
-class LoginActivity : AppCompatActivity(), LoginView {
+class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
 
-    lateinit var binding: ActivityLoginBinding
+    private var lastTimeBackPressed: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loginSignInBtn.setOnClickListener {
+        binding.loginBtn.setOnClickListener {
             login();
         }
 
-        binding.loginSignUpTv.setOnClickListener {
+        binding.loginJoinTv.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
+        binding.tempMainActivity.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
@@ -67,5 +74,17 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onServerFailure() {
         Toast.makeText(this, "알 수 없는 오류, 나중에 다시 시도하세요.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - lastTimeBackPressed < 2000){
+            finishAffinity()
+            return
+        }
+        Toast.makeText(this, "종료하시려면 뒤로가기를 한번 더 눌러주세요.", Toast.LENGTH_SHORT).show()
+        lastTimeBackPressed= System.currentTimeMillis();
+    }
+
+    override fun initAfterBinding() {
     }
 }
