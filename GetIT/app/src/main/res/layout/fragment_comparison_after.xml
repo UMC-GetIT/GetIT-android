@@ -88,6 +88,8 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/comparisonimg"/>
 
+
+
         <!--비교내용 표
             <TableLayout
 

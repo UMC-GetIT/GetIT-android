@@ -1,244 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <!--  제품 카테고리  -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/laptop_card_view"
-        android:layout_width="64dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/primary"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/phone_card_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/laptop_iv"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_laptop_icon"
-                app:layout_constraintBottom_toTopOf="@+id/laptop_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/laptop_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:text="노트북"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/laptop_iv"
-                app:layout_constraintStart_toStartOf="@id/laptop_iv"
-                app:layout_constraintTop_toBottomOf="@id/laptop_iv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/phone_card_view"
-        android:layout_width="64dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/tablet_card_view"
-        app:layout_constraintStart_toEndOf="@id/laptop_card_view"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/phone_iv"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_phone_icon"
-                app:layout_constraintBottom_toTopOf="@+id/phone_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/phone_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:text="휴대폰"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/phone_iv"
-                app:layout_constraintStart_toStartOf="@id/phone_iv"
-                app:layout_constraintTop_toBottomOf="@id/phone_iv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/tablet_card_view"
-        android:layout_width="64dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/speaker_card_view"
-        app:layout_constraintStart_toEndOf="@id/phone_card_view"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/tablet_iv"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tablet_icon"
-                app:layout_constraintBottom_toTopOf="@+id/tablet_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tablet_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:text="태블릿"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/tablet_iv"
-                app:layout_constraintStart_toStartOf="@id/tablet_iv"
-                app:layout_constraintTop_toBottomOf="@id/tablet_iv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/speaker_card_view"
-        android:layout_width="64dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toStartOf="@id/desktop_card_view"
-        app:layout_constraintStart_toEndOf="@id/tablet_card_view"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/speaker_iv"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_speaker_icon"
-                app:layout_constraintBottom_toTopOf="@+id/speaker_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/speaker_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:text="스피커"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/speaker_iv"
-                app:layout_constraintStart_toStartOf="@id/speaker_iv"
-                app:layout_constraintTop_toBottomOf="@id/speaker_iv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/desktop_card_view"
-        android:layout_width="64dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/speaker_card_view"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/desktop_iv"
-                android:layout_width="0dp"
-                android:layout_height="36dp"
-                android:layout_marginTop="6dp"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_desktop_icon"
-                app:layout_constraintBottom_toTopOf="@+id/desktop_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/desktop_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="6dp"
-                android:text="데스크탑"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/desktop_iv"
-                app:layout_constraintStart_toStartOf="@id/desktop_iv"
-                app:layout_constraintTop_toBottomOf="@id/desktop_iv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <View
-        android:id="@+id/line1"
+<!--
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/background"
-        app:layout_constraintTop_toBottomOf="@id/laptop_card_view" />
+        android:layout_height="?actionBarSize"
+        app:titleTextColor="@color/normal"
+        android:background="@color/white"
+        app:title="비교하기"
+        app:subtitle = "기기 종류를 선택하여 좋아요 목록을 확인해보세요"
+        app:menu="@menu/window_toolbar"
+        app:layout_constraintTop_toTopOf="parent">
+    </androidx.appcompat.widget.Toolbar>-->
 
+    <Spinner
+        android:id="@+id/dropdown_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
+    <LinearLayout
+        android:id="@+id/select_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dropdown_items">
 
+        <!--이미지뷰로 선택한 이미지 받아오기-->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/choose1" />
 
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/choose2"/>
 
+    </LinearLayout>
 
+    <ImageView
+        android:id="@+id/comparison_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/comparison_button"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/select_product"/>
+
+    <TextView
+        android:id="@+id/comparecontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:text="좋아요 목록"
+        android:textColor="@color/normal"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/comparison_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/like_product"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/comparecontent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
