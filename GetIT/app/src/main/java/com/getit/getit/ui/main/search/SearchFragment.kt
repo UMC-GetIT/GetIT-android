@@ -59,8 +59,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     // 타이틀 변경
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).showActionBar()
-        (activity as MainActivity).setActionBarTitle("제품 조회")
+        super.showActionBar()
+        super.setActionBarTitle("제품 조회")
     }
 
     // 하단 다이얼로그
