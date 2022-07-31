@@ -23,4 +23,8 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
+    <style name="Theme.GetIT.RemoveSplash" parent="Theme.GetIT">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>

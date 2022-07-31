@@ -12,22 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.GetIT">
+        android:theme="@style/Theme.GetIT.RemoveSplash">
 
-
-        <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="true">
+        <activity android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GetIT.RemoveSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.main.home.WindowActivity"/>
         <activity android:name=".ui.login.SignUpActivity"/>
         <activity android:name=".ui.login.LoginActivity"/>
-<!--        <activity android:name=".ui.main.MainActivity"/>-->
+        <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
 
