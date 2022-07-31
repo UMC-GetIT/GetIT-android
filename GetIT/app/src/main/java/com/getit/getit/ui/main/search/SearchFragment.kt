@@ -1,9 +1,12 @@
 package com.getit.getit.ui.main.search
 
+import android.content.Context
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentSearchBinding
@@ -11,7 +14,7 @@ import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.MainActivity
 import com.google.gson.Gson
 
-class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
 
     override fun initAfterBinding() {
 
@@ -39,35 +42,10 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
             }
         })
 
-        // 상품 카테고리 클릭
-        // 휴대폰 클릭
-
-
-        //카테고리 선택
-//        val company = binding.searchCompanySpinner
-//        val cpu = binding.searchCpuSpinner
-//        val ram = binding.searchRamSpinner
-//        val releaseYear = binding.searchReleaseYearSpinner
-
-        //어댑터 - resource, array.xml에 있는 아이템 목록을 추가
-//        company.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.companyList, android.R.layout.simple_spinner_item)
-//        cpu.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.cpuList, android.R.layout.simple_spinner_item)
-//        ram.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.ramList, android.R.layout.simple_spinner_item)
-//        releaseYear.adapter = ArrayAdapter.createFromResource(requireContext(), R.array.releaseYearList, android.R.layout.simple_spinner_item)
-
-        //Listener - 어떤 아이템을 눌렀는지 확인
-//        company.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                when (position) {
-//                    0 -> {
-//                    }
-//                }
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//            }
-//
-//        }
+        // 하단 다이얼로그
+        binding.searchDetailCategoryScreensizeBtn.setOnClickListener {
+            onSlideUpDialog()
+        }
     }
 
     private fun changeProductActivity(products: Products) {
@@ -83,6 +61,21 @@ class SearchFragment(): BaseFragment<FragmentSearchBinding>(FragmentSearchBindin
         super.onResume()
         (activity as MainActivity).showActionBar()
         (activity as MainActivity).setActionBarTitle("제품 조회")
+    }
+
+    // 하단 다이얼로그
+    private fun onSlideUpDialog() {
+        var contentView: View = (activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.dialog_screensize, null)
+        val slideupPopup = context?.let {
+            SlideUpDialog.Builder(it)
+                .setContentView(contentView)
+                .create()
+        }
+        slideupPopup
+        slideupPopup!!.show()
+        contentView.findViewById<ImageButton>(R.id.dialog_screensize_close_ib).setOnClickListener {
+            slideupPopup.dismissAnim()
+        }
     }
 
 

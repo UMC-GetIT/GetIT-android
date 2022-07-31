@@ -13,7 +13,6 @@
         android:layout_height="?actionBarSize"
         app:titleTextColor="@color/normal"
         android:background="@color/white"
-        android:elevation="4dp"
         app:title="GetIT"
         app:menu="@menu/menu_toolbar">
     </androidx.appcompat.widget.Toolbar>
