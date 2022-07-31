@@ -15,4 +15,7 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.GetIT.RemoveSplash" parent="Theme.GetIT">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

@@ -20,4 +20,8 @@
         <item name="android:statusBarColor">@color/white</item>
     </style>
 
+    <style name="Theme.GetIT.RemoveSplash" parent="Theme.GetIT">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
