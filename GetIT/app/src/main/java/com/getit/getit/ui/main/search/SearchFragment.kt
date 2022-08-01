@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
@@ -42,6 +44,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
         })
 
+        // 제품 카테고리 선택
+        binding.phoneCardView.setOnClickListener {
+            binding.phoneCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+            binding.phoneTv.setTextColor(getColor(requireContext(), R.color.white))
+
+            // 이렇게 하고 다른 건 색 초기화 하는 거 어케하지?
+            binding.laptopCardView.setCardBackgroundColor(null)
+            binding.laptopTv.setTextColor(getColor(requireContext(), R.color.normal))
+        }
+
         // 하단 다이얼로그
         binding.searchDetailCategoryScreensizeBtn.setOnClickListener {
             onSlideUpDialog()
@@ -60,7 +72,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).showActionBar()
-        (activity as MainActivity).setActionBarTitle("제품 조회")
+        (activity as MainActivity).setActionBarTitle("카테고리 조회")
     }
 
     // 하단 다이얼로그
