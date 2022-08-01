@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.comparison.ComparisonFragment">
+
+    <!--비교화면 첫화면-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/comparecontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:text="비교 결과"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textColor="@color/normal"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/change_product"
+            />
+
+        <!--비교 내용 데이터 받아오기-->
+
+        <ImageButton
+            android:id="@+id/change_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/subText"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+
+            />
+
+        <LinearLayout
+            android:id="@+id/comparisonimg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/comparecontent">
+
+            <View
+                android:layout_width="50dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+
+                />
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="100dp"
+                android:layout_weight="2"
+                android:src ="@drawable/apple_labtop_img"/>
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:background="@color/outline" />
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="100dp"
+                android:layout_weight="2"
+                android:layout_marginLeft="5dp"
+                android:src ="@drawable/apple_labtop_img"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/comparisonimg"/>
+
+
+
+        <!--비교내용 표
+            <TableLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/comparecontent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+             <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_weight="0.5"
+                     android:layout_marginLeft="20dp"
+
+                      />
+
+                    <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:src ="@drawable/apple_labtop_img"/>
+
+                 <ImageView
+                     android:layout_width="50dp"
+                     android:layout_height="100dp"
+                     android:layout_weight="1"
+                     android:src ="@drawable/apple_labtop_img"/>
+             </TableRow>
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/normal"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:background="@drawable/roundcircle"
+                    android:backgroundTint="@color/primary_bg"
+                    android:text="가격" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+            </TableRow>
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/normal"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:background="@drawable/roundcircle"
+                    android:backgroundTint="@color/primary_bg"
+                    android:text="가격" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/normal"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:background="@drawable/roundcircle"
+                    android:backgroundTint="@color/primary_bg"
+                    android:text="가격" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+            </TableRow>
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/normal"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:background="@drawable/roundcircle"
+                    android:backgroundTint="@color/primary_bg"
+                    android:text="가격" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:textColor="@color/normal"
+                    android:background="@color/white"
+                    android:text="1,626,000" />
+            </TableRow>
+
+            </TableLayout>
+
+-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
