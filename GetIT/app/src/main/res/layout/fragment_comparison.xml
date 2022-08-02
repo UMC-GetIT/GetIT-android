@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/notosanskr_bold"
+        android:fontFamily="@font/notosanskr_regular"
         android:text="좋아요 목록"
         android:textColor="@color/normal"
         android:textSize="15sp"

@@ -18,7 +18,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
             android:text="비교 결과"
-            android:fontFamily="@font/notosanskr_bold"
+            android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -36,7 +36,7 @@
             android:layout_marginLeft="20dp"
             android:background="@color/subText"
             android:backgroundTint="@color/white"
-            android:src="@drawable/arrow_back"
+            android:src="@drawable/ic_arrow_left"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
