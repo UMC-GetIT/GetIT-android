@@ -35,4 +35,10 @@ class ComparisonFragment(): BaseFragment<FragmentComparisonBinding>(FragmentComp
         //(activity as MainActivity).supportActionBar?.setSubtitle("기기 종류를 선택하여 좋아요 목록을 확인해보세요")
 
     }
+
+    override fun onResume() {
+        super.onResume()
+        showActionBar() //지난번에 넣은 코드에서 이 부분만 추가
+        setActionBarTitle("비교하기")
+    }
 }

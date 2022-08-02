@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.utils.Inflate
 
 
@@ -41,4 +42,19 @@ abstract class BaseFragment<VB : ViewBinding>(
     fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
+
+    fun setActionBarTitle(title: String?) {
+        (activity as MainActivity).supportActionBar?.title = title
+    }
+
+    // 툴바 쓴다
+    fun showActionBar(){
+        (activity as MainActivity).supportActionBar?.show()
+    }
+
+    // 툴바 안쓴다
+    fun hideActionBar() {
+        (activity as MainActivity).supportActionBar?.hide()
+    }
+
 }

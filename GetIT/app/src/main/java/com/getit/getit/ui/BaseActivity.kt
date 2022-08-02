@@ -12,7 +12,6 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater) -> T): AppCompatActivity(){
     protected lateinit var binding: T
-        private set
 
     private var imm : InputMethodManager? = null
 
@@ -46,5 +45,19 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
     // 키보드 숨기기
     fun hideKeyboard(v: View){
         imm?.hideSoftInputFromWindow(v.windowToken, 0)
+    }
+
+    fun setActionBarTitle(title: String?) {
+        supportActionBar?.title = title
+    }
+
+    // 툴바 쓴다
+    fun showActionBar(){
+        supportActionBar?.show()
+    }
+
+    // 툴바 안쓴다
+    fun hideActionBar() {
+        supportActionBar?.hide()
     }
 }

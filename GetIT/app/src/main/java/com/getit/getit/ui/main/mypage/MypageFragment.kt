@@ -12,7 +12,6 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
     override fun initAfterBinding() {
     }
 
-    // main 액션바 제거
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).hideActionBar()
