@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main
 
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -47,7 +48,7 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     // 아이템(검색 버튼)이 클릭되었을 때 -> 구현해야 함
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_search -> showToast("검색 버튼 클릭")
+            R.id.menu_search -> startActivity(Intent(this, SearchActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }
