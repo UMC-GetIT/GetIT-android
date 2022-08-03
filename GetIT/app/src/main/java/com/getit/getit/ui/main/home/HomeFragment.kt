@@ -1,17 +1,17 @@
 package com.getit.getit.ui.main.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flo.ui.main.home.BannerFragment
 import com.example.flo.ui.main.home.BannerVPAdapter
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
-import me.relex.circleindicator.CircleIndicator3;
+import com.getit.getit.ui.main.home.data.ItTermIcon
 
 
 class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -30,14 +30,29 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
 
         binding.homeBannerVp.adapter = bannerAdapter
         binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.homeBannerVp.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
 
-        var indicator : CircleIndicator3 = binding.homeIndicator;
-        indicator.setViewPager(binding.homeBannerVp)
-        indicator.createIndicators(3, 1)
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                var page = position + 1
+                binding.checkPageNum.text = "$page/3"
+            }
 
-        binding.answer11.setOnClickListener{
-            startActivity(Intent(activity, WindowActivity::class.java))
-        }
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+            }
+        })
+
+//        binding.answer11.setOnClickListener{
+//            startActivity(Intent(activity, WindowActivity::class.java))
+//        }
 
         return binding.root
     }
@@ -47,6 +62,34 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
     }
 
     override fun initAfterBinding() {
+        var ittermDatas = ArrayList<ItTermIcon>()
+        // 더미데이터
+        ittermDatas.apply {
+            add(ItTermIcon(R.drawable.cpu_icon, "CPU"))
+            add(ItTermIcon(R.drawable.ram_icon, "RAM"))
+            add(ItTermIcon(R.drawable.gpu_icon, "GPU"))
+            add(ItTermIcon(R.drawable.ssd_icon, "저장장치"))
+            add(ItTermIcon(R.drawable.output_icon, "출력"))
+            add(ItTermIcon(R.drawable.terminal_icon, "단자"))
+            add(ItTermIcon(R.drawable.protocol_icon, "통신 규격"))
+            add(ItTermIcon(R.drawable.resolution_icon, "해상도"))
+            add(ItTermIcon(R.drawable.pixel_icon, "카메라 화소"))
+        }
 
+        val termRVAdapter = TermRVAdapter(ittermDatas)
+        binding.ittermAnswerRv.adapter = termRVAdapter
+
+        val linearLayoutManager = LinearLayoutManager(this.context)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        binding.ittermAnswerRv.layoutManager = linearLayoutManager
+
+        // 상품 클릭
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showActionBar()
+        setActionBarTitle("겟 IT")
     }
 }
