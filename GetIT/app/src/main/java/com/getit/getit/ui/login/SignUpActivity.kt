@@ -1,16 +1,16 @@
 package com.getit.getit.ui.login
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.getit.getit.AuthService
 import com.getit.getit.Result
 import com.getit.getit.data.User
-import com.getit.getit.databinding.ActivityLoginBinding
 import com.getit.getit.databinding.ActivitySignupBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
@@ -27,11 +27,18 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
             signUp()
         }
 
-//        binding.signUpBackIv.setOnClickListener {
-//            startActivity(Intent(this, LoginActivity::class.java))
-//        }
+        val toolbar : Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.home){
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
     override fun onResume() {
         super.onResume()
         showActionBar() //지난번에 넣은 코드에서 이 부분만 추가
