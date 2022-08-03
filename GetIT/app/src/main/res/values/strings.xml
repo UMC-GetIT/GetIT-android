@@ -14,4 +14,91 @@
     <!--에러처리-->
     <string name="default_fail">네트워크연결이 원활하지 않습니다</string>
 
+    <!--제품 조회-->
+    <string name="category_search">카테고리로 조회</string>
+
+    <!--제품 카테고리-->
+    <string name="laptop">노트북</string>
+    <string name="phone">휴대폰</string>
+    <string name="tablet">태블릿</string>
+    <string name="speaker">스피커</string>
+    <string name="desktop">PC</string>
+
+    <!--검색창 힌트-->
+    <string name="search_hint">검색어를 입력해주세요</string>
+
+    <!--버튼-->
+    <string name="apply_btn">적용</string>
+
+    <!--제품 상세 카테고리-->
+    <string name="price">가격</string>
+    <string name="price_1_down">1만원 이하</string>
+    <string name="price_1_to_5">1만원 ~ 5만원</string>
+    <string name="price_5_to_10">5만원 ~ 10만원</string>
+    <string name="price_10_up">10만원 이상</string>
+    <string name="price_100_down">100만원 이하</string>
+    <string name="price_100_to_200">100만원 ~ 200만원</string>
+    <string name="price_200_up">200만원 이상</string>
+
+    <string name="brand">브랜드</string>
+    <string name="brand_lg">LG</string>
+    <string name="brand_lg_electronics">LG전자</string>
+    <string name="brand_apple">APPLE</string>
+    <string name="brand_samsung">삼성</string>
+    <string name="brand_samsung_electronics">삼성전자</string>
+    <string name="brand_lenovo">레노버</string>
+    <string name="brand_jbl">JBL</string>
+    <string name="brand_marshall">Marshall</string>
+    <string name="brand_geneva">Geneva</string>
+    <string name="ect">기타</string>
+
+    <string name="cpu">CPU</string>
+    <string name="cpu_i3">i3</string>
+    <string name="cpu_i5">i5</string>
+    <string name="cpu_i9">i9</string>
+    <string name="cpu_M1">M1</string>
+    <string name="cpu_ryzen5">라이젠5</string>
+    <string name="cpu_ryzen7">라이젠7</string>
+
+    <string name="ram">RAM</string>
+    <string name="storage_capacity">저장 용량</string>
+    <string name="internal_storage">내장 메모리</string>
+    <string name="gb4">4GB</string>
+    <string name="gb6">6GB</string>
+    <string name="gb8">8GB</string>
+    <string name="gb16">16GB</string>
+    <string name="gb32">32GB</string>
+    <string name="gb128">128GB</string>
+    <string name="gb256">256GB</string>
+    <string name="gb512">512GB</string>
+
+    <string name="screen_size">화면 크기</string>
+    <string name="inch13">13인치</string>
+    <string name="inch15">15인치</string>
+    <string name="inch17">17인치</string>
+    <string name="inch22">22인치</string>
+    <string name="inch24">24인치</string>
+    <string name="inch27">27인치</string>
+    <string name="inch29">29인치</string>
+    <string name="inch32">32인치</string>
+    <string name="inch34">34인치</string>
+
+    <string name="weight">무게</string>
+    <string name="weight1">1kg 이하</string>
+    <string name="weight2">1kg ~ 2kg</string>
+    <string name="weight3">2kg 이상</string>
+
+    <string name="watt_output">출력</string>
+    <string name="watt_05_to_15">0.5w ~ 15w</string>
+    <string name="watt_16_to_30">16w ~ 30w</string>
+    <string name="watt_31_to_50">31w ~ 50w</string>
+    <string name="watt_51_to_100">51w ~ 100w</string>
+    <string name="watt_100_up">100w 이상</string>
+
+
+    <string name="protocol">통신 규격</string>
+    <string name="protocol_3g">3G</string>
+    <string name="protocol_4g">4G</string>
+    <string name="protocol_5g">5G</string>
+
 </resources>
