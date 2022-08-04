@@ -11,6 +11,8 @@
     <string name="menu_comparison">비교</string>
     <string name="menu_mypage">마이페이지</string>
 
+    <string name="product_detail">상세 정보</string>
+
     <!--에러처리-->
     <string name="default_fail">네트워크연결이 원활하지 않습니다</string>
 

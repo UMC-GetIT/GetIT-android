@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="28dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -9,7 +10,6 @@
         android:layout_width="76dp"
         android:layout_height="76dp"
         app:cardCornerRadius="5dp"
-        android:layout_marginTop="16dp"
         app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,8 +18,8 @@
             android:id="@+id/item_review_img_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/samsong_labtop_img" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/legion_labtop_img" />
 
     </androidx.cardview.widget.CardView>
 
@@ -47,26 +47,17 @@
 
     <TextView
         android:id="@+id/item_product_review_review_content_tv"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
         android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:padding="10dp"
         android:text="리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용 리뷰 내용"
         android:textSize="12sp"
         android:textColor="@color/normal"
         android:background="@drawable/style_speech_bubble"
         app:layout_constraintStart_toStartOf="@id/item_product_review_user_img_iv"
-        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_img_iv" />
-
-    <View
-        android:id="@+id/item_product_review_divide_view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_product_review_review_content_tv"/>
-
+        app:layout_constraintTop_toBottomOf="@id/item_product_review_user_img_iv"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
