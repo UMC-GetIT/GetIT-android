@@ -1,25 +1,25 @@
 package com.getit.getit.ui.main.search
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
-import com.getit.getit.databinding.FragmentProductDetailBinding
+import com.getit.getit.databinding.ActivityProductDetailBinding
+import com.getit.getit.databinding.ActivitySearchBinding
+import com.getit.getit.ui.BaseActivity
 import com.google.gson.Gson
 import java.text.DecimalFormat
 
-class ProductDetailActivity: AppCompatActivity() {
-lateinit var binding: FragmentProductDetailBinding
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate) {
     private var gson: Gson = Gson()
 
+    override fun initAfterBinding() {}
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = FragmentProductDetailBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         binding.backspaceBtn.setOnClickListener {
-            super.onBackPressed()
+            backspace()
         }
 
         val intent = intent

@@ -16,7 +16,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashBinding.inflate(layoutInflater)
+        var binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         hideActionBar()

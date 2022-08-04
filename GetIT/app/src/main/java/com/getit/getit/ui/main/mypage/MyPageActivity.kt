@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
-import com.getit.getit.databinding.FragmentProductDetailBinding
+import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.utils.BASE_URL
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
