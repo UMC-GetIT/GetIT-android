@@ -17,12 +17,12 @@
             android:id="@+id/backspace_btn"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginStart="12dp"
             android:src="@drawable/ic_arrow_left"
             android:backgroundTint="@android:color/transparent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/background_cv"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/background_cv"
@@ -42,7 +42,7 @@
                     android:id="@+id/search_icon_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_search_edittext_icon"
+                    android:src="@drawable/ic_search_icon_grey"
                     android:layout_marginStart="8dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
