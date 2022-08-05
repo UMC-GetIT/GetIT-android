@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.MainActivity
 import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
@@ -47,7 +44,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         // 제품 카테고리 선택
          binding.laptopCardView.setOnClickListener {
              offAllCategoryBtn() // 모든 버튼 초기화
-             onLaptopBtn() // 폰만 색 설정
+             onLaptopBtn()
          }
         binding.phoneCardView.setOnClickListener {
             offAllCategoryBtn()
@@ -66,11 +63,29 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             onDesktopBtn()
         }
 
-
         // 하단 다이얼로그
+//        binding.searchDetailCategoryScreensizeBtn.setOnClickListener {
+//            onSlideUpDialog()
+//        }
+        // 화면 크기
         binding.searchDetailCategoryScreensizeBtn.setOnClickListener {
-            onSlideUpDialog()
+            val screensizeDialog: ScreensizeDialog = ScreensizeDialog {
+                lateinit var screensize: String
+                when (it) {
+                    0 -> screensize = getString(R.string.inch13)
+                    1 -> screensize = getString(R.string.inch15)
+                    2 -> screensize = getString(R.string.inch17)
+                    else -> screensize = getString(R.string.ect)
+                }
+                binding.searchDetailCategoryScreensizeBtn.text = screensize
+                binding.searchDetailCategoryScreensizeBtn.setTextColor(getColor(requireContext(), R.color.primary))
+                binding.searchDetailCategoryScreensizeBtn.setBackgroundResource(R.drawable.style_button_on)
+                binding.searchDetailCategoryScreensizeBtn.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down_blue, 0)
+            }
+            screensizeDialog.show(parentFragmentManager, "ScreensizeDialog")
         }
+        // 가격 외 20여개 카테고리
+
     }
 
     private fun onLaptopBtn() {
@@ -127,20 +142,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     // 하단 다이얼로그
-    private fun onSlideUpDialog() {
-        var contentView: View = (activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.dialog_screensize, null)
-        val slideupPopup = context?.let {
-            SlideUpDialog.Builder(it)
-                .setContentView(contentView)
-                .create()
-        }
-        slideupPopup
-        slideupPopup!!.show()
-        contentView.findViewById<ImageButton>(R.id.dialog_screensize_close_ib).setOnClickListener {
-            slideupPopup.dismissAnim()
-        }
-    }
-
+//    private fun onSlideUpDialog() {
+//        var contentView: View = (activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.dialog_screensize, null)
+//        val slideupPopup = context?.let {
+//            SlideUpDialog.Builder(it)
+//                .setContentView(contentView)
+//                .create()
+//        }
+//        slideupPopup
+//        slideupPopup!!.show()
+//
+//        contentView.findViewById<ImageButton>(R.id.dialog_screensize_close_ib).setOnClickListener {
+//            slideupPopup.dismissAnim()
+//        }
+//    }
 
 
 }
