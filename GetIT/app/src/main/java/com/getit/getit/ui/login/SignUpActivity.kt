@@ -31,7 +31,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setHomeAsUpIndicator(drawable.ic_arrow_left);
+        supportActionBar?.setHomeAsUpIndicator(drawable.ic_close);
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -44,7 +44,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
     override fun onResume() {
         super.onResume()
         showActionBar() //지난번에 넣은 코드에서 이 부분만 추가
-        setActionBarTitle("회원가입")
+        setActionBarTitle("")
     }
 
     private fun getUser(): User {

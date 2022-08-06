@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,10 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
                 super.onPageScrollStateChanged(state)
             }
         })
+
+        binding.questionRecommendationContentButton.setOnClickListener{
+            startActivity(Intent(activity, RecommendActivity::class.java))
+        }
 
 //        binding.answer11.setOnClickListener{
 //            startActivity(Intent(activity, WindowActivity::class.java))
