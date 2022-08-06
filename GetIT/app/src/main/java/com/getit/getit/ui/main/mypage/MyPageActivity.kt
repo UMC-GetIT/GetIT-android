@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.getit.getit.R
-import com.getit.getit.databinding.FragmentMypage2Binding
-import com.getit.getit.databinding.FragmentProductDetailBinding
+import com.getit.getit.databinding.FragmentMypageBinding
+import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.utils.BASE_URL
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -19,10 +19,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MyPageActivity : AppCompatActivity() {
-    lateinit var binding: FragmentMypage2Binding
+    lateinit var binding: FragmentMypageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = FragmentMypage2Binding.inflate(layoutInflater)
+        binding = FragmentMypageBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }

@@ -12,6 +12,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater) -> T): AppCompatActivity(){
     protected lateinit var binding: T
+        private set
 
     private var imm : InputMethodManager? = null
 
@@ -51,13 +52,17 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
         supportActionBar?.title = title
     }
 
-    // 툴바 쓴다
+    // 툴바 보임
     fun showActionBar(){
         supportActionBar?.show()
     }
 
-    // 툴바 안쓴다
+    // 툴바 숨김
     fun hideActionBar() {
         supportActionBar?.hide()
+    }
+
+    fun backspace() {
+        super.onBackPressed()
     }
 }
