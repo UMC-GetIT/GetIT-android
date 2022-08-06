@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.getit.getit.AuthService
+import com.getit.getit.R.*
 import com.getit.getit.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivitySignupBinding
@@ -30,6 +31,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setHomeAsUpIndicator(drawable.ic_arrow_left);
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

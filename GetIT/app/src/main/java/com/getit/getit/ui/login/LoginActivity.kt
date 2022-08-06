@@ -32,6 +32,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         binding.tempMainActivity.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
         }
+
     }
 
     private fun login() {
