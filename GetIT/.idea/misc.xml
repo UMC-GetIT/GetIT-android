@@ -34,8 +34,28 @@
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_signup.xml" value="0.3494791666666667" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_splash.xml" value="0.3494791666666667" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_brand.xml" value="0.2453125" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_cpu.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_desktop_brand.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_desktop_cpu.xml" value="0.25" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_desktop_ram.xml" value="0.22" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_desktop_screen.xml" value="0.25" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_few_brand.xml" value="0.5" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_high_price.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_internal_storage.xml" value="0.3494791666666667" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_laptop_cpu.xml" value="0.3494791666666667" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_laptop_ram.xml" value="0.3494791666666667" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_loading.xml" value="0.3494791666666667" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_low_price.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_low_ram.xml" value="0.25" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_memory.xml" value="0.2861111111111111" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_protocol.xml" value="0.33" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_screensize.xml" value="0.22" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_speaker_brand.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_tablet_cpu.xml" value="0.25" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_tablet_screen.xml" value="0.25" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_watt_output.xml" value="0.33" />
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/dialog_weight.xml" value="0.22" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/fragment_banner.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/fragment_comparison.xml" value="0.33" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/fragment_explain_cpu.xml" value="0.18177083333333333" />
