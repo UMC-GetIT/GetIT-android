@@ -3,7 +3,8 @@
     package="com.getit.getit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--android:name="com.getit.getit.ApplicationClass"-->
     <application
         android:name="com.getit.getit.ApplicationClass"
         android:allowBackup="true"
@@ -26,11 +27,13 @@
         <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".ui.main.home.WindowActivity"/>
         <activity android:name=".ui.login.SignUpActivity"/>
-        <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.main.MainActivity"/>
+        <!--<activity android:name=".ui.main.MainActivity"/>-->
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
-
+        <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
+        <activity android:name=".ui.main.mypage.settings.settingActivity"/>
+        <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>
+        <activity android:name=".ui.main.mypage.settings.DeveloperInfoActivity"/>
     </application>
 
 </manifest>

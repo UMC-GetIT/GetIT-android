@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +17,17 @@ import com.getit.getit.databinding.ChangeProfileBinding
 class ChangeProfileActivity : AppCompatActivity() {
 
     lateinit var binding: ChangeProfileBinding
+    private var name: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ChangeProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initImageViewProfile()
+
+        name = findViewById(R.id.change_name_btn)
+
+        binding.nickname.setText(ApplicationClass.prefs.userId)
 
         //뒤로가기 버튼
         binding.backspaceBtn.setOnClickListener {
@@ -30,10 +36,10 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         //완료하기 버튼
         binding.sucsses.setOnClickListener {
+            ApplicationClass.prefs.userId = binding.nickname.text.toString()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
             super.onBackPressed()
         }
-
     }
 
     // 3.툴바 메뉴 버튼을 설정
@@ -41,6 +47,7 @@ class ChangeProfileActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_setting_toolbar_profile, menu)       // main_menu 메뉴를 toolbar 메뉴 버튼으로 설정
         return true
     }
+
 
     /*
     // 4.툴바 메뉴 버튼이 클릭 됐을 때 콜백
@@ -151,5 +158,43 @@ class ChangeProfileActivity : AppCompatActivity() {
             .setNegativeButton("취소하기") { _, _ -> }
             .create()
             .show()
+    }
+
+    //sharedPreference로 데이터 저장
+
+    // Fetch the stored data in onResume()
+    // Because this is what will be called
+    // when the app opens again
+    override fun onResume() {
+        super.onResume()
+
+        // Fetching the stored data
+        // from the SharedPreference
+        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val s1 = sh.getString("name", "")
+        val a = sh.getInt("age", 0)
+
+        // Setting the fetched data
+        // in the EditTexts
+        name!!.setText(s1)
+
+    }
+    // Store the data in the SharedPreference
+    // in the onPause() method
+    // When the user closes the application
+    // onPause() will be called
+    // and data will be stored
+    override fun onPause() {
+        super.onPause()
+
+        // Creating a shared pref object
+        // with a file name "MySharedPref"
+        // in private mode
+        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+        val myEdit = sharedPreferences.edit()
+
+        // write all the data entered by the user in SharedPreference and apply
+        myEdit.putString("name", name!!.text.toString())
+        myEdit.apply()
     }
 }

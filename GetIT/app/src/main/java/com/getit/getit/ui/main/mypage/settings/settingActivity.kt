@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.getit.getit.databinding.FragmentSettingsBinding
 import com.getit.getit.ui.login.LoginActivity
 
+
 class settingActivity : AppCompatActivity() {
     lateinit var binding: FragmentSettingsBinding
 
@@ -52,8 +53,8 @@ class settingActivity : AppCompatActivity() {
 
             fun toast() {
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                //MyApplication.prefs.edit.remove("email") // 여기서 Shared Preference 를 remove 한다!
-                //MyApplication.prefs.edit.remove("password")
+                //ApplicationClass.prefs.LoginActivity.email.remove("email") // 여기서 Shared Preference 를 remove 한다!
+                //ApplicationClass.prefs.password.remove("password")
                 //MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
