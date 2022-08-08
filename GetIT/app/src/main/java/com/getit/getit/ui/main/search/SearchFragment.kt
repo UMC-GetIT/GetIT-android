@@ -5,48 +5,26 @@ import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.GridLayoutManager
+import com.getit.getit.CategoryResult
+import com.getit.getit.CategoryService
 import com.getit.getit.R
+import com.getit.getit.SearchView
+import com.getit.getit.data.Category
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.search.category.*
 import com.google.gson.Gson
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), SearchView {
 
     override fun initAfterBinding() {
-
         onLaptopBtn()
-
-        var productDatas = ArrayList<Products>()
-        // 더미데이터
-        productDatas.apply {
-            add(Products("삼성전자 2021 갤럭시북 프로 360 13.3 + S펜", 1787000, R.drawable.samsong_labtop_img))
-            add(Products("LG전자 2022 그램 16", 1454000, R.drawable.lg_labtop_img))
-            add(Products("삼성전자 2021 갤럭시 북 프로 360", 1787000, R.drawable.samsong_pro_labtop_img))
-            add(Products("2022 LG 그램 360 터치스크린 노트북", 1469000, R.drawable.lg_gram_labtop_img))
-            add(Products("Apple 2021 맥북프로 14", 2470000, R.drawable.apple_labtop_img))
-            add(Products("레노버 Legion i7", 2433150, R.drawable.legion_labtop_img))
-            add(Products("Apple 2021 맥북프로 14", 2960000, R.drawable.apple_labtop2_img))
-            add(Products("풀스펙 NT371B5J 램16G SSD512G 윈도우10", 1260000, R.drawable.samsong2_labtop_img))
-        }
-
-        val searchRVAdatpter = SearchRVAdapter(productDatas)
-        binding.searchProductRv.adapter = searchRVAdatpter
-        binding.searchProductRv.layoutManager = GridLayoutManager(context, 2)
-
-        // 상품 클릭
-        searchRVAdatpter.setMyItemClickListener(object: SearchRVAdapter.MyItemClickListener{
-            override fun onItemClick(products: Products) {
-                changeProductActivity(products)
-            }
-        })
 
         // 제품 카테고리 선택
          binding.laptopCardView.setOnClickListener {
              offAllCategoryBtn() // 모든 버튼 초기화 및 비활성화
              onLaptopBtn()
-             // 다른 제품 세부 카테고리 초기화 기능 추가 필요
-             offAllDetailCategoryBtn()
+             offAllDetailCategoryBtn()  // 다른 제품 세부 카테고리 초기화 기능
          }
         binding.phoneCardView.setOnClickListener {
             offAllCategoryBtn()
@@ -155,6 +133,30 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        getCategory()
+    }
+
+    private fun initRecyclerView(result: List<CategoryResult>) {
+        val searchRVAdatpter = SearchRVAdapter(requireContext(), result)
+        binding.searchProductRv.adapter = searchRVAdatpter
+        binding.searchProductRv.layoutManager = GridLayoutManager(context, 2)
+
+        // 상품 클릭
+//        searchRVAdatpter.setProductClickListener(object: SearchRVAdapter.ProductClickListener{
+//            override fun onItemClick(products: Products) {
+//                changeProductActivity(products)
+//            }
+//        })
+    }
+
+    private fun getCategory() {
+        val categoryService = CategoryService()
+        categoryService.setSearchView(this)
+        categoryService.getCategory(Category(getString(R.string.laptop), getString(R.string.string_null)))
+    }
+
     private fun onDetailCategoryButton(btn: Button) {
         btn.setTextColor(getColor(requireContext(), R.color.primary))
         btn.setBackgroundResource(R.drawable.style_button_on)
@@ -170,7 +172,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun offAllDetailCategoryBtn() {
         binding.searchDetailCategoryLaptopScreensizeBtn.text = getString(R.string.screen_size)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopScreensizeBtn)
-        binding.searchDetailCategoryLaptopPriceBtn.text = getString(R.string.laptop)
+        binding.searchDetailCategoryLaptopPriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopPriceBtn)
         binding.searchDetailCategoryLaptopBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopBrandBtn)
@@ -178,7 +180,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         offDetailCategoryButton(binding.searchDetailCategoryLaptopCpuBtn)
         binding.searchDetailCategoryLaptopRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopRamBtn)
-        binding.searchDetailCategoryLaptopWeightBtn.text = getString(R.string.price)
+        binding.searchDetailCategoryLaptopWeightBtn.text = getString(R.string.weight)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopWeightBtn)
 
 
@@ -219,10 +221,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         offDetailCategoryButton(binding.searchDetailCategoryDesktopPriceBtn)
         binding.searchDetailCategoryDesktopBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopBrandBtn)
+        binding.searchDetailCategoryDesktopCpuBtn.text = getString(R.string.cpu)
+        offDetailCategoryButton(binding.searchDetailCategoryDesktopCpuBtn)
         binding.searchDetailCategoryDesktopRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopRamBtn)
-        binding.searchDetailTabletCategoryCpuBtn.text = getString(R.string.cpu)
-        offDetailCategoryButton(binding.searchDetailTabletCategoryCpuBtn)
     }
 
     private fun selectProtocol() {
@@ -614,5 +616,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         super.onResume()
         super.showActionBar()
         super.setActionBarTitle("카테고리로 조회")
+    }
+
+    override fun onGetCategoryLoading() {
+        // 로딩 이미지
+    }
+
+    override fun onGetCategorySuccess(Code: Int, result: List<CategoryResult>) {
+        initRecyclerView(result)
+    }
+
+    override fun onGetCategoryFailure(Code: Int, message: String) {
+        // 로딩 실패
     }
 }

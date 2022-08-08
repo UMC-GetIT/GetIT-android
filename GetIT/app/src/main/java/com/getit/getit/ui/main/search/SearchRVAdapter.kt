@@ -1,21 +1,17 @@
 package com.getit.getit.ui.main.search
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.getit.getit.CategoryResult
 import com.getit.getit.databinding.ItemSearchBinding
 import java.text.DecimalFormat
 
-class SearchRVAdapter(private val productList: ArrayList<Products>) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
-
-    interface MyItemClickListener{
-        fun onItemClick(product: Products)
-    }
-
-    private lateinit var mItemClickListener: MyItemClickListener //전달받은 리스너 객체를 저장 -> 어댑터에서 사용하기 위함
-    fun setMyItemClickListener(itemClickListener: MyItemClickListener){ //외부에서 전달받을 수 있는 함수
-        mItemClickListener = itemClickListener
-    }
+class SearchRVAdapter(val context: Context, val result: List<CategoryResult>) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SearchRVAdapter.ViewHolder {
         val binding: ItemSearchBinding = ItemSearchBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -23,26 +19,32 @@ class SearchRVAdapter(private val productList: ArrayList<Products>) : RecyclerVi
     }
 
     override fun onBindViewHolder(holder: SearchRVAdapter.ViewHolder, position: Int) {
-        holder.bind(productList[position])
 
-        //클릭 이벤트 (position 활용)
-        holder.itemView.setOnClickListener{
-            mItemClickListener.onItemClick(productList[position])
+        if (result[position].imgUrl == "" || result[position].imgUrl == null) {
+
         }
-
+        else {
+            Glide.with(context).load(result[position].imgUrl).into(holder.productImg)
+        }
+        holder.name.text = result[position].name
+        holder.price.text = result[position].price
     }
 
-    override fun getItemCount(): Int = productList.size
+    override fun getItemCount(): Int = result.size
 
     inner class ViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: Products) {
-            binding.itemSearchProductNameTv.text = product.name
-            // 천 단위 콤마 넣기
-            var price = product.price
-            val dec = DecimalFormat("#,###")
-            binding.itemSearchProductPriceTv.text = dec.format(price).toString() + "원"
-            binding.itemSearchImgIv.setImageResource(product.coverImg!!)
-        }
+        val productImg: ImageView = binding.itemSearchImgIv
+        val name: TextView = binding.itemSearchProductNameTv
+        val price: TextView = binding.itemSearchProductPriceTv
+    }
+
+    interface ProductClickListener {
+        fun onProductClick(productId: Int)
+    }
+    private lateinit var productClickListener: ProductClickListener
+
+    fun setProductClickListener(itemClickListener: ProductClickListener) {
+        productClickListener = itemClickListener
     }
 }
