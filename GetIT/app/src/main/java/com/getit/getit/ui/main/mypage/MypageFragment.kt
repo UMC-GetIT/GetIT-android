@@ -102,5 +102,10 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
     companion object {
         private const val TAG = "MypageFragment"
         fun instance() = MypageFragment()
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideActionBar()
+
     }
     }

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
@@ -42,10 +44,71 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
         })
 
+        // 제품 카테고리 선택
+         binding.laptopCardView.setOnClickListener {
+             offAllCategoryBtn() // 모든 버튼 초기화
+             onLaptopBtn() // 폰만 색 설정
+         }
+        binding.phoneCardView.setOnClickListener {
+            offAllCategoryBtn()
+            onPhoneBtn()
+        }
+        binding.tabletCardView.setOnClickListener {
+            offAllCategoryBtn()
+            onTabletBtn()
+        }
+        binding.speakerCardView.setOnClickListener {
+            offAllCategoryBtn()
+            onSpeakerBtn()
+        }
+        binding.desktopCardView.setOnClickListener {
+            offAllCategoryBtn()
+            onDesktopBtn()
+        }
+
+
         // 하단 다이얼로그
         binding.searchDetailCategoryScreensizeBtn.setOnClickListener {
             onSlideUpDialog()
         }
+    }
+
+    private fun onLaptopBtn() {
+        binding.laptopCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+        binding.laptopTv.setTextColor(getColor(requireContext(), R.color.white))
+    }
+    private fun onPhoneBtn() {
+        binding.phoneCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+        binding.phoneTv.setTextColor(getColor(requireContext(), R.color.white))
+    }
+    private fun onTabletBtn() {
+        binding.tabletCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+        binding.tabletTv.setTextColor(getColor(requireContext(), R.color.white))
+    }
+    private fun onSpeakerBtn() {
+        binding.speakerCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+        binding.speakerTv.setTextColor(getColor(requireContext(), R.color.white))
+    }
+    private fun onDesktopBtn() {
+        binding.desktopCardView.setCardBackgroundColor(getColor(requireContext(), R.color.primary))
+        binding.desktopTv.setTextColor(getColor(requireContext(), R.color.white))
+    }
+
+    private fun offAllCategoryBtn() {
+        binding.laptopCardView.setCardBackgroundColor(null)
+        binding.laptopTv.setTextColor(getColor(requireContext(), R.color.normal))
+
+        binding.phoneCardView.setCardBackgroundColor(null)
+        binding.phoneTv.setTextColor(getColor(requireContext(), R.color.normal))
+
+        binding.tabletCardView.setCardBackgroundColor(null)
+        binding.tabletTv.setTextColor(getColor(requireContext(), R.color.normal))
+
+        binding.speakerCardView.setCardBackgroundColor(null)
+        binding.speakerTv.setTextColor(getColor(requireContext(), R.color.normal))
+
+        binding.desktopCardView.setCardBackgroundColor(null)
+        binding.desktopTv.setTextColor(getColor(requireContext(), R.color.normal))
     }
 
     private fun changeProductActivity(products: Products) {
@@ -59,8 +122,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     // 타이틀 변경
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).showActionBar()
-        (activity as MainActivity).setActionBarTitle("제품 조회")
+        super.showActionBar()
+        super.setActionBarTitle("카테고리로 조회")
     }
 
     // 하단 다이얼로그

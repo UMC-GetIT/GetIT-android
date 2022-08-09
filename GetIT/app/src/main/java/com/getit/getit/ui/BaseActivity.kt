@@ -47,4 +47,22 @@ abstract class BaseActivity<T: ViewBinding>(private val inflate: (LayoutInflater
     fun hideKeyboard(v: View){
         imm?.hideSoftInputFromWindow(v.windowToken, 0)
     }
+
+    fun setActionBarTitle(title: String?) {
+        supportActionBar?.title = title
+    }
+
+    // 툴바 보임
+    fun showActionBar(){
+        supportActionBar?.show()
+    }
+
+    // 툴바 숨김
+    fun hideActionBar() {
+        supportActionBar?.hide()
+    }
+
+    fun backspace() {
+        super.onBackPressed()
+    }
 }
