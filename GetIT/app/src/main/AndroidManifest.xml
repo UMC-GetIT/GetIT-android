@@ -30,6 +30,7 @@
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
+        <activity android:name=".ui.main.SearchResultActivity"/>
 
     </application>
 

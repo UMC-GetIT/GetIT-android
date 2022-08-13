@@ -19,6 +19,8 @@
     <!--제품 조회-->
     <string name="category_search">카테고리로 조회</string>
 
+    <string name="search_result">검색 결과</string>
+
     <!--제품 카테고리-->
     <string name="laptop">노트북</string>
     <string name="phone">휴대폰</string>
