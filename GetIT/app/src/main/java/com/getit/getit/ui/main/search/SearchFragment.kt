@@ -4,16 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.MainActivity
+import com.getit.getit.ui.main.search.detail.ProductDetailActivity
 import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {

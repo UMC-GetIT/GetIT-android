@@ -1,12 +1,18 @@
-package com.getit.getit.ui.main.search
+package com.getit.getit.ui.main.search.detail
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
-import com.getit.getit.databinding.ActivitySearchBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.main.search.Products
+import com.getit.getit.ui.main.search.ReviewRVAdatpter
+import com.getit.getit.ui.main.search.Reviews
 import com.google.gson.Gson
 import java.text.DecimalFormat
 
@@ -40,16 +46,37 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.productDetailReviewRv.adapter = reviewRVAdatpter
         binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-//        binding.productDetailLikeOnIb.setOnClickListener {
-//            binding.productDetailLikeOnIb.visibility = View.INVISIBLE
-//            binding.productDetailLikeOffIb.visibility = View.VISIBLE
-//        }
-//
-//        binding.productDetailLikeOffIb.setOnClickListener {
-//            binding.productDetailLikeOnIb.visibility = View.VISIBLE
-//            binding.productDetailLikeOffIb.visibility = View.INVISIBLE
-//        }
+        binding.productDetailLikeBtnOffIb.setOnClickListener {
+            likeOn()
+        }
+        binding.productDetailLikeBtnOnIb.setOnClickListener {
+            likeOff()
+        }
 
+        binding.productDetailReviewInputEt.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var userinput = binding.productDetailReviewInputEt.text.toString()
+                binding.productDetailConfirmBtnOn.visibility = View.VISIBLE
+                binding.productDetailConfirmBtnOff.visibility = View.INVISIBLE
+                if (userinput.length.toString() == "0") {
+                    binding.productDetailConfirmBtnOn.visibility = View.INVISIBLE
+                    binding.productDetailConfirmBtnOff.visibility = View.VISIBLE
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
+    }
+
+    private fun likeOn() {
+        binding.productDetailLikeBtnOnIb.visibility = View.VISIBLE
+        binding.productDetailLikeBtnOffIb.visibility = View.INVISIBLE
+    }
+    private fun likeOff() {
+        binding.productDetailLikeBtnOnIb.visibility = View.INVISIBLE
+        binding.productDetailLikeBtnOffIb.visibility = View.VISIBLE
     }
 
     private fun setInit(product: Products) {
