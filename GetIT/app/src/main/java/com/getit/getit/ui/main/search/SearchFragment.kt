@@ -1,14 +1,14 @@
 package com.getit.getit.ui.main.search
 
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.GridLayoutManager
-import com.getit.getit.CategoryResult
-import com.getit.getit.CategoryService
 import com.getit.getit.R
-import com.getit.getit.SearchView
 import com.getit.getit.data.Category
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
@@ -16,6 +16,7 @@ import com.getit.getit.ui.main.search.category.*
 import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), SearchView {
+    private lateinit var searchRVAdatpter: SearchRVAdapter
 
     override fun initAfterBinding() {
         onLaptopBtn()
@@ -139,9 +140,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initRecyclerView(result: List<CategoryResult>) {
-        val searchRVAdatpter = SearchRVAdapter(requireContext(), result)
+        searchRVAdatpter = SearchRVAdapter(requireContext(), result)
         binding.searchProductRv.adapter = searchRVAdatpter
-        binding.searchProductRv.layoutManager = GridLayoutManager(context, 2)
 
         // 상품 클릭
 //        searchRVAdatpter.setProductClickListener(object: SearchRVAdapter.ProductClickListener{

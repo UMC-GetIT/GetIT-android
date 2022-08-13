@@ -1,4 +1,4 @@
-package com.getit.getit
+package com.getit.getit.ui.main.search
 
 import android.util.Log
 import com.getit.getit.data.Category

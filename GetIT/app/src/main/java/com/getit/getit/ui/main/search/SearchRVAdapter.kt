@@ -1,15 +1,14 @@
 package com.getit.getit.ui.main.search
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.getit.getit.CategoryResult
 import com.getit.getit.databinding.ItemSearchBinding
-import java.text.DecimalFormat
 
 class SearchRVAdapter(val context: Context, val result: List<CategoryResult>) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
 
@@ -30,7 +29,10 @@ class SearchRVAdapter(val context: Context, val result: List<CategoryResult>) : 
         holder.price.text = result[position].price
     }
 
-    override fun getItemCount(): Int = result.size
+    override fun getItemCount(): Int {
+        Log.d("test-size", result.size.toString())
+        return result.size
+    }
 
     inner class ViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root) {
 

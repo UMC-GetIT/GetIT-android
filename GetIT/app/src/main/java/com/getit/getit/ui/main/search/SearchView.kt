@@ -1,4 +1,4 @@
-package com.getit.getit
+package com.getit.getit.ui.main.search
 
 interface SearchView {
     fun onGetCategoryLoading()
