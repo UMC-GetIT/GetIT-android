@@ -3,7 +3,9 @@ package com.getit.getit.ui.main.mypage.settings
 import android.content.Context
 import android.content.SharedPreferences
 
-class ChangeProfiles(context: Context) {
+/*class ChangeProfiles(context: Context) {
+
+
 
     private val prefsFilename = "prefs"
     private val prefsKeyEdt = "userId"
@@ -12,4 +14,4 @@ class ChangeProfiles(context: Context) {
     var userId: String?
         get() = prefs.getString(prefsKeyEdt, "")
         set(value) = prefs.edit().putString(prefsKeyEdt, value).apply()
-}
+}*/

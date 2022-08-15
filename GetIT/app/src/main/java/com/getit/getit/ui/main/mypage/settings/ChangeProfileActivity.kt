@@ -16,6 +16,7 @@ import com.getit.getit.databinding.ChangeProfileBinding
 
 class ChangeProfileActivity : AppCompatActivity() {
 
+
     lateinit var binding: ChangeProfileBinding
     private var name: EditText? = null
 
@@ -27,7 +28,7 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         name = findViewById(R.id.change_name_btn)
 
-        binding.nickname.setText(ApplicationClass.prefs.userId)
+        //binding.nickname.setText(ApplicationClass.prefs.userId)
 
         //뒤로가기 버튼
         binding.backspaceBtn.setOnClickListener {
@@ -36,9 +37,20 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         //완료하기 버튼
         binding.sucsses.setOnClickListener {
-            ApplicationClass.prefs.userId = binding.nickname.text.toString()
+            //ApplicationClass.prefs.userId = binding.nickname.text.toString()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
             super.onBackPressed()
+
+            //sharedPreferences 사용해서 텍스트 저장 성공!!!
+            // Creating a shared pref object
+            // with a file name "MySharedPref"
+            // in private mode
+            val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+            val myEdit = sharedPreferences.edit()
+
+            // write all the data entered by the user in SharedPreference and apply
+            myEdit.putString("name", name!!.text.toString())
+            myEdit.apply()
         }
     }
 
@@ -184,7 +196,7 @@ class ChangeProfileActivity : AppCompatActivity() {
     // When the user closes the application
     // onPause() will be called
     // and data will be stored
-    override fun onPause() {
+    /*override fun onPause() {
         super.onPause()
 
         // Creating a shared pref object
@@ -196,5 +208,5 @@ class ChangeProfileActivity : AppCompatActivity() {
         // write all the data entered by the user in SharedPreference and apply
         myEdit.putString("name", name!!.text.toString())
         myEdit.apply()
-    }
+    }*/
 }

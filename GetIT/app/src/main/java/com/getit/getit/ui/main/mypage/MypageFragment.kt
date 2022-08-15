@@ -18,12 +18,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 
 
-class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener{
+class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener {
     //button 클릭시
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickListener()
     }
+
 
     private fun setOnClickListener() {
         val btnSequence = binding.container.children
@@ -63,11 +64,12 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
         }
 
     }
-        // main 액션바 제거
-        override fun onResume() {
-            super.onResume()
-            (activity as MainActivity).hideActionBar()
-        }
+
+    // main 액션바 제거
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideActionBar()
+    }
 /*
         private val retrofit: Retrofit = RetrofitClient.getInstance() // RetrofitClient의 instance 불러오기
         private val api: Service = retrofit.create(Service::class.java) // retrofit이 interface 구현
@@ -97,15 +99,11 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
         }*/
 
     override fun initAfterBinding() {
-        }
+    }
 
     companion object {
         private const val TAG = "MypageFragment"
         fun instance() = MypageFragment()
-
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).hideActionBar()
-
     }
-    }
+}
+

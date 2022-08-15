@@ -14,6 +14,8 @@ import com.getit.getit.ui.login.LoginActivity
 class settingActivity : AppCompatActivity() {
     lateinit var binding: FragmentSettingsBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -12,7 +12,6 @@ import com.getit.getit.databinding.ChangePrivacyBinding
 
 class ChangePrivacyActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var binding = ChangePrivacyBinding.inflate(layoutInflater)

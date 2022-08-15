@@ -7,6 +7,8 @@ import com.getit.getit.databinding.DeveloperInfoBinding
 class DeveloperInfoActivity : AppCompatActivity() {
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
