@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--  상단바(툴바)  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/backspace_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_arrow_left"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/change_privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필 변경"
+            android:textSize="20sp"
+            android:layout_marginLeft="12dp"
+            android:textColor="@color/normal"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/notosanskr_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/backspace_btn"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/sulgi"
+                android:text="설기/서버"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/gulguma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="귤구마/서버"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/ari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="아리/서버"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/zion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="지온/서버"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image5"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/jennifer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="제니퍼/안드로이드"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image6"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/rose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="로즈/안드로이드"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image7"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/uza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="유자/안드로이드"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image8"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/man3"
+                />
+
+            <TextView
+                android:id="@+id/nickname8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="닉네임"
+                android:textSize="15sp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/subText"/>
+
+            <TextView
+                android:id="@+id/seni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanskr_bold"
+                android:textColor="@color/normal"
+                android:textSize="15sp"
+                android:text="세니/디자이너"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+    </LinearLayout>
+
