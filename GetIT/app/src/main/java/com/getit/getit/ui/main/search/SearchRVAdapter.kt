@@ -13,6 +13,7 @@ import com.getit.getit.databinding.ItemSearchBinding
 class SearchRVAdapter(val context: Context, val result: List<CategoryResult>) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SearchRVAdapter.ViewHolder {
+        Log.d("LOG", "onCreateViewHolder 호출")
         val binding: ItemSearchBinding = ItemSearchBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }

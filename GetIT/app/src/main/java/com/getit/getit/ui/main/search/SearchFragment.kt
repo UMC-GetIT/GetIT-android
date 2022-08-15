@@ -2,6 +2,7 @@ package com.getit.getit.ui.main.search
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private lateinit var searchRVAdatpter: SearchRVAdapter
 
     override fun initAfterBinding() {
+        Log.d("LOG","initAfterBinding 호출")
         onLaptopBtn()
 
         // 제품 카테고리 선택
@@ -135,13 +137,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun onStart() {
+        Log.d("LOG","onStart 호출")
         super.onStart()
+        Log.d("LOG","onStart super 호출")
         getCategory()
+        Log.d("LOG","getCategory 호출")
     }
 
     private fun initRecyclerView(result: List<CategoryResult>) {
+        Log.d("LOG","initRecyclerView 호출")
         searchRVAdatpter = SearchRVAdapter(requireContext(), result)
+        Log.d("LOG","searchRVAdatpter 할당 <- 여기서부터 실행 x")
         binding.searchProductRv.adapter = searchRVAdatpter
+        Log.d("LOG","searchRVAdatpter 연결")
 
         // 상품 클릭
 //        searchRVAdatpter.setProductClickListener(object: SearchRVAdapter.ProductClickListener{
