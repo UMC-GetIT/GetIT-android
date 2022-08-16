@@ -14,6 +14,7 @@ class LikeRVAdatper : RecyclerView.Adapter<LikeRVAdatper.MyViewHolder>(){
         fun bind(LikeProducts:LikeProducts){
             //binding.img.=LikeProducts.img
             binding.name.text=LikeProducts.name
+            binding.itemimg.setImageResource(LikeProducts.img!!)
         }
     }
 

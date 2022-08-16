@@ -16,11 +16,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/item_review_img_iv"
+            android:id="@+id/image_review"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/legion_labtop_img" />
+            android:scaleType="centerInside"
+
+             />
 
     </androidx.cardview.widget.CardView>
 
