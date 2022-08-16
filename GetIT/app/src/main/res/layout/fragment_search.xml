@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- 제품 카테고리 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/search_detail_category_constraint"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:paddingTop="8dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
         android:paddingBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:elevation="5dp"
+        android:background="@color/white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/laptop_card_view"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
             android:backgroundTint="@color/primary"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toStartOf="@id/phone_card_view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_gravity="center"
+            android:layout_weight="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -62,13 +63,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/phone_card_view"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toStartOf="@id/tablet_card_view"
-            app:layout_constraintStart_toEndOf="@id/laptop_card_view"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -104,13 +103,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/tablet_card_view"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toStartOf="@id/speaker_card_view"
-            app:layout_constraintStart_toEndOf="@id/phone_card_view"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -146,13 +143,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/speaker_card_view"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toStartOf="@id/desktop_card_view"
-            app:layout_constraintStart_toEndOf="@id/tablet_card_view"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -188,13 +183,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/desktop_card_view"
-            android:layout_width="64dp"
+            android:layout_width="0dp"
             android:layout_height="85dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/speaker_card_view"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -227,20 +220,18 @@
                     app:layout_constraintTop_toBottomOf="@id/desktop_iv" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
     <!-- 스크롤 -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/search_detail_category_constraint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
@@ -413,7 +404,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:minWidth="0dp"
-                            android:text="@string/internal_storage"
+                            android:text="@string/storage_capacity"
                             android:textColor="@color/normal"
                             android:layout_marginEnd="8dp"
                             style="?android:attr/borderlessButtonStyle"
@@ -782,10 +773,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_btn_constraint"
                 android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:spanCount="2"
                 android:fillViewport="true"
                 tools:listitem="@layout/item_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
