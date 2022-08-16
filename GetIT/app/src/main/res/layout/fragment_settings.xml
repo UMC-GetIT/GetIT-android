@@ -1,6 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--  툴바  -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!--  뒤로가기  -->
+        <ImageButton
+            android:id="@+id/backspace_btn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/ic_arrow_left"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/notosanskr_bold"
+            android:textColor="@color/normal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/backspace_btn"/>
+
+
+
+        <!--  여기다가 타이틀, 추가 아이콘 등 넣어주시면 돼요!  -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="일반"
+        android:layout_margin="15dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textColor="@color/normal"
+        />
+    <LinearLayout
+        android:id="@+id/Profilelinear"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:text="프로필 설정"
+            android:layout_weight="4"
+            android:textAlignment="textStart"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textColor="@color/normal"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:backgroundTint="@color/white"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/outline"
+        android:layout_margin="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/privacylinear"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/privacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:text="개인정보 변경"
+            android:layout_weight="4"
+            android:textAlignment="textStart"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textColor="@color/normal"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:backgroundTint="@color/white"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="서비스 정보"
+        android:layout_margin="15dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/notosanskr_bold"
+        android:textColor="@color/normal"
+        />
+
+    <LinearLayout
+        android:id="@+id/onetoonelinear"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/onetoonebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:text="1:1 문의"
+            android:layout_weight="4"
+            android:textAlignment="textStart"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textColor="@color/normal"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:backgroundTint="@color/white"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/outline"
+        android:layout_margin="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/developerlinear"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:backgroundTint="@color/white"
+            android:text="개발자 정보"
+            android:layout_weight="4"
+            android:textAlignment="textStart"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosanskr_regular"
+            android:textColor="@color/normal"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_right"
+            android:backgroundTint="@color/white"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="로그아웃"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="@color/normal"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/outline"
+        android:layout_margin="15dp"/>
+
+    <TextView
+        android:id="@+id/withdrawal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:backgroundTint="@color/white"
+        android:text="회원 탈퇴"
+        android:textAlignment="textStart"
+        android:textSize="12sp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="@color/normal"/>
+</LinearLayout>
+

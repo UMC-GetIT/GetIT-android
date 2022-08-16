@@ -31,6 +31,12 @@
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
         <activity android:name=".ui.main.home.RecommendActivity"/>
+        <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
+        <activity android:name=".ui.main.mypage.settings.settingActivity"/>
+        <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>
+        <activity android:name=".ui.main.mypage.settings.DeveloperInfoActivity"/>
+        <activity android:name=".ui.main.mypage.like.LikeProductAcitivity"/>
+        <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
 
     </application>
 
