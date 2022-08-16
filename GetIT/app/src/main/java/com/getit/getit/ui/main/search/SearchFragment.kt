@@ -14,6 +14,7 @@ import com.getit.getit.data.Category
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.search.category.*
+import com.getit.getit.ui.main.search.detail.ProductDetailActivity
 import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), SearchView {
@@ -198,7 +199,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         offDetailCategoryButton(binding.searchDetailCategoryPhoneBrandBtn)
         binding.searchDetailCategoryPhoneRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneRamBtn)
-        binding.searchDetailCategoryPhoneInternalStorageBtn.text = getString(R.string.internal_storage)
+        binding.searchDetailCategoryPhoneInternalStorageBtn.text = getString(R.string.storage_capacity)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneInternalStorageBtn)
         binding.searchDetailCategoryPhoneProtocolBtn.text = getString(R.string.protocol)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneProtocolBtn)
