@@ -21,7 +21,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        var binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.signUpSignUpBtn.setOnClickListener {

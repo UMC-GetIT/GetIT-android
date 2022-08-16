@@ -57,6 +57,7 @@
     <string name="cpu">CPU</string>
     <string name="cpu_i3">i3</string>
     <string name="cpu_i5">i5</string>
+    <string name="cpu_i7">i7</string>
     <string name="cpu_i9">i9</string>
     <string name="cpu_M1">M1</string>
     <string name="cpu_ryzen5">라이젠5</string>
@@ -75,6 +76,7 @@
     <string name="gb512">512GB</string>
 
     <string name="screen_size">화면 크기</string>
+    <string name="inch11">11인치</string>
     <string name="inch13">13인치</string>
     <string name="inch15">15인치</string>
     <string name="inch17">17인치</string>
