@@ -30,6 +30,7 @@
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.search.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
+        <activity android:name=".ui.main.home.RecommendActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
         <activity android:name=".ui.main.mypage.settings.settingActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>

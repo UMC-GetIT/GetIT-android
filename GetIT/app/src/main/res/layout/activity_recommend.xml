@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:titleTextColor="@color/normal"
+        android:background="@color/white"
+        android:elevation="4dp"
+        app:menu="@menu/menu_plain_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/question_recommendation_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="36dp"
+        android:textSize="18dp"
+        android:textColor="@color/normal"
+        android:fontFamily="@font/notosanskr_bold"
+        android:text="어떤 종류의\n제품을 찾으시나요?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/laptop_recommend_button"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@id/question_recommendation_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageButton
+            android:id="@+id/laptop_recommend_ib"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:src="@drawable/ic_laptop_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="노트북"
+            app:layout_constraintTop_toBottomOf="@id/laptop_recommend_ib"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/normal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tablet_recommend_button"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd = "32dp"
+        app:layout_constraintTop_toTopOf="@id/laptop_recommend_button"
+        app:layout_constraintEnd_toStartOf="@id/laptop_recommend_button">
+        <ImageButton
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:id="@+id/tablet_recommend_ib"
+            android:src="@drawable/ic_tablet_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="태블릿"
+            app:layout_constraintTop_toBottomOf="@id/tablet_recommend_ib"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/normal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone_recommend_button"
+        android:layout_marginTop="96dp"
+        android:layout_marginStart = "32dp"
+        app:layout_constraintTop_toTopOf="@id/laptop_recommend_button"
+        app:layout_constraintStart_toEndOf="@id/laptop_recommend_button">
+        <ImageButton
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:id="@+id/phone_recommend_ib"
+            android:src="@drawable/ic_phone_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="휴대폰"
+            app:layout_constraintTop_toBottomOf="@id/phone_recommend_ib"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/normal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/speaker_recommend_button"
+        android:layout_marginTop="120dp"
+        app:layout_constraintTop_toTopOf="@id/tablet_recommend_button"
+        app:layout_constraintEnd_toStartOf="@id/laptop_recommend_button">
+        <ImageButton
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:id="@+id/speaker_recommend_ib"
+            android:src="@drawable/ic_speaker_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="스피커"
+            app:layout_constraintTop_toBottomOf="@id/speaker_recommend_ib"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/normal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/desktop_recommend_button"
+        android:layout_marginTop="120dp"
+        app:layout_constraintTop_toTopOf="@id/phone_recommend_button"
+        app:layout_constraintStart_toEndOf="@id/laptop_recommend_button">
+        <ImageButton
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:id="@+id/desktop_recommend_ib"
+            android:src="@drawable/ic_desktop_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="스피커"
+            app:layout_constraintTop_toBottomOf="@id/desktop_recommend_ib"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/normal"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
