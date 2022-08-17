@@ -35,6 +35,7 @@
             android:text="설정"
             android:textSize="20sp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/notosanskr_bold"
             android:textColor="@color/normal"
             app:layout_constraintTop_toTopOf="parent"
@@ -66,12 +67,14 @@
             android:backgroundTint="@color/white"
             android:text="프로필 설정"
             android:layout_weight="4"
-            android:textAlignment="textStart"
+            android:layout_gravity="center"
+
             android:textSize="12sp"
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"/>
 
         <ImageButton
+            android:id="@+id/profile_image_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
@@ -82,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/outline"
-        android:layout_margin="15dp"/>
+        android:layout_margin="10dp"/>
 
     <LinearLayout
         android:id="@+id/privacylinear"
@@ -96,12 +99,13 @@
             android:backgroundTint="@color/white"
             android:text="개인정보 변경"
             android:layout_weight="4"
-            android:textAlignment="textStart"
+            android:layout_gravity="center"
             android:textSize="12sp"
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"/>
 
         <ImageButton
+            android:id="@+id/privacy_image_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
@@ -114,7 +118,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="서비스 정보"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="25dp"
         android:textSize="15sp"
         android:fontFamily="@font/notosanskr_bold"
         android:textColor="@color/normal"
@@ -132,12 +138,13 @@
             android:backgroundTint="@color/white"
             android:text="1:1 문의"
             android:layout_weight="4"
-            android:textAlignment="textStart"
+            android:layout_gravity="center"
             android:textSize="12sp"
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"/>
 
         <ImageButton
+            android:id="@+id/onetoone_image_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
@@ -149,7 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/outline"
-        android:layout_margin="15dp"/>
+        android:layout_margin="10dp"/>
 
     <LinearLayout
         android:id="@+id/developerlinear"
@@ -163,12 +170,13 @@
             android:backgroundTint="@color/white"
             android:text="개발자 정보"
             android:layout_weight="4"
-            android:textAlignment="textStart"
+            android:layout_gravity="center"
             android:textSize="12sp"
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"/>
 
         <ImageButton
+            android:id="@+id/developer_image_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_right"
@@ -184,6 +192,7 @@
         android:backgroundTint="@color/white"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:text="로그아웃"
         android:textAlignment="textStart"
         android:textSize="12sp"
@@ -193,13 +202,14 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/outline"
-        android:layout_margin="15dp"/>
+        android:layout_margin="10dp"/>
 
     <TextView
         android:id="@+id/withdrawal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:text="회원 탈퇴"
         android:textAlignment="textStart"

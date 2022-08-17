@@ -59,7 +59,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="20dp"
-            android:src="@drawable/man3"
+            android:src="@drawable/rabbit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -71,7 +71,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/notosanskr_bold"
-            android:text="이름"
+            android:text="겟IT"
             android:textColor="@color/normal"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -84,8 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/notosanskr_bold"
-            android:text="아이디"
+            android:text="getIt@gmail.com"
             android:textSize="15sp"
             app:layout_constraintLeft_toRightOf="@id/circle_image"
             app:layout_constraintTop_toBottomOf="@id/name"
@@ -116,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/notosanskr_regular"
             android:text="좋아요 누른 상품"
             android:textColor="@color/normal"
@@ -155,8 +156,9 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="20dp"
                     android:background="@color/background"
+                    android:backgroundTint="@color/white"
                     android:scaleType="centerInside"
-                    android:src="@drawable/laptop_img"
+                    android:src="@drawable/samsong_labtop_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +168,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="제품이름1"
+                    android:text="삼성전자 2021 갤럭시북 프로 "
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@id/imagelike1"
                     app:layout_constraintTop_toBottomOf="@id/imagelike1" />
@@ -175,7 +177,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="가격"
+                    android:text="1,520,000"
                     android:textColor="@color/normal"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/imagelike1"
@@ -195,8 +197,9 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="20dp"
                     android:background="@color/background"
+                    android:backgroundTint="@color/white"
                     android:scaleType="centerInside"
-                    android:src="@drawable/laptop_img"
+                    android:src="@drawable/lg_labtop_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -206,7 +209,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="제품이름2"
+                    android:text="LG전자 2022 그램 16"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@id/imagelike2"
                     app:layout_constraintTop_toBottomOf="@id/imagelike2" />
@@ -215,7 +218,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="가격"
+                    android:text="1,566,000"
                     android:textColor="@color/normal"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/imagelike2"
@@ -234,8 +237,9 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="20dp"
                     android:background="@color/background"
+                    android:backgroundTint="@color/white"
                     android:scaleType="centerInside"
-                    android:src="@drawable/laptop_img"
+                    android:src="@drawable/apple_labtop_img"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -245,7 +249,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="제품이름3"
+                    android:text="Apple 2021 맥북프로 14"
+                    android:backgroundTint="@color/white"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@id/imagelike3"
                     app:layout_constraintTop_toBottomOf="@id/imagelike3" />
@@ -255,7 +260,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="가격"
+                    android:text="2,525,000"
                     android:textColor="@color/normal"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@+id/imagelike3"
@@ -269,7 +274,8 @@
             android:id="@+id/textreview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/notosanskr_regular"
             android:text="내가 작성한 후기"
             android:textColor="@color/normal"
@@ -295,7 +301,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textreview">
+            app:layout_constraintTop_toBottomOf="@id/review_btn">
 
             <ImageView
                 android:id="@+id/review_image"
@@ -306,7 +312,7 @@
                 android:background="@drawable/roundcircle"
                 android:backgroundTint="@color/white"
                 android:scaleType="centerInside"
-                android:src="@drawable/apple_labtop2_img"
+                android:src="@drawable/apple_labtop_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -323,17 +329,18 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="제품 이름"
+                    android:text="Apple 2021 맥북프로 14"
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@id/review_image"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/roundcircle"
-                    android:backgroundTint="@color/primary_bg"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:text="평소에 맥북 쓰고 싶었는데 직접 사용해보니 좋네요"
+                    android:background="@drawable/style_speech_bubble"
                     app:layout_constraintStart_toEndOf="@id/review_image"
                     app:layout_constraintTop_toBottomOf="@id/reviewtext1" />
 
@@ -353,7 +360,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/apple_labtop2_img"
+                android:src="@drawable/samsong_labtop_img"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -370,17 +377,19 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/notosanskr_bold"
-                    android:text="제품이름2"
+                    android:text="삼성전자 2021 갤럭시북 프로 360 13.3 "
                     android:textSize="15sp"
                     app:layout_constraintStart_toEndOf="@id/review_image2"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/roundcircle"
-                    android:backgroundTint="@color/primary_bg"
+                    android:fontFamily="@font/notosanskr_regular"
+                    android:text="360도로 돌아가서 편리해요"
+                    android:background="@drawable/style_speech_bubble"
+
                     app:layout_constraintStart_toEndOf="@id/review_image2"
                     app:layout_constraintTop_toBottomOf="@id/reviewtext2" />
 

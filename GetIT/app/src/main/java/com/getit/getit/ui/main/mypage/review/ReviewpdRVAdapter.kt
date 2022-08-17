@@ -16,6 +16,7 @@ class ReviewpdRVAdapter : RecyclerView.Adapter<ReviewpdRVAdapter.MyViewHolder>()
             //binding.img.=ReviewProducts.img
             binding.itemName.text=ReviewProducts.name
             binding.itemReview.text=ReviewProducts.review
+            binding.imageReview.setImageResource(ReviewProducts.img!!)
         }
     }
 
