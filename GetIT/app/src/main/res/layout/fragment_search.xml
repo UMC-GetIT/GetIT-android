@@ -765,8 +765,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:fillViewport="true"
-                android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -774,10 +772,8 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_btn_constraint"
-                android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 app:spanCount="2"
-                android:fillViewport="true"
                 tools:listitem="@layout/item_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
