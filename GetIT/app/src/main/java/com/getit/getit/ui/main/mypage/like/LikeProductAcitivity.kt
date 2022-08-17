@@ -28,14 +28,19 @@ class LikeProductAcitivity : BaseActivity<MypageLikeListBinding>(MypageLikeListB
 
     private fun ProductsData() {
         with(mDatas) {
-            add(LikeProducts(R.drawable.samsong_labtop_img,"삼성전자 2021 갤럭시북 프로 360 13.3 + S펜" ))
+            add(LikeProducts(R.drawable.samsong_labtop_img,"삼성전자 2021 갤럭시북 프로 " ))
             add(LikeProducts(R.drawable.lg_labtop_img,"LG전자 2022 그램 16"))
-            add(LikeProducts(R.drawable.samsong_pro_labtop_img,"삼성전자 2021 갤럭시 북 프로 360"))
+            add(LikeProducts(R.drawable.samsong_pro_labtop_img,"삼성전자 2021 갤럭시 북"))
             add(LikeProducts(R.drawable.lg_gram_labtop_img,"2022 LG 그램 360 터치스크린 노트북",  ))
-            add(LikeProducts(R.drawable.apple_labtop_img,"Apple 2021 맥북프로 14"  ))
+            add(LikeProducts(R.drawable.apple_labtop_img,"Apple 2021 맥북프로 16"  ))
             add(LikeProducts( R.drawable.legion_labtop_img,"레노버 Legion i7"))
             add(LikeProducts(R.drawable.apple_labtop2_img,"Apple 2021 맥북프로 14"))
             add(LikeProducts(R.drawable.samsong2_labtop_img,"풀스펙 NT371B5J 램16G SSD512G 윈도우10"))
+            add(LikeProducts(R.drawable.ipad_1,"Apple 아이패드프로11 3세대 M1"))
+            add(LikeProducts(R.drawable.ipad_2,"Apple 아이패드프로12.9 5세대 M1"))
+            add(LikeProducts(R.drawable.ipad_3,"Apple 2022 아이패드 에어 5세대, 퍼플"))
+            add(LikeProducts(R.drawable.speaker_1,"JBL Flip 6"))
+
         }
     }
 
