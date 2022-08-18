@@ -1,21 +1,21 @@
-package com.getit.getit.ui.main.search.category
+package com.getit.getit.ui.main.category.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.getit.getit.databinding.DialogSpeakerBrandBinding
+import com.getit.getit.databinding.DialogLaptopCpuBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class SpeakerBrandDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
-    private lateinit var binding: DialogSpeakerBrandBinding
+class LaptopCpuDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
+    private lateinit var binding: DialogLaptopCpuBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogSpeakerBrandBinding.inflate(inflater, container,false)
+        binding = DialogLaptopCpuBinding.inflate(inflater, container,false)
 
         binding.dialogCloseIb.setOnClickListener {
             dialog?.dismiss()
@@ -26,20 +26,28 @@ class SpeakerBrandDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.dialogBrandJblBtn.setOnClickListener {
+        binding.dialogCpuI3Btn.setOnClickListener {
             itemClick(0)
             dialog?.dismiss()
         }
-        binding.dialogGbrandMarshallBtn.setOnClickListener {
+        binding.dialogCpuI5Btn.setOnClickListener {
             itemClick(1)
             dialog?.dismiss()
         }
-        binding.dialogBrandGenevaBtn.setOnClickListener {
+        binding.dialogCpuI7Btn.setOnClickListener {
             itemClick(2)
             dialog?.dismiss()
         }
-        binding.dialogEctBtn.setOnClickListener {
+        binding.dialogCpuI9Btn.setOnClickListener {
             itemClick(3)
+            dialog?.dismiss()
+        }
+        binding.dialogCpuM1Btn.setOnClickListener {
+            itemClick(4)
+            dialog?.dismiss()
+        }
+        binding.dialogCpuEctBtn.setOnClickListener {
+            itemClick(5)
             dialog?.dismiss()
         }
     }

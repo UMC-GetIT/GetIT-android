@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.search.category
+package com.getit.getit.ui.main.category.dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

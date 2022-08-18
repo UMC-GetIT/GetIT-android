@@ -1,15 +1,10 @@
 package com.getit.getit.ui.main.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.databinding.ItemIttermBinding
-import com.getit.getit.databinding.ItemSearchBinding
 import com.getit.getit.ui.main.home.data.ItTermIcon
-import com.getit.getit.ui.main.search.Products
-import com.getit.getit.ui.main.search.SearchRVAdapter
-import java.text.DecimalFormat
 
 class TermRVAdapter (private val ittermList: ArrayList<ItTermIcon>) : RecyclerView.Adapter<TermRVAdapter.ViewHolder>() {
 

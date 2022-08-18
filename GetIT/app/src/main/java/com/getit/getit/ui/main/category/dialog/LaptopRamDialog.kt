@@ -1,21 +1,21 @@
-package com.getit.getit.ui.main.search.category
+package com.getit.getit.ui.main.category.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.getit.getit.databinding.DialogProtocolBinding
+import com.getit.getit.databinding.DialogLaptopRamBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class ProtocolDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
-    private lateinit var binding: DialogProtocolBinding
+class LaptopRamDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
+    private lateinit var binding: DialogLaptopRamBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogProtocolBinding.inflate(inflater, container,false)
+        binding = DialogLaptopRamBinding.inflate(inflater, container,false)
 
         binding.dialogCloseIb.setOnClickListener {
             dialog?.dismiss()
@@ -26,20 +26,16 @@ class ProtocolDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.dialogProtocol3gBtn.setOnClickListener {
+        binding.dialogRamGb8Btn.setOnClickListener {
             itemClick(0)
             dialog?.dismiss()
         }
-        binding.dialogProtocol4gBtn.setOnClickListener {
+        binding.dialogRamGb16Btn.setOnClickListener {
             itemClick(1)
             dialog?.dismiss()
         }
-        binding.dialogProtocol5gBtn.setOnClickListener {
+        binding.dialogRamEctBtn.setOnClickListener {
             itemClick(2)
-            dialog?.dismiss()
-        }
-        binding.dialogEctBtn.setOnClickListener {
-            itemClick(3)
             dialog?.dismiss()
         }
     }

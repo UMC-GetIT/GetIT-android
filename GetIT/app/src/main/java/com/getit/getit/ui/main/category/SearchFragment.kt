@@ -1,53 +1,30 @@
-package com.getit.getit.ui.main.search
+package com.getit.getit.ui.main.category
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.core.content.ContextCompat.getColor
-import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
+import com.getit.getit.data.Category
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.search.category.*
-import com.getit.getit.ui.main.search.detail.ProductDetailActivity
+import com.getit.getit.ui.main.category.dialog.*
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import com.google.gson.Gson
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), CategorySearchView {
+    private lateinit var searchRVAdatpter: SearchRVAdapter
 
     override fun initAfterBinding() {
-
+        Log.d("LOG","initAfterBinding 호출")
         onLaptopBtn()
-
-        var productDatas = ArrayList<Products>()
-        // 더미데이터
-        productDatas.apply {
-            add(Products("삼성전자 2021 갤럭시북 프로 360 13.3 + S펜", 1787000, R.drawable.samsong_labtop_img))
-            add(Products("LG전자 2022 그램 16", 1454000, R.drawable.lg_labtop_img))
-            add(Products("삼성전자 2021 갤럭시 북 프로 360", 1787000, R.drawable.samsong_pro_labtop_img))
-            add(Products("2022 LG 그램 360 터치스크린 노트북", 1469000, R.drawable.lg_gram_labtop_img))
-            add(Products("Apple 2021 맥북프로 14", 2470000, R.drawable.apple_labtop_img))
-            add(Products("레노버 Legion i7", 2433150, R.drawable.legion_labtop_img))
-            add(Products("Apple 2021 맥북프로 14", 2960000, R.drawable.apple_labtop2_img))
-            add(Products("풀스펙 NT371B5J 램16G SSD512G 윈도우10", 1260000, R.drawable.samsong2_labtop_img))
-        }
-
-        val searchRVAdatpter = SearchRVAdapter(productDatas)
-        binding.searchProductRv.adapter = searchRVAdatpter
-        binding.searchProductRv.layoutManager = GridLayoutManager(context, 2)
-
-        // 상품 클릭
-        searchRVAdatpter.setMyItemClickListener(object: SearchRVAdapter.MyItemClickListener{
-            override fun onItemClick(products: Products) {
-                changeProductActivity(products)
-            }
-        })
 
         // 제품 카테고리 선택
          binding.laptopCardView.setOnClickListener {
              offAllCategoryBtn() // 모든 버튼 초기화 및 비활성화
              onLaptopBtn()
-             // 다른 제품 세부 카테고리 초기화 기능 추가 필요
-             offAllDetailCategoryBtn()
+             offAllDetailCategoryBtn()  // 다른 제품 세부 카테고리 초기화 기능
          }
         binding.phoneCardView.setOnClickListener {
             offAllCategoryBtn()
@@ -156,6 +133,35 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         }
     }
 
+    override fun onStart() {
+        Log.d("LOG","onStart 호출")
+        super.onStart()
+        Log.d("LOG","onStart super 호출")
+        getCategory()
+        Log.d("LOG","getCategory 호출")
+    }
+
+    private fun initRecyclerView(result: List<CategoryResult>) {
+        Log.d("LOG","initRecyclerView 호출")
+        searchRVAdatpter = SearchRVAdapter(requireContext(), result)
+        Log.d("LOG","searchRVAdatpter 할당 <- 여기서부터 실행 x")
+        binding.searchProductRv.adapter = searchRVAdatpter
+        Log.d("LOG","searchRVAdatpter 연결")
+
+        // 상품 클릭
+//        searchRVAdatpter.setProductClickListener(object: SearchRVAdapter.ProductClickListener{
+//            override fun onItemClick(products: Products) {
+//                changeProductActivity(products)
+//            }
+//        })
+    }
+
+    private fun getCategory() {
+        val categoryService = CategoryService()
+        categoryService.setSearchView(this)
+        categoryService.getCategory(Category(getString(R.string.laptop), getString(R.string.string_null)))
+    }
+
     private fun onDetailCategoryButton(btn: Button) {
         btn.setTextColor(getColor(requireContext(), R.color.primary))
         btn.setBackgroundResource(R.drawable.style_button_on)
@@ -169,79 +175,79 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun offAllDetailCategoryBtn() {
-        binding.searchDetailCategoryLaptopScreensizeBtn.text= getString(R.string.screen_size)
+        binding.searchDetailCategoryLaptopScreensizeBtn.text = getString(R.string.screen_size)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopScreensizeBtn)
-        binding.searchDetailCategoryLaptopPriceBtn.text= getString(R.string.price)
+        binding.searchDetailCategoryLaptopPriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopPriceBtn)
-        binding.searchDetailCategoryLaptopBrandBtn.text= getString(R.string.brand)
+        binding.searchDetailCategoryLaptopBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopBrandBtn)
-        binding.searchDetailCategoryLaptopCpuBtn.text= getString(R.string.cpu)
+        binding.searchDetailCategoryLaptopCpuBtn.text = getString(R.string.cpu)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopCpuBtn)
-        binding.searchDetailCategoryLaptopRamBtn.text= getString(R.string.ram)
+        binding.searchDetailCategoryLaptopRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopRamBtn)
-        binding.searchDetailCategoryLaptopWeightBtn.text= getString(R.string.weight)
+        binding.searchDetailCategoryLaptopWeightBtn.text = getString(R.string.weight)
         offDetailCategoryButton(binding.searchDetailCategoryLaptopWeightBtn)
 
 
-        binding.searchDetailCategoryPhonePriceBtn.text= getString(R.string.price)
+        binding.searchDetailCategoryPhonePriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailCategoryPhonePriceBtn)
-        binding.searchDetailCategoryPhoneBrandBtn.text= getString(R.string.brand)
+        binding.searchDetailCategoryPhoneBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneBrandBtn)
-        binding.searchDetailCategoryPhoneRamBtn.text= getString(R.string.ram)
+        binding.searchDetailCategoryPhoneRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneRamBtn)
-        binding.searchDetailCategoryPhoneInternalStorageBtn.text= getString(R.string.storage_capacity)
+        binding.searchDetailCategoryPhoneInternalStorageBtn.text = getString(R.string.storage_capacity)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneInternalStorageBtn)
-        binding.searchDetailCategoryPhoneProtocolBtn.text= getString(R.string.protocol)
+        binding.searchDetailCategoryPhoneProtocolBtn.text = getString(R.string.protocol)
         offDetailCategoryButton(binding.searchDetailCategoryPhoneProtocolBtn)
 
-        binding.searchDetailTabletCategoryScreensizeBtn.text= getString(R.string.screen_size)
+        binding.searchDetailTabletCategoryScreensizeBtn.text = getString(R.string.screen_size)
         offDetailCategoryButton(binding.searchDetailTabletCategoryScreensizeBtn)
-        binding.searchDetailTabletCategoryPriceBtn.text= getString(R.string.price)
+        binding.searchDetailTabletCategoryPriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailTabletCategoryPriceBtn)
-        binding.searchDetailTabletCategoryBrandBtn.text= getString(R.string.brand)
+        binding.searchDetailTabletCategoryBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailTabletCategoryBrandBtn)
-        binding.searchDetailTabletCategoryStorageCapacityBtn.text= getString(R.string.storage_capacity)
+        binding.searchDetailTabletCategoryStorageCapacityBtn.text = getString(R.string.storage_capacity)
         offDetailCategoryButton(binding.searchDetailTabletCategoryStorageCapacityBtn)
-        binding.searchDetailTabletCategoryRamBtn.text= getString(R.string.ram)
+        binding.searchDetailTabletCategoryRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailTabletCategoryRamBtn)
-        binding.searchDetailTabletCategoryCpuBtn.text= getString(R.string.cpu)
+        binding.searchDetailTabletCategoryCpuBtn.text = getString(R.string.cpu)
         offDetailCategoryButton(binding.searchDetailTabletCategoryCpuBtn)
 
-        binding.searchDetailCategorySpeakerPriceBtn.text= getString(R.string.price)
+        binding.searchDetailCategorySpeakerPriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailCategorySpeakerPriceBtn)
-        binding.searchDetailCategorySpeakerBrandBtn.text= getString(R.string.brand)
+        binding.searchDetailCategorySpeakerBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategorySpeakerBrandBtn)
-        binding.searchDetailCategorySpeakerWattOutputBtn.text= getString(R.string.watt_output)
+        binding.searchDetailCategorySpeakerWattOutputBtn.text = getString(R.string.watt_output)
         offDetailCategoryButton(binding.searchDetailCategorySpeakerWattOutputBtn)
 
-        binding.searchDetailCategoryDesktopScreensizeBtn.text= getString(R.string.screen_size)
+        binding.searchDetailCategoryDesktopScreensizeBtn.text = getString(R.string.screen_size)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopScreensizeBtn)
-        binding.searchDetailCategoryDesktopPriceBtn.text= getString(R.string.price)
+        binding.searchDetailCategoryDesktopPriceBtn.text = getString(R.string.price)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopPriceBtn)
-        binding.searchDetailCategoryDesktopBrandBtn.text= getString(R.string.brand)
+        binding.searchDetailCategoryDesktopBrandBtn.text = getString(R.string.brand)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopBrandBtn)
-        binding.searchDetailCategoryDesktopCpuBtn.text= getString(R.string.cpu)
+        binding.searchDetailCategoryDesktopCpuBtn.text = getString(R.string.cpu)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopCpuBtn)
-        binding.searchDetailCategoryDesktopRamBtn.text= getString(R.string.ram)
+        binding.searchDetailCategoryDesktopRamBtn.text = getString(R.string.ram)
         offDetailCategoryButton(binding.searchDetailCategoryDesktopRamBtn)
     }
 
     private fun selectProtocol() {
-        val protocolDialog: ProtocolDialog = ProtocolDialog{
+        val protocolDialog: ProtocolDialog = ProtocolDialog {
             var protocol: String = when (it) {
                 0 -> getString(R.string.protocol_3g)
                 1 -> getString(R.string.protocol_4g)
                 2 -> getString(R.string.protocol_5g)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryPhoneProtocolBtn.text= protocol
+            binding.searchDetailCategoryPhoneProtocolBtn.text = protocol
             onDetailCategoryButton(binding.searchDetailCategoryPhoneProtocolBtn)
         }
         protocolDialog.show(parentFragmentManager, "ProtocolDialog")
     }
 
     private fun selectHighPrice(product: String) {
-        val highPriceDialog: HighPriceDialog = HighPriceDialog{
+        val highPriceDialog: HighPriceDialog = HighPriceDialog {
             var price: String = when (it) {
                 0 -> getString(R.string.price_100_down)
                 1 -> getString(R.string.price_100_to_200)
@@ -249,19 +255,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
             when (product) {
                 "laptop" -> {
-                    binding.searchDetailCategoryLaptopPriceBtn.text= price
+                    binding.searchDetailCategoryLaptopPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryLaptopPriceBtn)
                 }
                 "phone" -> {
-                    binding.searchDetailCategoryPhonePriceBtn.text= price
+                    binding.searchDetailCategoryPhonePriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryPhonePriceBtn)
                 }
                 "tablet" -> {
-                    binding.searchDetailTabletCategoryPriceBtn.text= price
+                    binding.searchDetailTabletCategoryPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailTabletCategoryPriceBtn)
                 }
                 "desktop" -> {
-                    binding.searchDetailCategoryDesktopPriceBtn.text= price
+                    binding.searchDetailCategoryDesktopPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryDesktopPriceBtn)
                 }
             }
@@ -270,48 +276,48 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun selectScreensize() {
-        val screensizeDialog: ScreensizeDialog = ScreensizeDialog{
+        val screensizeDialog: ScreensizeDialog = ScreensizeDialog {
             var screensize: String = when (it) {
                 0 -> getString(R.string.inch13)
                 1 -> getString(R.string.inch15)
                 2 -> getString(R.string.inch17)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryLaptopScreensizeBtn.text= screensize
+            binding.searchDetailCategoryLaptopScreensizeBtn.text = screensize
             onDetailCategoryButton(binding.searchDetailCategoryLaptopScreensizeBtn)
         }
         screensizeDialog.show(parentFragmentManager, "ScreensizeDialog")
     }
 
     private fun selectLowPrice() {
-        val lowPriceDialog: LowPriceDialog = LowPriceDialog{
+        val lowPriceDialog: LowPriceDialog = LowPriceDialog {
             var price: String = when (it) {
                 0 -> getString(R.string.price_1_down)
                 1 -> getString(R.string.price_1_to_5)
                 2 -> getString(R.string.price_5_to_10)
                 else -> getString(R.string.price_10_up)
             }
-            binding.searchDetailCategorySpeakerPriceBtn.text= price
+            binding.searchDetailCategorySpeakerPriceBtn.text = price
             onDetailCategoryButton(binding.searchDetailCategorySpeakerPriceBtn)
         }
         lowPriceDialog.show(parentFragmentManager, "LowPriceDialog")
     }
 
     private fun selectBrand() {
-        val brandDialog: BrandDialog = BrandDialog{
+        val brandDialog: BrandDialog = BrandDialog {
             var brand: String = when (it) {
                 0 -> getString(R.string.brand_lg)
                 1 -> getString(R.string.brand_apple)
                 else -> getString(R.string.brand_samsung)
             }
-            binding.searchDetailCategoryLaptopBrandBtn.text= brand
+            binding.searchDetailCategoryLaptopBrandBtn.text = brand
             onDetailCategoryButton(binding.searchDetailCategoryLaptopBrandBtn)
         }
         brandDialog.show(parentFragmentManager, "BrandDialog")
     }
 
     private fun selectLaptopCpu() {
-        val laptopCpuDialog: LaptopCpuDialog = LaptopCpuDialog{
+        val laptopCpuDialog: LaptopCpuDialog = LaptopCpuDialog {
             var cpu: String = when (it) {
                 0 -> getString(R.string.cpu_i3)
                 1 -> getString(R.string.cpu_i5)
@@ -320,40 +326,40 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 4 -> getString(R.string.cpu_M1)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryLaptopCpuBtn.text= cpu
+            binding.searchDetailCategoryLaptopCpuBtn.text = cpu
             onDetailCategoryButton(binding.searchDetailCategoryLaptopCpuBtn)
         }
         laptopCpuDialog.show(parentFragmentManager, "LaptopCpuDialog")
     }
 
     private fun selectLaptopRam() {
-        val laptopRamDialog: LaptopRamDialog = LaptopRamDialog{
+        val laptopRamDialog: LaptopRamDialog = LaptopRamDialog {
             var ram: String = when (it) {
                 0 -> getString(R.string.gb8)
                 1 -> getString(R.string.gb16)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryLaptopRamBtn.text= ram
+            binding.searchDetailCategoryLaptopRamBtn.text = ram
             onDetailCategoryButton(binding.searchDetailCategoryLaptopRamBtn)
         }
         laptopRamDialog.show(parentFragmentManager, "LaptopRamDialog")
     }
 
     private fun selectWeight() {
-        val weightDialog: WeightDialog = WeightDialog{
+        val weightDialog: WeightDialog = WeightDialog {
             var weight: String = when (it) {
                 0 -> getString(R.string.weight1)
                 1 -> getString(R.string.weight2)
                 else -> getString(R.string.weight3)
             }
-            binding.searchDetailCategoryLaptopWeightBtn.text= weight
+            binding.searchDetailCategoryLaptopWeightBtn.text = weight
             onDetailCategoryButton(binding.searchDetailCategoryLaptopWeightBtn)
         }
         weightDialog.show(parentFragmentManager, "WeightDialog")
     }
 
     private fun selectMemory(product: String) {
-        val memoryDialog: MemoryDialog = MemoryDialog{
+        val memoryDialog: MemoryDialog = MemoryDialog {
             var memory: String = when (it) {
                 0 -> getString(R.string.gb128)
                 1 -> getString(R.string.gb256)
@@ -362,20 +368,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
             when (product) {
                 "phone" -> {
-                    binding.searchDetailCategoryPhoneInternalStorageBtn.text= memory
+                    binding.searchDetailCategoryPhoneInternalStorageBtn.text = memory
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneInternalStorageBtn)
-                }
+                    }
                 "tablet" ->{
-                    binding.searchDetailTabletCategoryStorageCapacityBtn.text= memory
+                    binding.searchDetailTabletCategoryStorageCapacityBtn.text = memory
                     onDetailCategoryButton(binding.searchDetailTabletCategoryStorageCapacityBtn)
+                    }
                 }
             }
-        }
         memoryDialog.show(parentFragmentManager, "MemoryDialog")
     }
 
     private fun selectLowRam(product: String) {
-        val lowRamDialog: LowRamDialog = LowRamDialog{
+        val lowRamDialog: LowRamDialog = LowRamDialog {
             var ram: String = when (it) {
                 0 -> getString(R.string.gb4)
                 1 -> getString(R.string.gb6)
@@ -384,11 +390,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
             when (product) {
                 "phone" -> {
-                    binding.searchDetailCategoryPhoneRamBtn.text= ram
+                    binding.searchDetailCategoryPhoneRamBtn.text = ram
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneRamBtn)
                 }
                 "tablet" ->{
-                    binding.searchDetailTabletCategoryRamBtn.text= ram
+                    binding.searchDetailTabletCategoryRamBtn.text = ram
                     onDetailCategoryButton(binding.searchDetailTabletCategoryRamBtn)
                 }
             }
@@ -397,21 +403,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun selectSpeakerBrand() {
-        val speakerBrandDialog: SpeakerBrandDialog = SpeakerBrandDialog{
+        val speakerBrandDialog: SpeakerBrandDialog = SpeakerBrandDialog {
             var brand: String = when (it) {
                 0 -> getString(R.string.brand_jbl)
                 1 -> getString(R.string.brand_marshall)
                 2 -> getString(R.string.brand_geneva)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategorySpeakerBrandBtn.text= brand
+            binding.searchDetailCategorySpeakerBrandBtn.text = brand
             onDetailCategoryButton(binding.searchDetailCategorySpeakerBrandBtn)
         }
         speakerBrandDialog.show(parentFragmentManager, "SpeakerBrandDialog")
     }
 
     private fun selectFewBrand(product: String) {
-        val fewBrandDialog: FewBrandDialog = FewBrandDialog{
+        val fewBrandDialog: FewBrandDialog = FewBrandDialog {
             var brand: String = when (it) {
                 0 -> getString(R.string.brand_apple)
                 1 -> getString(R.string.brand_samsung)
@@ -419,11 +425,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             }
             when (product) {
                 "phone" -> {
-                    binding.searchDetailCategoryPhoneBrandBtn.text= brand
+                    binding.searchDetailCategoryPhoneBrandBtn.text = brand
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneBrandBtn)
                 }
                 "tablet" ->{
-                    binding.searchDetailTabletCategoryBrandBtn.text= brand
+                    binding.searchDetailTabletCategoryBrandBtn.text = brand
                     onDetailCategoryButton(binding.searchDetailTabletCategoryBrandBtn)
                 }
             }
@@ -432,7 +438,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun selectWattOutput() {
-        val wattOutputDialog: WattOutputDialog = WattOutputDialog{
+        val wattOutputDialog: WattOutputDialog = WattOutputDialog {
             var watt: String = when (it) {
                 0 -> getString(R.string.watt_05_to_15)
                 1 -> getString(R.string.watt_16_to_30)
@@ -440,14 +446,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 3 -> getString(R.string.watt_51_to_100)
                 else -> getString(R.string.watt_100_up)
             }
-            binding.searchDetailCategorySpeakerWattOutputBtn.text= watt
+            binding.searchDetailCategorySpeakerWattOutputBtn.text = watt
             onDetailCategoryButton(binding.searchDetailCategorySpeakerWattOutputBtn)
         }
         wattOutputDialog.show(parentFragmentManager, "WattOutputDialog")
     }
 
     private fun selectDesktopBrand() {
-        val desktopBrandDialog: DesktopBrandDialog = DesktopBrandDialog{
+        val desktopBrandDialog: DesktopBrandDialog = DesktopBrandDialog {
             var brand: String = when (it) {
                 0 -> getString(R.string.brand_apple)
                 1 -> getString(R.string.brand_samsung_electronics)
@@ -455,14 +461,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 3 -> getString(R.string.brand_lenovo)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryDesktopBrandBtn.text= brand
+            binding.searchDetailCategoryDesktopBrandBtn.text = brand
             onDetailCategoryButton(binding.searchDetailCategoryDesktopBrandBtn)
         }
         desktopBrandDialog.show(parentFragmentManager, "DesktopBrandDialog")
     }
 
     private fun selectDesktopScreen() {
-        val desktopScreenDialog: DesktopScreenDialog = DesktopScreenDialog{
+        val desktopScreenDialog: DesktopScreenDialog = DesktopScreenDialog {
             var screen: String = when (it) {
                 0 -> getString(R.string.inch22)
                 1 -> getString(R.string.inch24)
@@ -472,14 +478,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 5 -> getString(R.string.inch34)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryDesktopScreensizeBtn.text= screen
+            binding.searchDetailCategoryDesktopScreensizeBtn.text = screen
             onDetailCategoryButton(binding.searchDetailCategoryDesktopScreensizeBtn)
         }
         desktopScreenDialog.show(parentFragmentManager, "DesktopScreenDialog")
     }
 
     private fun selectDesktopCpu() {
-        val desktopCpuDialog: DesktopCpuDialog = DesktopCpuDialog{
+        val desktopCpuDialog: DesktopCpuDialog = DesktopCpuDialog {
             var cpu: String = when (it) {
                 0 -> getString(R.string.cpu_i3)
                 1 -> getString(R.string.cpu_i5)
@@ -489,14 +495,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 5 -> getString(R.string.cpu_ryzen7)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryDesktopCpuBtn.text= cpu
+            binding.searchDetailCategoryDesktopCpuBtn.text = cpu
             onDetailCategoryButton(binding.searchDetailCategoryDesktopCpuBtn)
         }
         desktopCpuDialog.show(parentFragmentManager, "DesktopCpuDialog")
     }
 
     private fun selectDesktopRam() {
-        val desktopRamDialog: DesktopRamDialog = DesktopRamDialog{
+        val desktopRamDialog: DesktopRamDialog = DesktopRamDialog {
             var ram: String = when (it) {
                 0 -> getString(R.string.gb4)
                 1 -> getString(R.string.gb8)
@@ -504,14 +510,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 3 -> getString(R.string.gb32)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailCategoryDesktopRamBtn.text= ram
+            binding.searchDetailCategoryDesktopRamBtn.text = ram
             onDetailCategoryButton(binding.searchDetailCategoryDesktopRamBtn)
         }
         desktopRamDialog.show(parentFragmentManager, "DesktopRamDialog")
     }
 
     private fun selectTabletCpu() {
-        val tabletCpuDialog: TabletCpuDialog = TabletCpuDialog{
+        val tabletCpuDialog: TabletCpuDialog = TabletCpuDialog {
             var cpu: String = when (it) {
                 0 -> getString(R.string.cpu_i3)
                 1 -> getString(R.string.cpu_i5)
@@ -519,21 +525,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 3 -> getString(R.string.cpu_M1)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailTabletCategoryCpuBtn.text= cpu
+            binding.searchDetailTabletCategoryCpuBtn.text = cpu
             onDetailCategoryButton(binding.searchDetailTabletCategoryCpuBtn)
         }
         tabletCpuDialog.show(parentFragmentManager, "TabletCpuDialog")
     }
 
     private fun selectTabletScreen() {
-        val tabletScreenDialog: TabletScreenDialog = TabletScreenDialog{
+        val tabletScreenDialog: TabletScreenDialog = TabletScreenDialog {
             var screen: String = when (it) {
                 0 -> getString(R.string.inch11)
                 1 -> getString(R.string.inch13)
                 2 -> getString(R.string.inch15)
                 else -> getString(R.string.ect)
             }
-            binding.searchDetailTabletCategoryScreensizeBtn.text= screen
+            binding.searchDetailTabletCategoryScreensizeBtn.text = screen
             onDetailCategoryButton(binding.searchDetailTabletCategoryScreensizeBtn)
         }
         tabletScreenDialog.show(parentFragmentManager, "TabletScreenDialog")
@@ -615,5 +621,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         super.onResume()
         super.showActionBar()
         super.setActionBarTitle("카테고리로 조회")
+    }
+
+    override fun onGetCategoryLoading() {
+        // 로딩 이미지
+    }
+
+    override fun onGetCategorySuccess(Code: Int, result: List<CategoryResult>) {
+        initRecyclerView(result)
+    }
+
+    override fun onGetCategoryFailure(Code: Int, message: String) {
+        // 로딩 실패
     }
 }

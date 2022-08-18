@@ -1,6 +1,4 @@
-package com.getit.getit.ui.main.search
-
-import java.io.Serializable
+package com.getit.getit.ui.main.category
 
 data class Products(
     var name: String? = "",

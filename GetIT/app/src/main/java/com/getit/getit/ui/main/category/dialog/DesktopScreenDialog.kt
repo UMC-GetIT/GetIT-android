@@ -1,21 +1,21 @@
-package com.getit.getit.ui.main.search.category
+package com.getit.getit.ui.main.category.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.getit.getit.databinding.DialogDesktopBrandBinding
+import com.getit.getit.databinding.DialogDesktopScreenBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class DesktopBrandDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
-    private lateinit var binding: DialogDesktopBrandBinding
+class DesktopScreenDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
+    private lateinit var binding: DialogDesktopScreenBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogDesktopBrandBinding.inflate(inflater, container,false)
+        binding = DialogDesktopScreenBinding.inflate(inflater, container,false)
 
         binding.dialogCloseIb.setOnClickListener {
             dialog?.dismiss()
@@ -26,24 +26,32 @@ class DesktopBrandDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragme
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.dialogBrandAppleBtn.setOnClickListener {
+        binding.dialogInch22Btn.setOnClickListener {
             itemClick(0)
             dialog?.dismiss()
         }
-        binding.dialogBrandSamsungElectronicsBtn.setOnClickListener {
+        binding.dialogInch24Btn.setOnClickListener {
             itemClick(1)
             dialog?.dismiss()
         }
-        binding.dialogBrandLgElectronicsBtn.setOnClickListener {
+        binding.dialogInch27Btn.setOnClickListener {
             itemClick(2)
             dialog?.dismiss()
         }
-        binding.dialogWattBrandLenovoBtn.setOnClickListener {
+        binding.dialogInch29Btn.setOnClickListener {
             itemClick(3)
             dialog?.dismiss()
         }
-        binding.dialogEctBtn.setOnClickListener {
+        binding.dialogInch32Btn.setOnClickListener {
             itemClick(4)
+            dialog?.dismiss()
+        }
+        binding.dialogInch34Btn.setOnClickListener {
+            itemClick(5)
+            dialog?.dismiss()
+        }
+        binding.dialogEctBtn.setOnClickListener {
+            itemClick(6)
             dialog?.dismiss()
         }
     }

@@ -1,21 +1,21 @@
-package com.getit.getit.ui.main.search.category
+package com.getit.getit.ui.main.category.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.getit.getit.databinding.DialogLaptopCpuBinding
+import com.getit.getit.databinding.DialogTabletCpuBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class LaptopCpuDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
-    private lateinit var binding: DialogLaptopCpuBinding
+class TabletCpuDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
+    private lateinit var binding: DialogTabletCpuBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogLaptopCpuBinding.inflate(inflater, container,false)
+        binding = DialogTabletCpuBinding.inflate(inflater, container,false)
 
         binding.dialogCloseIb.setOnClickListener {
             dialog?.dismiss()
@@ -38,16 +38,12 @@ class LaptopCpuDialog(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment(
             itemClick(2)
             dialog?.dismiss()
         }
-        binding.dialogCpuI9Btn.setOnClickListener {
+        binding.dialogCpuM1Btn.setOnClickListener {
             itemClick(3)
             dialog?.dismiss()
         }
-        binding.dialogCpuM1Btn.setOnClickListener {
+        binding.dialogEctBtn.setOnClickListener {
             itemClick(4)
-            dialog?.dismiss()
-        }
-        binding.dialogCpuEctBtn.setOnClickListener {
-            itemClick(5)
             dialog?.dismiss()
         }
     }

@@ -1,18 +1,16 @@
-package com.getit.getit.ui.main.search.detail
+package com.getit.getit.ui.main.category.detail
 
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
-import com.getit.getit.ui.main.search.Products
-import com.getit.getit.ui.main.search.ReviewRVAdatpter
-import com.getit.getit.ui.main.search.Reviews
+import com.getit.getit.ui.main.category.Products
+import com.getit.getit.ui.main.category.ReviewRVAdatpter
+import com.getit.getit.ui.main.category.Reviews
 import com.google.gson.Gson
 import java.text.DecimalFormat
 

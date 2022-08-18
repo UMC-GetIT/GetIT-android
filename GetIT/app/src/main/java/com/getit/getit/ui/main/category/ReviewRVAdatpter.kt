@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.search
+package com.getit.getit.ui.main.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

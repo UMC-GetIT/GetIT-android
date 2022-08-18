@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.search
+package com.getit.getit.ui.main.category
 
 data class Reviews(
     var coverImg: Int? = null,
