@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/product_detail"
             android:textSize="20sp"
+            android:textStyle="normal"
             android:textColor="@color/normal"
             android:layout_marginStart="12dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,11 +48,8 @@
         tools:context=".ui.main.home.HomeFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/product_detail_img_iv"
@@ -145,17 +143,46 @@
                 android:layout_marginStart="14dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_side_img_cardview"/>
+
             <TextView
                 android:id="@+id/product_detail_product_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="4dp"
+                android:text="13형 MacBook Pro"
+                android:textColor="@color/normal"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/product_detail_like_btn_frame_layout"
+                app:layout_constraintTop_toBottomOf="@id/product_detail_product_category_tv" />
+
+            <FrameLayout
+                android:id="@+id/product_detail_like_btn_frame_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="13형 MacBook Pro"
-                android:textSize="18sp"
-                android:textColor="@color/normal"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="14dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_product_category_tv"/>
+                app:layout_constraintStart_toEndOf="@+id/product_detail_product_name_tv"
+                app:layout_constraintTop_toTopOf="@+id/product_detail_product_name_tv"
+                app:layout_constraintEnd_toEndOf="parent">
+                <ImageButton
+                    android:id="@+id/product_detail_like_btn_off_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like_button_off"
+                    android:background="@android:color/transparent"
+                    android:layout_marginEnd="14dp"/>
+
+                <ImageButton
+                    android:id="@+id/product_detail_like_btn_on_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_like_button_on"
+                    android:background="@android:color/transparent"
+                    android:layout_marginEnd="14dp"
+                    android:visibility="gone"/>
+            </FrameLayout>
+
+
 
             <TextView
                 android:id="@+id/product_detail_product_price_tv"
@@ -226,53 +253,101 @@
                 android:layout_height="wrap_content"
                 android:text="상세 정보"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:textColor="@color/normal"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@id/product_detail_product_name_tv"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_divide_view2"/>
 
-            <TextView
-                android:id="@+id/product_detail_content_cpu_title_tv"
-                android:layout_width="wrap_content"
+            <GridLayout
+                android:id="@+id/detail_inform_grid_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cpu"
-                android:textColor="@color/subText"
-                android:textSize="12dp"
-                android:layout_marginTop="24dp"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_product_content_title_tv"
-                app:layout_constraintStart_toStartOf="@id/product_detail_product_content_title_tv"/>
+                app:layout_constraintStart_toStartOf="@id/product_detail_product_content_title_tv">
 
-            <TextView
-                android:id="@+id/product_detail_content_cpu_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="8코어 CPU"
-                android:textColor="@color/normal"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_content_cpu_title_tv"
-                app:layout_constraintStart_toStartOf="@id/product_detail_product_content_title_tv"/>
+                <LinearLayout
+                    android:id="@+id/product_detail_content_cpu_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1">
+                    <TextView
+                        android:id="@+id/product_detail_content_cpu_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cpu"
+                        android:textColor="@color/subText"
+                        android:textSize="12dp"/>
 
-            <TextView
-                android:id="@+id/product_detail_content_weight_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weight"
-                android:textColor="@color/subText"
-                android:textSize="12dp"
-                android:layout_marginTop="18dp"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_content_cpu_tv"
-                app:layout_constraintStart_toStartOf="@id/product_detail_product_content_title_tv"/>
-            <TextView
-                android:id="@+id/product_detail_content_weight_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="약 1,480g"
-                android:textColor="@color/normal"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_content_weight_title_tv"
-                app:layout_constraintStart_toStartOf="@id/product_detail_product_content_title_tv"/>
+                    <TextView
+                        android:id="@+id/product_detail_content_cpu_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8코어 CPU"
+                        android:textColor="@color/normal"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1">
+                    <TextView
+                        android:id="@+id/product_detail_content_ram_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ram"
+                        android:textColor="@color/subText"
+                        android:textSize="12dp"/>
+                    <TextView
+                        android:id="@+id/product_detail_content_ram_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8GB"
+                        android:textColor="@color/normal"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
+                    android:layout_marginTop="16dp">
+                    <TextView
+                        android:id="@+id/product_detail_content_weight_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weight"
+                        android:textColor="@color/subText"
+                        android:textSize="12dp"/>
+                    <TextView
+                        android:id="@+id/product_detail_content_weight_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="약 1,480g"
+                        android:textColor="@color/normal"
+                        android:textSize="14sp"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </GridLayout>
+
+
             <!--    리뷰 작성    -->
             <View
                 android:id="@+id/product_detail_divide_view3"
@@ -282,13 +357,13 @@
                 android:background="@color/background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_content_weight_tv"/>
+                app:layout_constraintTop_toBottomOf="@id/detail_inform_grid_layout"/>
 
             <TextView
                 android:id="@+id/product_detail_review_input_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="리뷰 작성"
+                android:text="@string/write_review"
                 android:textColor="@color/normal"
                 android:textStyle="bold"
                 android:textSize="16sp"
@@ -301,7 +376,7 @@
                 android:id="@+id/product_detail_review_input_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style_edittext_background"
+                android:background="@drawable/style_detailed_category_button"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -310,20 +385,40 @@
                 android:maxLines="3"
                 android:scrollbars="vertical"
                 android:padding="10dp"
+                android:gravity="top"
+                android:hint="@string/review_hint"
+                android:textColorHint="@color/outline"
                 app:layout_constraintStart_toStartOf="@id/product_detail_review_input_tv"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_review_input_tv"/>
 
-            <ImageButton
-                android:id="@+id/product_detail_add_review_ib"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/send_img"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintEnd_toEndOf="@id/product_detail_review_input_et"
-                app:layout_constraintBottom_toBottomOf="@id/product_detail_review_input_et"
-                android:background="@android:color/transparent"/>
+            <FrameLayout
+                android:id="@+id/product_detail_confirm_btn_frame_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/product_detail_review_input_et"
+                app:layout_constraintEnd_toEndOf="parent">
+                <Button
+                    android:id="@+id/product_detail_confirm_btn_on"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:backgroundTint="@color/primary"
+                    android:textSize="12dp"
+                    android:text="@string/confirm_btn"
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
+                <Button
+                    android:id="@+id/product_detail_confirm_btn_off"
+                    android:layout_width="68dp"
+                    android:layout_height="46dp"
+                    android:backgroundTint="@color/background"
+                    android:textSize="12dp"
+                    android:text="@string/confirm_btn"
+                    android:textColor="@color/outline"
+                    android:clickable="false"/>
+            </FrameLayout>
+
 
             <View
                 android:id="@+id/product_detail_divide_view4"
@@ -333,13 +428,13 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/product_detail_review_input_et"/>
+                app:layout_constraintTop_toBottomOf="@id/product_detail_confirm_btn_frame_layout"/>
 
             <TextView
                 android:id="@+id/product_detail_review_content_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="제품 리뷰"
+                android:text="@string/product_reviews"
                 android:textStyle="bold"
                 android:textColor="@color/normal"
                 android:textSize="16sp"

@@ -12,7 +12,7 @@ class WindowActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val toolbar : Toolbar = binding.toolbar.toolbar
+        val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
 

@@ -11,7 +11,10 @@
     <string name="menu_comparison">비교</string>
     <string name="menu_mypage">마이페이지</string>
 
+    <!--타이틀-->
     <string name="product_detail">상세 정보</string>
+    <string name="write_review">리뷰 작성</string>
+    <string name="product_reviews">제품 리뷰</string>
 
     <!--에러처리-->
     <string name="default_fail">네트워크연결이 원활하지 않습니다</string>
@@ -29,10 +32,12 @@
     <string name="desktop">PC</string>
 
     <!--검색창 힌트-->
-    <string name="search_hint">검색어를 입력해주세요</string>
+    <string name="search_hint">검색어를 입력해주세요.</string>
+    <string name="review_hint">리뷰를 작성해 주세요.</string>
 
     <!--버튼-->
     <string name="apply_btn">적용</string>
+    <string name="confirm_btn">확인</string>
 
     <!--제품 상세 카테고리-->
     <string name="price">가격</string>
@@ -67,7 +72,6 @@
 
     <string name="ram">RAM</string>
     <string name="storage_capacity">저장 용량</string>
-    <string name="internal_storage">내장 메모리</string>
     <string name="gb4">4GB</string>
     <string name="gb6">6GB</string>
     <string name="gb8">8GB</string>
@@ -100,7 +104,6 @@
     <string name="watt_31_to_50">31w ~ 50w</string>
     <string name="watt_51_to_100">51w ~ 100w</string>
     <string name="watt_100_up">100w 이상</string>
-
 
     <string name="protocol">통신 규격</string>
     <string name="protocol_3g">3G</string>

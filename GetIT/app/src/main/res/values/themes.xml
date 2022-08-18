@@ -22,7 +22,12 @@
         <!-- Status bar icon color. -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
-        <!-- Bottom sheet dialog Style -->
+        <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/customTextViewFontStyle</item>
+        <item name="android:buttonStyle">@style/customButtonFontStyle</item>
+        <item name="android:editTextStyle">@style/customEditTextFontStyle</item>
+        <item name="android:radioButtonStyle">@style/customRadioButtonFontStyle</item>
+        <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogTheme</item>
     </style>
 

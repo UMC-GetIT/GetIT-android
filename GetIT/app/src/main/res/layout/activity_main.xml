@@ -13,6 +13,7 @@
         android:layout_height="?actionBarSize"
         app:titleTextColor="@color/normal"
         android:background="@color/white"
+        android:theme="@style/ToolbarFontStyle"
         app:title="GetIT"
         app:menu="@menu/menu_toolbar">
     </androidx.appcompat.widget.Toolbar>
