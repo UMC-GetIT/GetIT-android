@@ -1,394 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.mypage.MypageFragment">
+    android:orientation="vertical">
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/setting_toolbar"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_setting_toolbar"
+        app:titleTextColor="@color/normal" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:titleTextColor="@color/normal"
-            android:background="@color/white"
-            android:elevation="4dp"
-            app:title="내 정보"
-            app:menu="@menu/menu_setting_toolbar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circle_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/man3"
-            android:layout_margin="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/setting_toolbar" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/circle_image"
-            app:layout_constraintTop_toBottomOf="@id/setting_toolbar"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="25dp"
-            android:textStyle="bold"
-            android:textColor="@color/normal"
-            android:text="이름"
-            android:textSize="15sp"
-            android:fontFamily="@font/notosanskr_regular"/>
-
-        <TextView
-            android:id="@+id/nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@id/circle_image"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            android:layout_marginLeft="25dp"
-            android:text="아이디"
-            android:textSize="15sp"
-            android:fontFamily="@font/notosanskr_regular"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:layout_margin="20dp"
-            android:src="@drawable/mypage_arrow_forward"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/setting_toolbar"
-            app:layout_constraintBottom_toBottomOf="@id/line1"
-            />
-
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="@color/background"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/circle_image" />
-
-
-        <TextView
-            android:id="@+id/textlike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="좋아요 누른 상품"
-            android:textStyle="bold"
-            android:textColor="@color/normal"
-            android:fontFamily="@font/notosanskr_bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line1" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:layout_margin="20dp"
-            android:src="@drawable/mypage_arrow_forward"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line1" />
-
-
-        <LinearLayout
-            android:id="@+id/linear_like"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textlike">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imagelike1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@color/background"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/hdd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/product_like_1"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="제품이름1"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/imagelike1"
-                    app:layout_constraintTop_toBottomOf="@id/imagelike1" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="가격"
-                    android:textColor="@color/normal"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/imagelike1"
-                    app:layout_constraintTop_toBottomOf="@id/product_like_1" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/answer1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imagelike2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@color/background"
-                    android:scaleType="centerInside"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/hdd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/product_like_2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="제품이름2"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/imagelike2"
-                    app:layout_constraintTop_toBottomOf="@id/imagelike2" />
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="가격"
-                    android:textColor="@color/normal"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/imagelike2"
-                    app:layout_constraintTop_toBottomOf="@id/product_like_2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/answer1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imagelike3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@color/background"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/hdd"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/product_like_3"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="제품이름3"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@id/imagelike3"
-                    app:layout_constraintTop_toBottomOf="@id/imagelike3" />
-
-                <TextView
-
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:text="가격"
-                    android:textColor="@color/normal"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/imagelike3"
-                    app:layout_constraintTop_toBottomOf="@id/product_like_3" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosanskr_bold"
-            android:textSize="15sp"
-            android:layout_margin="20dp"
-            android:text="내가 작성한 후기"
-            android:textStyle="bold"
-            android:textColor="@color/normal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_like" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:layout_margin="20dp"
-            android:src="@drawable/mypage_arrow_forward"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_like" />
-
-
-        <LinearLayout
-            android:id="@+id/linear1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/textreview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/review_image"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/apple_labtop2_img"
-                android:background="@drawable/roundcircle"
+                android:layout_margin="20dp"
+                android:src="@drawable/rabbit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="겟IT"
+                android:textColor="@color/normal"
+                android:textSize="18dp"
+                app:layout_constraintLeft_toRightOf="@id/circle_image"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="4dp"
+                android:text="getIt@gmail.com"
+                android:textSize="14dp"
+                app:layout_constraintLeft_toRightOf="@id/circle_image"
+                app:layout_constraintTop_toBottomOf="@id/name" />
+
+            <ImageButton
+                android:id="@+id/user_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:backgroundTint="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/mypage_arrow_forward"
+                app:layout_constraintBottom_toBottomOf="@id/line1"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+
+            <View
+                android:id="@+id/line1"
                 android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@+id/circle_image" />
+
+            <TextView
+                android:id="@+id/textlike"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/reviewtext1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="제품 이름"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toEndOf="@id/review_image"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/reviewtext1"
-                    app:layout_constraintStart_toEndOf="@id/review_image"
-                    android:background="@drawable/roundcircle"
-                    android:backgroundTint="@color/primary_bg"/>
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/linear1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/review_image2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/apple_labtop2_img"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="좋아요 누른 상품"
+                android:textColor="@color/normal"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
+
+            <ImageButton
+                android:id="@+id/like_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/mypage_arrow_forward"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line1" />
 
             <LinearLayout
+                android:id="@+id/linear_like"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:id="@+id/reviewtext2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="제품이름2"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toEndOf="@id/review_image2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/like_btn">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/reviewtext2"
-                    app:layout_constraintStart_toEndOf="@id/review_image2"
-                    android:background="@drawable/roundcircle"
-                    android:backgroundTint="@color/primary_bg"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imagelike1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/background"
+                        android:backgroundTint="@color/white"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/samsong_labtop_img"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/product_like_1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="삼성전자 2021 갤럭시북 프로 "
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@id/imagelike1"
+                        app:layout_constraintTop_toBottomOf="@id/imagelike1" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:text="1,520,000"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/imagelike1"
+                        app:layout_constraintTop_toBottomOf="@id/product_like_1" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/answer1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imagelike2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/background"
+                        android:backgroundTint="@color/white"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/lg_labtop_img"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/product_like_2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="LG전자 2022 그램 16"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@id/imagelike2"
+                        app:layout_constraintTop_toBottomOf="@id/imagelike2" />
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:text="1,566,000"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/imagelike2"
+                        app:layout_constraintTop_toBottomOf="@id/product_like_2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/answer1_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imagelike3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/background"
+                        android:backgroundTint="@color/white"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/apple_labtop_img"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/product_like_3"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:text="Apple 2021 맥북프로 14"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@id/imagelike3"
+                        app:layout_constraintTop_toBottomOf="@id/imagelike3" />
+
+                    <TextView
+
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanskr_bold"
+                        android:text="2,525,000"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/imagelike3"
+                        app:layout_constraintTop_toBottomOf="@id/product_like_3" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
-            <!--
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/review2"
+            <TextView
+                android:id="@+id/textreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/notosanskr_bold"
+                android:text="내가 작성한 후기"
+                android:textColor="@color/normal"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_like" />
+
+            <ImageButton
+                android:id="@+id/review_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/mypage_arrow_forward"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_like" />
+
+            <LinearLayout
+                android:id="@+id/linear1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/review_btn">
 
                 <ImageView
-                    android:id="@+id/review2_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/cpu"
+                    android:id="@+id/review_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/roundcircle"
+                    android:backgroundTint="@color/white"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/apple_labtop_img"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/reviewtext2"
-                    android:layout_width="150dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp">
+
+                    <TextView
+                        android:id="@+id/reviewtext1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Apple 2021 맥북프로 14"
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toEndOf="@id/review_image"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/style_speech_bubble"
+                        android:padding="12dp"
+                        android:text="평소에 맥북 쓰고 싶었는데 직접 사용해보니 좋네요"
+                        android:textColor="@color/normal"
+                        app:layout_constraintStart_toEndOf="@id/review_image"
+                        app:layout_constraintTop_toBottomOf="@id/reviewtext1" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/linear1">
+
+                <ImageView
+                    android:id="@+id/review_image2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/samsong_labtop_img"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="리뷰"
-                    android:fontFamily="@font/notosanskr_regular"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toEndOf="@id/review2_image"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    android:orientation="vertical"
+                    android:layout_marginEnd="20dp">
+
+                    <TextView
+                        android:id="@+id/reviewtext2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:text="삼성전자 2021 갤럭시북 프로 360 13.3 "
+                        android:textColor="@color/normal"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toEndOf="@id/review_image2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/style_speech_bubble"
+                        android:padding="12dp"
+                        android:text="360도로 돌아가서 편리해요"
+                        android:textColor="@color/normal"
+                        app:layout_constraintStart_toEndOf="@id/review_image2"
+                        app:layout_constraintTop_toBottomOf="@id/reviewtext2" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
 
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>-->
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

@@ -14,6 +14,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.GetIT.RemoveSplash">
 
+
         <activity android:name=".ui.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.GetIT.RemoveSplash">
@@ -30,6 +31,15 @@
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.search.detail.ProductDetailActivity"/>
         <activity android:name=".ui.main.SearchActivity"/>
+        <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
+        <activity android:name=".ui.main.mypage.settings.SettingActivity"/>
+        <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>
+        <activity android:name=".ui.main.mypage.settings.DeveloperInfoActivity"/>
+        <activity android:name=".ui.main.mypage.like.LikeProductAcitivity"/>
+        <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
+        <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
+        <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>
+        <activity android:name=".ui.main.mypage.like.LikeProductAcitivity"/>
 
     </application>
 
