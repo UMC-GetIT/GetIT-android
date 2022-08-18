@@ -30,8 +30,8 @@
 <!--        <activity android:name=".ui.splash.SplashActivity"/>-->
         <activity android:name=".ui.main.MainActivity"/>
         <activity android:name=".ui.main.category.detail.ProductDetailActivity"/>
-        <activity android:name=".ui.main.SearchActivity"/>
-        <activity android:name=".ui.main.SearchResultActivity"/>
+        <activity android:name=".ui.main.searchproduct.SearchActivity"/>
+        <activity android:name=".ui.main.searchproduct.SearchResultActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
         <activity android:name=".ui.main.mypage.settings.SettingActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>

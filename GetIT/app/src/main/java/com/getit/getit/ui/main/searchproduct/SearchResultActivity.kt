@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main
+package com.getit.getit.ui.main.searchproduct
 
 import com.getit.getit.databinding.ActivitySearchResultBinding
 import com.getit.getit.ui.BaseActivity

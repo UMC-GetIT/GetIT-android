@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main
+package com.getit.getit.ui.main.searchproduct
 
 import android.R
 import android.content.Intent
