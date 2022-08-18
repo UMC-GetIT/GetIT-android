@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main
 
 import android.content.Intent
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -52,19 +53,4 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         }
         return super.onOptionsItemSelected(item)
     }
-
-    // 툴바 타이틀 변경 -> 프래그먼트에서 override하여 사용
-//    fun setActionBarTitle(title: String?) {
-//        supportActionBar?.title = title
-//    }
-//
-//    // 툴바 쓴다
-//    fun showActionBar(){
-//        supportActionBar?.show()
-//    }
-//
-//    // 툴바 안쓴다
-//    fun hideActionBar() {
-//        supportActionBar?.hide()
-//    }
 }

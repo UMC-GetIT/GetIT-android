@@ -2,10 +2,10 @@ package com.getit.getit.ui.main.mypage
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
-import com.getit.getit.ApplicationClass.Companion.TAG
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
 import com.getit.getit.ui.BaseFragment
@@ -13,29 +13,33 @@ import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.mypage.like.LikeProductAcitivity
 import com.getit.getit.ui.main.mypage.review.ReviewProductAcitivity
 import com.getit.getit.ui.main.mypage.settings.ChangeProfileActivity
-import com.getit.getit.ui.main.mypage.settings.settingActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import com.getit.getit.ui.main.mypage.settings.SettingActivity
 
 
 class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener {
     //button 클릭시
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setOnClickListener()
+
+        val toolbar: Toolbar = binding.toolbar
+        toolbar.title = "마이페이지"
+        toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.menu_setting -> {
+                    startActivity(Intent(context, SettingActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 
     private fun setOnClickListener() {
-        val btnSequence = binding.container.children
-        btnSequence.forEach { btn ->
-            btn.setOnClickListener(this)
-        }
-
-        val btnSequence2 = binding.toolbar.children
-        btnSequence2.forEach { btn ->
+        val otherButtonSequence = binding.container.children
+        otherButtonSequence.forEach { btn ->
             btn.setOnClickListener(this)
         }
     }
@@ -45,12 +49,6 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
             R.id.user_btn -> {
                 activity?.let {
                     val intent = Intent(context, ChangeProfileActivity::class.java)
-                    startActivity(intent)
-                }
-            }
-            R.id.setting_button -> {
-                activity?.let {
-                    val intent = Intent(context, settingActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -72,7 +70,6 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
 
     }
 
-    // main 액션바 제거
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).hideActionBar()

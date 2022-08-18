@@ -13,7 +13,7 @@ import com.getit.getit.ui.login.LoginActivity
 import com.getit.getit.ui.splash.SplashActivity
 
 
-class settingActivity : AppCompatActivity() {
+class SettingActivity : AppCompatActivity() {
     lateinit var binding: FragmentSettingsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
