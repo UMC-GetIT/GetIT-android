@@ -27,7 +27,6 @@
                 android:textSize="15sp"
                 android:textAlignment="center"
                 android:textColor="@color/normal"
-                android:fontFamily="@font/notosanskr_regular"
                 android:background="@drawable/roundcircle"
                 android:backgroundTint="@color/primary_bg"
                 android:text="가격" />
@@ -38,7 +37,6 @@
                 android:layout_weight="2"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:fontFamily="@font/notosanskr_regular"
                 android:textColor="@color/normal"
                 android:background="@color/white"
                 android:text="1,626,000" />
@@ -56,7 +54,6 @@
                 android:layout_marginLeft="5dp"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:fontFamily="@font/notosanskr_regular"
                 android:textColor="@color/normal"
                 android:background="@color/white"
                 android:text="1,626,000" />

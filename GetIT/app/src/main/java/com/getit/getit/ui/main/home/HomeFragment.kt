@@ -13,6 +13,7 @@ import com.getit.getit.R
 import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.home.data.ItTermIcon
+import com.getit.getit.ui.main.home.recommend.RecommendActivity
 
 
 class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -67,6 +68,13 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
     }
 
     override fun initAfterBinding() {
+        setItTermIcon()
+
+        // 상품 클릭
+
+    }
+
+    private fun setItTermIcon() {
         var ittermDatas = ArrayList<ItTermIcon>()
         // 더미데이터
         ittermDatas.apply {
@@ -87,9 +95,6 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         val linearLayoutManager = LinearLayoutManager(this.context)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.ittermAnswerRv.layoutManager = linearLayoutManager
-
-        // 상품 클릭
-
     }
 
     override fun onResume() {

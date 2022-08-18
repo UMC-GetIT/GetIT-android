@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/recommend_option_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="문서 작성"
+        android:textAlignment="center"
+        android:textSize="14dp"
+        android:textColor="@color/subText"
+        android:fontFamily="@font/notosanskr_regular"
+        android:backgroundTint="@color/white"
+        app:chipStartPadding = "12dp"
+        app:chipEndPadding="12dp"
+        app:chipMinTouchTargetSize="0dp"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        app:chipStrokeColor="@color/outline"
+        app:chipStrokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

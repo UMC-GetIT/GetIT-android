@@ -11,7 +11,7 @@
         android:layout_height="?actionBarSize"
         app:titleTextColor="@color/normal"
         android:background="@color/white"
-        android:elevation="4dp"
+        android:elevation="0dp"
         app:menu="@menu/menu_plain_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -38,7 +38,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/style_editview"
-        android:fontFamily="@font/notosanskr_regular"
         android:hint="아이디(이메일)"
         android:inputType="text"
         android:textSize="12dp"
@@ -53,7 +52,6 @@
         android:text="중복된 이메일 입니다."
         android:visibility="gone"
         android:textColor="@color/error"
-        android:fontFamily="@font/notosanskr_regular"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@id/sign_up_id_et"
         app:layout_constraintTop_toBottomOf="@id/sign_up_id_et" />
@@ -66,7 +64,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/style_editview"
-        android:fontFamily="@font/notosanskr_regular"
         android:paddingStart="12dp"
         android:hint="닉네임"
         android:inputType="text"
@@ -82,7 +79,6 @@
         android:text="중복된 닉네임 입니다."
         android:visibility="gone"
         android:textColor="@color/error"
-        android:fontFamily="@font/notosanskr_regular"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@id/sign_up_nickname_et"
         app:layout_constraintTop_toBottomOf="@id/sign_up_nickname_et" />
@@ -95,7 +91,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/style_editview"
-        android:fontFamily="@font/notosanskr_regular"
         android:paddingStart="12dp"
         android:hint="비밀번호"
         android:inputType="textPassword"
@@ -111,7 +106,6 @@
         android:text="잘못된 형식의 비밀번호입니다."
         android:visibility="gone"
         android:textColor="@color/error"
-        android:fontFamily="@font/notosanskr_regular"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@id/sign_up_password_et"
         app:layout_constraintTop_toBottomOf="@id/sign_up_password_et" />
@@ -124,7 +118,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/style_editview"
-        android:fontFamily="@font/notosanskr_regular"
         android:paddingStart="12dp"
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
@@ -140,7 +133,6 @@
         android:text="비밀번호가 일치하지 않습니다."
         android:visibility="gone"
         android:textColor="@color/error"
-        android:fontFamily="@font/notosanskr_regular"
         android:textSize="10dp"
         app:layout_constraintStart_toStartOf="@id/sign_up_password_check_et"
         app:layout_constraintTop_toBottomOf="@id/sign_up_password_check_et" />
