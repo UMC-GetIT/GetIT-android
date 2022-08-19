@@ -1,8 +1,12 @@
 package com.getit.getit.ui.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.provider.Settings.Global.getString
+import android.provider.Settings.Secure.getString
+import android.provider.Settings.System.getString
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.getit.getit.AuthService
@@ -20,6 +24,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
+        val editor = spf.edit()
+
+        editor.putString("jwt", "abcdefg")
+        editor.apply()
 
         binding.loginBtn.setOnClickListener {
             login();
@@ -53,6 +64,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         authService.setLoginView(this)
 
         authService.login(User(email, pwd, ""))
+
+        //sharedPreference
+       
     }
 
     private fun saveJwt(jwt: String) {
