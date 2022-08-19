@@ -17,7 +17,6 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRecommendBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val toolbar : Toolbar = binding.toolbar

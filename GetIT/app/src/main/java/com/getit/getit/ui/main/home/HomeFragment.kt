@@ -12,6 +12,7 @@ import com.example.flo.ui.main.home.BannerVPAdapter
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
+import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.home.data.ItTermIcon
 import com.getit.getit.ui.main.home.recommend.RecommendActivity
 
@@ -60,6 +61,7 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
 //            startActivity(Intent(activity, WindowActivity::class.java))
 //        }
 
+        (activity as MainActivity).setLogoVisible(View.VISIBLE);
         return binding.root
     }
 
@@ -100,6 +102,6 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
     override fun onResume() {
         super.onResume()
         showActionBar()
-        setActionBarTitle("겟 IT")
+        setActionBarTitle("")
     }
 }

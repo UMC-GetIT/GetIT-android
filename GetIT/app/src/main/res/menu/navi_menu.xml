@@ -3,20 +3,20 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:title="@string/menu_home"
-        android:icon="@drawable/selector_navi_home"/>
+        android:icon="@drawable/menu_selector_home"/>
     <item
         android:id="@+id/searchFragment"
         android:enabled="true"
         android:title="@string/menu_search"
-        android:icon="@drawable/selector_navi_search"/>
+        android:icon="@drawable/menu_selector_search"/>
     <item
         android:id="@+id/comparisonFragment"
         android:enabled="true"
         android:title="@string/menu_comparison"
-        android:icon="@drawable/selector_navi_match"/>
+        android:icon="@drawable/menu_selector_compare"/>
     <item
         android:id="@+id/mypageFragment"
         android:enabled="true"
         android:title="@string/menu_mypage"
-        android:icon="@drawable/selector_navi_mypage"/>
+        android:icon="@drawable/menu_selector_mypage"/>
 </menu>
