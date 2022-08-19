@@ -30,7 +30,7 @@ class SearchProductRVAdapter(val context: Context, val result: List<SearchProduc
 
         val price = result[position].lprice
         val df = DecimalFormat("###,###")
-        val strPrice = df.format(price)
+        val strPrice = df.format(price) + "원"
         holder.price.text = strPrice
     }
 
