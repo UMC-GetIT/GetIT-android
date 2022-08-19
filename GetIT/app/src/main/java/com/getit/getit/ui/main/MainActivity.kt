@@ -57,9 +57,10 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
     }
 
 
-    fun setLogoVisible(visibility : Int){
+    fun setLogoVisible(visibility : Int) {
         binding.logo.visibility = visibility
 
+    }
     fun getSharedPreference(): SharedPreferences? {
         return getSharedPreferences("auth" , MODE_PRIVATE)
 
