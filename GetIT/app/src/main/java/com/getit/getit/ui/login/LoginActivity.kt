@@ -36,7 +36,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     }
 
     private fun login() {
-        Log.d("제발", binding.loginIdEt.text.toString());
         if (binding.loginIdEt.text.toString().isEmpty()) {
             Toast.makeText(this, "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show()
             return

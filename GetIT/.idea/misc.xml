@@ -80,6 +80,7 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/ic_baseline_compare_arrows_24.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/ic_baseline_compare_arrows_off.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1335" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/ic_close.xml" value="0.1015" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/menu_selector_compare.xml" value="0.1585" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/menu_selector_home.xml" value="0.129" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/menu_selector_image.xml" value="0.1585" />
@@ -98,6 +99,8 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_edittext_background.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_editview.xml" value="0.203" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_spinner.xml" value="0.1535" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_summit_button.xml" value="0.1425" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_summit_button_off.xml" value="0.1425" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_tag_button.xml" value="0.216" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_textview.xml" value="0.2135" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_top_rounded_corner.xml" value="0.203" />

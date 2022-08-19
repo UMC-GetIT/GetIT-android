@@ -27,37 +27,34 @@ class AuthService {
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
         authService.signUp(user).enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("SIGNUP/SUCCESS", response.toString())
-
+                Log.d("테스트", response.toString())
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
                     1000 -> {
-                        Log.d("진행 사항", "진입성공 1000")
+                        Log.d("테스트", "진입성공 1000")
                         signUpView.onSignUpSuccess(resp.code, resp.result!!)
                     }
                     else -> {
-                        Log.d("진행 사항", resp.code.toString())
+                        Log.d("테스트", resp.code.toString())
                         signUpView.onSignUpFailure(resp.code)
                     }
                 }
             }
 
             override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                Log.d("SIGNUP/FAILURE", t.message.toString())
+                Log.d("테스트", t.message.toString())
             }
 
         })
-
-        Log.d("SIGNUP", "HELLO")
     }
 
     fun login(user: User){
         val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.login(user).enqueue(object: Callback<AuthResponse> {
+        authService.login(user)
+            .enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                Log.d("LOGIN/SUCCESS", response.toString())
-
-                Log.d("진행", response.body().toString())
+                Log.d("테스트", response.toString())
+                Log.d("테스트", response.body().toString())
                 val resp: AuthResponse = response.body()!!
 
                 when(val code = resp.code){
