@@ -21,15 +21,15 @@ class CategoryService {
         this.recommendView = recommendView
     }
 
-    fun getCategory(category: Category){
+    fun getCategory(type: String, requirement: String){
         val categoryService = getRetrofit().create(CategoryRetrofitInterface::class.java)
 
         categorySearchView.onGetCategoryLoading()
 
-        categoryService.getCategory(category).enqueue(object: Callback<CategoryResponse> {
+        categoryService.getCategory(type, requirement).enqueue(object: Callback<CategoryResponse> {
             override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
-//                Log.d("TEST", "response 성공")
-//                Log.d("TEST", response.toString())
+                Log.d("TEST", "response 성공")
+                Log.d("TEST", response.toString())
                 if(response.isSuccessful && response.code() == 200) { // <- response code = 400
                     val categoryResponse: CategoryResponse = response.body()!!
                     Log.d("CATEGORY-RESPONSE/SUCCESS", categoryResponse.toString())

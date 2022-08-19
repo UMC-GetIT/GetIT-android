@@ -163,7 +163,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     private fun getCategory() {
         val categoryService = CategoryService()
         categoryService.setSearchView(this)
-        categoryService.getCategory(Category(getString(R.string.laptop), getString(R.string.string_null)))
+        categoryService.getCategory(getString(R.string.laptop), getString(R.string.string_null))
     }
 
     private fun search() {
