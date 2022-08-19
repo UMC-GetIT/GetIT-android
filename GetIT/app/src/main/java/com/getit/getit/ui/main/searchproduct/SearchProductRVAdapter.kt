@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.category
+package com.getit.getit.ui.main.searchproduct
 
 import android.content.Context
 import android.util.Log
@@ -9,30 +9,34 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ItemSearchBinding
+import java.text.DecimalFormat
 
-class SearchRVAdapter(val context: Context, val result: CategoryResult) : RecyclerView.Adapter<SearchRVAdapter.ViewHolder>(){
+class SearchProductRVAdapter(val context: Context, val result: List<SearchProductResult>) : RecyclerView.Adapter<SearchProductRVAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SearchRVAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SearchProductRVAdapter.ViewHolder {
         val binding: ItemSearchBinding = ItemSearchBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: SearchRVAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchProductRVAdapter.ViewHolder, position: Int) {
 
-        if (result.products[position].imgUrl == "" || result.products[position].imgUrl == null) {
+        if (result[position].image == "" || result[position].image == null) {
 
         }
         else {
-            Log.d("image",result.products[position].imgUrl)
-            Glide.with(context).load(result.products[position].imgUrl).into(holder.productImg)
+            Glide.with(context).load(result[position].image).into(holder.productImg)
         }
-        holder.name.text = result.products[position].name
-        holder.price.text = result.products[position].price
+        holder.name.text = result[position].title
+
+        val price = result[position].lprice
+        val df = DecimalFormat("###,###")
+        val strPrice = df.format(price)
+        holder.price.text = strPrice
     }
 
     override fun getItemCount(): Int {
-        Log.d("test-size", result.products.size.toString())
-        return result.products.size
+        Log.d("test-size", result.size.toString())
+        return result.size
     }
 
     inner class ViewHolder(val binding: ItemSearchBinding): RecyclerView.ViewHolder(binding.root) {

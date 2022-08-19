@@ -15,36 +15,46 @@ import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), CategorySearchView {
     private lateinit var searchRVAdatpter: SearchRVAdapter
+    var seletedCategory = "laptop"
 
     override fun initAfterBinding() {
-        Log.d("LOG","initAfterBinding 호출")
         onLaptopBtn()
+
+        binding.searchBtnConstraint.setOnClickListener{
+            search()
+        }
+
 
         // 제품 카테고리 선택
          binding.laptopCardView.setOnClickListener {
              offAllCategoryBtn() // 모든 버튼 초기화 및 비활성화
              onLaptopBtn()
              offAllDetailCategoryBtn()  // 다른 제품 세부 카테고리 초기화 기능
+             seletedCategory = "laptop"
          }
         binding.phoneCardView.setOnClickListener {
             offAllCategoryBtn()
             onPhoneBtn()
             offAllDetailCategoryBtn()
+            seletedCategory = "phone"
         }
         binding.tabletCardView.setOnClickListener {
             offAllCategoryBtn()
             onTabletBtn()
             offAllDetailCategoryBtn()
+            seletedCategory = "tablet"
         }
         binding.speakerCardView.setOnClickListener {
             offAllCategoryBtn()
             onSpeakerBtn()
             offAllDetailCategoryBtn()
+            seletedCategory = "speaker"
         }
         binding.desktopCardView.setOnClickListener {
             offAllCategoryBtn()
             onDesktopBtn()
             offAllDetailCategoryBtn()
+            seletedCategory = "desktop"
         }
 
         // 노트북 카테고리
@@ -134,19 +144,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun onStart() {
-        Log.d("LOG","onStart 호출")
         super.onStart()
-        Log.d("LOG","onStart super 호출")
         getCategory()
-        Log.d("LOG","getCategory 호출")
     }
 
-    private fun initRecyclerView(result: List<CategoryResult>) {
-        Log.d("LOG","initRecyclerView 호출")
+    private fun initRecyclerView(result: CategoryResult) {
         searchRVAdatpter = SearchRVAdapter(requireContext(), result)
-        Log.d("LOG","searchRVAdatpter 할당 <- 여기서부터 실행 x")
         binding.searchProductRv.adapter = searchRVAdatpter
-        Log.d("LOG","searchRVAdatpter 연결")
 
         // 상품 클릭
 //        searchRVAdatpter.setProductClickListener(object: SearchRVAdapter.ProductClickListener{
@@ -160,6 +164,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         val categoryService = CategoryService()
         categoryService.setSearchView(this)
         categoryService.getCategory(Category(getString(R.string.laptop), getString(R.string.string_null)))
+    }
+
+    private fun search() {
+        lateinit var requirement: String
+        when(seletedCategory){
+            "laptop" -> {
+                requirement = binding.searchDetailCategoryLaptopScreensizeBtn.text.toString() + "," +
+                        binding.searchDetailCategoryLaptopPriceBtn.text.toString().replace(" ","") + "," +
+                        binding.searchDetailCategoryLaptopBrandBtn.text.toString() + "," +
+                        binding.searchDetailCategoryLaptopCpuBtn.text.toString() + "," +
+                        binding.searchDetailCategoryLaptopWeightBtn.text.toString().replace(" ","")
+            }
+        }
+        Log.d("TEST", requirement)
     }
 
     private fun onDetailCategoryButton(btn: Button) {
@@ -624,14 +642,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun onGetCategoryLoading() {
+        Log.d("TEST", "로딩 중")
         // 로딩 이미지
     }
 
-    override fun onGetCategorySuccess(Code: Int, result: List<CategoryResult>) {
+    override fun onGetCategorySuccess(Code: Int, result: CategoryResult) {
+        Log.d("TEST", "로딩 성공 !!!!")
         initRecyclerView(result)
     }
 
     override fun onGetCategoryFailure(Code: Int, message: String) {
+        Log.d("TEST", "로딩 실패")
         // 로딩 실패
     }
 }

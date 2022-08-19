@@ -6,10 +6,14 @@ data class CategoryResponse(
     @SerializedName("isSuccess") val isSuccess: Boolean,
     @SerializedName("code") val code: Int,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: List<CategoryResult>
+    @SerializedName("result") val result: CategoryResult
 )
 
 data class CategoryResult(
+    @SerializedName("products") val products: List<CategoryProducts>
+)
+
+data class CategoryProducts(
     @SerializedName("imgUrl") val imgUrl: String,
     @SerializedName("name") val name: String,
     @SerializedName("price") val price: String,

@@ -7,3 +7,4 @@ data class Category(
     @SerializedName(value = "type") val type: String,
     @SerializedName(value = "requirement") val requirement: String,
 )
+
