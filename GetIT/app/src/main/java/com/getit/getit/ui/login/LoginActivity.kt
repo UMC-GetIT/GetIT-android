@@ -20,6 +20,7 @@ import java.util.regex.Pattern
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
 
     private var lastTimeBackPressed: Long = 0
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +39,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         }
 
         if(getJwt() != null){
-            var loadingDialog: LoadingDialog = LoadingDialog(this)
             loadingDialog.show();
             val authService = AuthService()
             authService.setLoginView(this)
 
             authService.autoLogin(Tokens(getJwt().toString(),
                 ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
-            loadingDialog.hide()
+
         }
     }
 
@@ -71,6 +71,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         val email: String = binding.loginIdEt.text.toString()
         val pwd: String = binding.loginPasswordEt.text.toString()
 
+
+        loadingDialog.show();
         val authService = AuthService()
         authService.setLoginView(this)
 
@@ -81,16 +83,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         saveJwt(result.accessToken, result.refreshToken)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        loadingDialog.hide();
     }
 
     override fun onLoginFailure() {
         Toast.makeText(this, "회원 정보가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+        loadingDialog.hide()
     }
 
     override fun onServerFailure() {
         Toast.makeText(this, "알 수 없는 오류, 나중에 다시 시도하세요.", Toast.LENGTH_SHORT).show()
+        loadingDialog.hide()
     }
-    override fun onAutoLoginFailure() {}
+    override fun onAutoLoginFailure() {
+        loadingDialog.hide()
+    }
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - lastTimeBackPressed < 2000){
@@ -102,5 +109,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     }
 
     override fun initAfterBinding() {
+        loadingDialog = LoadingDialog(this);
     }
 }

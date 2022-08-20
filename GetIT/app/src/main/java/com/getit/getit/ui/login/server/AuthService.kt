@@ -58,7 +58,8 @@ class AuthService {
 
                 when(val code = resp.code){
                     1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                    else -> loginView.onAutoLoginFailure()
+                    2006,2007 -> loginView.onAutoLoginFailure()
+                    else -> loginView.onServerFailure()
                 }
             }
 
@@ -78,8 +79,7 @@ class AuthService {
 
                     when(val code = resp.code){
                         1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                        2006,2007 -> loginView.onAutoLoginFailure()
-                        else -> loginView.onServerFailure()
+                        else -> loginView.onAutoLoginFailure()
                     }
                 }
 
