@@ -1,7 +1,7 @@
 package com.getit.getit.config
 
-import com.getit.getit.ApplicationClass.Companion.X_ACCESS_TOKEN
-import com.getit.getit.utils.getJwt
+import com.getit.getit.ui.login.getJwt
+import com.getit.getit.utils.ApplicationClass.Companion.X_ACCESS_TOKEN
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -13,7 +13,7 @@ class XAccessTokenInterceptor: Interceptor {
         val jwtToken: String? = getJwt()
 
         jwtToken?.let{
-            builder.addHeader(X_ACCESS_TOKEN, jwtToken)
+            builder.addHeader(X_ACCESS_TOKEN, "Authorization: $jwtToken")
         }
 
         return chain.proceed(builder.build())
