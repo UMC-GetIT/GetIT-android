@@ -1,6 +1,8 @@
 package com.getit.getit.ui.splash
 
 import android.content.Intent
+import android.content.res.AssetManager
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,10 +18,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
-        var binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        hideActionBar()
 
         val handler = Handler(Looper.getMainLooper())
 

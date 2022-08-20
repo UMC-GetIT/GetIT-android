@@ -14,8 +14,15 @@
         app:titleTextColor="@color/normal"
         android:background="@color/white"
         android:theme="@style/ToolbarFontStyle"
-        app:title="GetIT"
+        app:title="Get IT"
         app:menu="@menu/menu_toolbar">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:src="@drawable/logo"
+            android:visibility="invisible"/>
+
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -33,8 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/white"
-        app:labelVisibilityMode="unlabeled"
         app:itemRippleColor="@color/white"
-        app:menu="@menu/navi_menu"/>
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/navi_menu" />
 
 </LinearLayout>

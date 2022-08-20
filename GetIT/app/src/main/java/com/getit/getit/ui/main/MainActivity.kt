@@ -1,9 +1,11 @@
 package com.getit.getit.ui.main
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -52,5 +54,15 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
             R.id.menu_search -> startActivity(Intent(this, SearchActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    fun setLogoVisible(visibility : Int) {
+        binding.logo.visibility = visibility
+
+    }
+    fun getSharedPreference(): SharedPreferences? {
+        return getSharedPreferences("auth" , MODE_PRIVATE)
+
     }
 }

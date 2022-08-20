@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentComparisonBinding
 import com.getit.getit.ui.BaseFragment
+import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.comparison.data.ProductImageName
 
 
@@ -23,7 +24,7 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-
+        (activity as MainActivity).setLogoVisible(View.INVISIBLE);
         spinnerSetting()
         return binding.root
     }

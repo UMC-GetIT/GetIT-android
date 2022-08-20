@@ -7,8 +7,8 @@
 
     <!--메뉴-->
     <string name="menu_home">홈</string>
-    <string name="menu_search">찾기</string>
-    <string name="menu_comparison">비교</string>
+    <string name="menu_search">제품 찾기</string>
+    <string name="menu_comparison">제품 비교</string>
     <string name="menu_mypage">마이페이지</string>
 
     <!--타이틀-->
