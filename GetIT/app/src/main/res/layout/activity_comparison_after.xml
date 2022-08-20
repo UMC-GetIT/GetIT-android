@@ -1,8 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_plain_toolbar"
+        app:titleTextColor="@color/normal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/compare_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:id="@+id/compare_element_1_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/lg_gram_labtop_img"
+            app:layout_constraintEnd_toStartOf="@id/partition_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/compare_element_1_tv"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/normal"
+            android:text="2021 그램 360"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/compare_element_1_iv"
+            app:layout_constraintEnd_toEndOf="@id/compare_element_1_iv"
+            app:layout_constraintTop_toBottomOf="@id/compare_element_1_iv"/>
+
+        <TextView
+            android:id="@+id/compare_element_1_sub_tv"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/subText"
+            android:text="14T90Q-GA79K"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/compare_element_1_iv"
+            app:layout_constraintEnd_toEndOf="@id/compare_element_1_iv"
+            app:layout_constraintTop_toBottomOf="@id/compare_element_1_tv"/>
+
+        <View
+            android:id="@+id/partition_line"
+            android:layout_width="2dp"
+            android:layout_height="168dp"
+            android:background="@color/background"
+            app:layout_constraintStart_toEndOf="@id/compare_element_1_iv"
+            app:layout_constraintEnd_toStartOf="@id/compare_element_2_iv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/compare_element_2_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:src="@drawable/lg_gram_labtop_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/partition_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/compare_element_2_tv"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/normal"
+            android:text="2021 그램 360"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@id/compare_element_2_iv"
+            app:layout_constraintEnd_toEndOf="@id/compare_element_2_iv"
+            app:layout_constraintTop_toBottomOf="@id/compare_element_2_iv"/>
+        <TextView
+            android:id="@+id/compare_element_2_sub_tv"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/subText"
+            android:text="14T90Q-GA79K"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/compare_element_2_iv"
+            app:layout_constraintEnd_toEndOf="@id/compare_element_2_iv"
+            app:layout_constraintTop_toBottomOf="@id/compare_element_2_tv"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/compare_result_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/compare_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_compare_answer"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

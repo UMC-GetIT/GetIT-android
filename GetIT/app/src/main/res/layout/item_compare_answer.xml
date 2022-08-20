@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/condition_box"
+        android:layout_width="64dp"
+        android:layout_height="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/normal"
+        android:layout_marginStart="24dp"
+        android:text="가격"
+        android:background="@drawable/style_condition_box"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/compare_answer_group"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/compare_answer_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/compare_answer_1_tv"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="2021 그램 360"
+            android:textAlignment="center"
+            android:textColor="@color/normal"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/partition_line"
+            app:layout_constraintEnd_toStartOf="@id/partition_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/partition_line"
+            app:layout_constraintVertical_bias="0.512" />
+
+        <View
+        android:id="@+id/partition_line"
+        android:layout_width="2dp"
+        android:layout_height="76dp"
+        android:background="@color/background"
+        app:layout_constraintStart_toEndOf="@id/compare_answer_1_tv"
+        app:layout_constraintEnd_toStartOf="@id/compare_answer_2_tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/compare_answer_2_tv"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:textColor="@color/normal"
+        android:text="2021 그램 360"
+        android:textAlignment="center"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/partition_line"
+        app:layout_constraintBottom_toBottomOf="@id/partition_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/partition_line"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
