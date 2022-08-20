@@ -90,37 +90,6 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         val spf = this.activity?.getSharedPreferences("auth" , AppCompatActivity.MODE_PRIVATE);
         var accessToken = spf?.getString("accessToken", "").toString()
         Log.d("테스트", accessToken)
-
-        //client 생성-token 값 인증
-        val okHttpClient = OkHttpClient.Builder().addInterceptor(HeaderInterceptor("Bearer",jwt)).build()
-
-        //client와 retrofit의 인스턴스 연결
-        val retrofit2 : Retrofit by lazy {
-            Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-
-        val mypageRetrofit = retrofit.create(Service::class.java)
-        mypageRetrofit.getResponse().enqueue(object: Callback<UserInfo>{
-            override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
-                Log.d("결과",response.body().toString())
-                Log.d("결과",response.toString())
-
-                if (response.isSuccessful) {
-                    val body = response.body()
-                    body?.let {
-                        Log.d("결과",body.toString())
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<UserInfo>, t: Throwable) {
-                Log.d("this is error", t.message.toString())
-            }
-        })
     }
 
     override fun initAfterBinding() {
