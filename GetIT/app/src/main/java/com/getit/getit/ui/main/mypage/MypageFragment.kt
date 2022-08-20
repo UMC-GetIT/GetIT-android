@@ -94,9 +94,6 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         val mypage_like_text_1 = view?.findViewById<TextView>(R.id.product_like_1)
         val mypage_like_text_2 = view?.findViewById<TextView>(R.id.product_like_2)
         val mypage_like_text_3 = view?.findViewById<TextView>(R.id.product_like_3)
-        val mypage_price_1 = view?.findViewById<TextView>(R.id.product_price_1)
-        val mypage_price_2 = view?.findViewById<TextView>(R.id.product_price_2)
-        val mypage_price_3 = view?.findViewById<TextView>(R.id.product_price_3)
 
 
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
