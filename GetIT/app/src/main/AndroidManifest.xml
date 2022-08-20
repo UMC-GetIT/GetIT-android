@@ -39,7 +39,8 @@
         <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>
-
+        <activity android:name=".ui.main.home.recommend.RecommendResultActivity"/>
+        <activity android:name=".ui.main.comparison.CompareAfterActivity"/>
     </application>
 
 </manifest>

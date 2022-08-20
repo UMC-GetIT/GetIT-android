@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.home.recommend
 
+import android.content.Intent
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,13 +9,10 @@ import com.getit.getit.databinding.ActivityRecommendBinding
 import com.getit.getit.databinding.ActivityRecommendQuestionBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.home.data.RecommendQuestion
+import com.getit.getit.ui.main.mypage.settings.SettingActivity
 
 class RecommendQuestionActivity  : BaseActivity<ActivityRecommendQuestionBinding>(ActivityRecommendQuestionBinding::inflate) {
     override fun initAfterBinding() {
-        setRecommendQuestion()
-    }
-
-    private fun setRecommendQuestion() {
 
         val toolbar : Toolbar = binding.toolbar
         setSupportActionBar(toolbar)
@@ -22,6 +20,11 @@ class RecommendQuestionActivity  : BaseActivity<ActivityRecommendQuestionBinding
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_left);
 
         recommendQuestionsRVApply()
+
+        binding.recommendAnswerSummitBtn.setOnClickListener {
+            startActivity(Intent(this, RecommendResultActivity::class.java))
+        }
+
     }
 
     private fun recommendQuestionsRVApply() {
