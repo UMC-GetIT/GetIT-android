@@ -9,12 +9,11 @@ import com.getit.getit.ui.BaseActivity
 class RecommendResultActivity  : BaseActivity<ActivityRecommendResultBinding>(ActivityRecommendResultBinding::inflate){
     override fun initAfterBinding() {
         val toolbar : Toolbar = binding.toolbar
-        toolbar.title = "비교 결과"
+        toolbar.title = "추천 결과"
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_left);
 
-        setResultProducts()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
