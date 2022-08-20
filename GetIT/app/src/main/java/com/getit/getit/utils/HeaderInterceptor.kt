@@ -1,6 +1,7 @@
 package com.getit.getit.utils
 
 import com.getit.getit.ui.login.getJwt
+import com.getit.getit.utils.ApplicationClass.Companion.X_ACCESS_TOKEN
 import okhttp3.Interceptor
 import okhttp3.Response
 

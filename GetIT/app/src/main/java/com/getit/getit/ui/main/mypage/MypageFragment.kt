@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
@@ -83,8 +84,21 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
         val name = view?.findViewById<TextView>(R.id.name)
         val nickname = view?.findViewById<TextView>(R.id.nickname)
+
         val mypageRetrofit = retrofit.create(MypageService::class.java)
         mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
+
+        val mypage_like_image_1 = view?.findViewById<ImageView>(R.id.imagelike1)
+        val mypage_like_image_2 = view?.findViewById<ImageView>(R.id.imagelike2)
+        val mypage_like_image_3 = view?.findViewById<ImageView>(R.id.imagelike3)
+        val mypage_like_text_1 = view?.findViewById<TextView>(R.id.product_like_1)
+        val mypage_like_text_2 = view?.findViewById<TextView>(R.id.product_like_2)
+        val mypage_like_text_3 = view?.findViewById<TextView>(R.id.product_like_3)
+        val mypage_price_1 = view?.findViewById<TextView>(R.id.product_price_1)
+        val mypage_price_2 = view?.findViewById<TextView>(R.id.product_price_2)
+        val mypage_price_3 = view?.findViewById<TextView>(R.id.product_price_3)
+
+
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
 
                 if (response.isSuccessful) {
@@ -92,6 +106,10 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
                     body?.let {
                         name?.text = body.result?.email.toString()
                         nickname?.text = body.result?.nickname.toString()
+
+                        if(body.result?.likeProduct==null){
+
+                        }
 
                     }
                 }
@@ -111,4 +129,5 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         fun instance() = MypageFragment()
     }
 }
+
 
