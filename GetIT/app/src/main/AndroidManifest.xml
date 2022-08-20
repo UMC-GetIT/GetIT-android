@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.getit.getit.ApplicationClass"
+        android:name="com.getit.getit.utils.ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -39,7 +39,6 @@
         <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>
-        <activity android:name=".ui.main.mypage.like.LikeProductAcitivity"/>
 
     </application>
 

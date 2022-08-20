@@ -1,19 +1,14 @@
 package com.getit.getit.ui.login
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.provider.Settings.Global.getString
-import android.provider.Settings.Secure.getString
-import android.provider.Settings.System.getString
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.getit.getit.AuthService
-import com.getit.getit.Result
+import com.getit.getit.utils.ApplicationClass
+import com.getit.getit.ui.main.home.server.AuthService
+import com.getit.getit.ui.main.home.server.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivityLoginBinding
-import com.getit.getit.databinding.ActivitySplashBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
 
@@ -57,21 +52,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         authService.setLoginView(this)
 
         authService.login(User(email, pwd, ""))
-
-        //sharedPreference
-       
-    }
-
-    private fun saveJwt(accessToken: String) {
-        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("accessToken", accessToken)
-        editor.apply()
     }
 
     override fun onLoginSuccess(code: Int, result: Result) {
-        saveJwt(result.accessToken)
+        saveJwt(result.accessToken, result.refreshToken)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

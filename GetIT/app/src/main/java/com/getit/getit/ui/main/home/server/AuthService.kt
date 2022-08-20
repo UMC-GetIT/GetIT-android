@@ -1,12 +1,10 @@
-package com.getit.getit
+package com.getit.getit.ui.main.home.server
 
 import android.util.Log
-import android.widget.Toast
 import com.getit.getit.data.User
-import com.getit.getit.ui.login.LoginActivity
 import com.getit.getit.ui.login.LoginView
 import com.getit.getit.ui.login.SignUpView
-import com.getit.getit.utils.getRetrofit
+import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +22,7 @@ class AuthService {
     }
 
     fun signUp(user: User){
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
         authService.signUp(user).enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("테스트", response.toString())
@@ -49,7 +47,7 @@ class AuthService {
     }
 
     fun login(user: User){
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
+        val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
         authService.login(user)
             .enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
