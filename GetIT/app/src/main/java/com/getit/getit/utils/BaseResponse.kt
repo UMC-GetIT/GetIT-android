@@ -1,4 +1,4 @@
-package com.getit.getit.config
+package com.getit.getit.utils
 
 import com.google.gson.annotations.SerializedName
 

@@ -53,4 +53,10 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
         }
         return super.onOptionsItemSelected(item)
     }
+
+
+    fun setLogoVisible(visibility : Int) {
+        binding.logo.visibility = visibility
+
+    }
 }

@@ -2,13 +2,13 @@ package com.getit.getit.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.getit.getit.AuthService
-import com.getit.getit.Result
+import com.getit.getit.utils.ApplicationClass
+import com.getit.getit.ui.main.home.server.AuthService
+import com.getit.getit.ui.main.home.server.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivityLoginBinding
-import com.getit.getit.databinding.ActivitySplashBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
 
@@ -18,7 +18,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.loginBtn.setOnClickListener {
@@ -55,16 +54,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         authService.login(User(email, pwd, ""))
     }
 
-    private fun saveJwt(jwt: String) {
-        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("jwt", jwt)
-        editor.apply()
-    }
-
     override fun onLoginSuccess(code: Int, result: Result) {
-        saveJwt(result.jwt)
+        saveJwt(result.accessToken, result.refreshToken)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

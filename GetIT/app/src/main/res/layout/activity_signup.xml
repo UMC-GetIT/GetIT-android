@@ -14,9 +14,7 @@
         android:elevation="0dp"
         app:menu="@menu/menu_plain_toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/sign_up_title_tv"
         android:layout_width="wrap_content"
@@ -93,7 +91,7 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/style_editview"
         android:paddingStart="12dp"
-        android:hint="비밀번호 입력"
+        android:hint="비밀번호 입력(숫자, 영어, 특수문자 포함 8~16자)"
         android:inputType="textPassword"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +102,7 @@
         android:id="@+id/sign_up_password_error_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="잘못된 형식의 비밀번호입니다."
+        android:text="숫자, 영어, 특수문자를 포함하여 8~16자 비밀번호를 입력하세요."
         android:visibility="gone"
         android:textColor="@color/error"
         android:textSize="10dp"
@@ -150,7 +148,7 @@
         android:textColor="@color/white"
         android:textSize="16dp"
         android:enabled="false"
-        android:backgroundTint="@color/outline"
+        android:background="@color/outline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_password_check_et" />

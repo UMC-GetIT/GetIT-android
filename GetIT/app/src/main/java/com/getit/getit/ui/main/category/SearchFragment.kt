@@ -2,20 +2,37 @@ package com.getit.getit.ui.main.category
 
 import android.content.Intent
 import android.util.Log
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat.getColor
+import androidx.recyclerview.widget.GridLayoutManager
 import com.getit.getit.R
 import com.getit.getit.data.Category
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.category.dialog.*
 import com.getit.getit.ui.main.category.detail.ProductDetailActivity
+import com.getit.getit.ui.main.MainActivity
+import com.getit.getit.ui.main.search.category.*
+import com.getit.getit.ui.main.search.detail.ProductDetailActivity
 import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), CategorySearchView {
     private lateinit var searchRVAdatpter: SearchRVAdapter
     var seletedCategory = "laptop"
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        (activity as MainActivity).setLogoVisible(View.INVISIBLE);
+        return binding.root
+    }
 
     override fun initAfterBinding() {
         onLaptopBtn()

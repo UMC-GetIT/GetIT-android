@@ -2,31 +2,37 @@ package com.getit.getit.ui.main.mypage
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.mypage.like.LikeProductAcitivity
 import com.getit.getit.ui.main.mypage.review.ReviewProductAcitivity
 import com.getit.getit.ui.main.mypage.settings.ChangeProfileActivity
 import com.getit.getit.ui.main.mypage.settings.SettingActivity
+import com.getit.getit.utils.ApplicationClass.Companion.retrofit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener {
-    //button 클릭시
+class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate),
+    View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        MypageData()
 
-        setOnClickListener()
+        setOnClickListenerAtMyPage()
 
         val toolbar: Toolbar = binding.toolbar
-        toolbar.title = "마이페이지"
+        toolbar.title = "내 정보"
         toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.menu_setting -> {
                     startActivity(Intent(context, SettingActivity::class.java))
                     true
@@ -36,10 +42,9 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
         }
     }
 
-
-    private fun setOnClickListener() {
-        val otherButtonSequence = binding.container.children
-        otherButtonSequence.forEach { btn ->
+    private fun setOnClickListenerAtMyPage() {
+        val buttonSequence = binding.container.children
+        buttonSequence.forEach { btn ->
             btn.setOnClickListener(this)
         }
     }
@@ -72,35 +77,49 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).hideActionBar()
+        hideActionBar()
     }
-/*
-        private val retrofit: Retrofit = RetrofitClient.getInstance() // RetrofitClient의 instance 불러오기
-        private val api: Service = retrofit.create(Service::class.java) // retrofit이 interface 구현
-        private val authToken = "토큰값을 여기 작성"
 
-        override fun onActivityCreated(savedInstanceState: Bundle?) {
-            super.onActivityCreated(savedInstanceState)
+    fun MypageData() {
 
-            // retrofit setting
-            Runnable {
-                api.getResponse("1", "Bearer $authToken").enqueue(object : Callback<ResponseData> {
-                    // 전송 실패
-                    override fun onFailure(call: Call<ResponseData>, t: Throwable) {
-                        Log.d("태그", t.message!!)
+        val name = view?.findViewById<TextView>(R.id.name)
+        val nickname = view?.findViewById<TextView>(R.id.nickname)
+
+        val mypageRetrofit = retrofit.create(MypageService::class.java)
+        mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
+
+        val mypage_like_image_1 = view?.findViewById<ImageView>(R.id.imagelike1)
+        val mypage_like_image_2 = view?.findViewById<ImageView>(R.id.imagelike2)
+        val mypage_like_image_3 = view?.findViewById<ImageView>(R.id.imagelike3)
+        val mypage_like_text_1 = view?.findViewById<TextView>(R.id.product_like_1)
+        val mypage_like_text_2 = view?.findViewById<TextView>(R.id.product_like_2)
+        val mypage_like_text_3 = view?.findViewById<TextView>(R.id.product_like_3)
+        val mypage_price_1 = view?.findViewById<TextView>(R.id.product_price_1)
+        val mypage_price_2 = view?.findViewById<TextView>(R.id.product_price_2)
+        val mypage_price_3 = view?.findViewById<TextView>(R.id.product_price_3)
+
+
+            override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
+
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    body?.let {
+                        name?.text = body.result?.email.toString()
+                        nickname?.text = body.result?.nickname.toString()
+
+                        if(body.result?.likeProduct==null){
+
+                        }
+
                     }
-                    // 전송 성공
-                    override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
-                        Log.d("태그", "response : ${response.body()?.result}") // 정상출력
+                }
+            }
 
-                        // 전송은 성공 but 서버 4xx 에러
-                        Log.d("태그: 에러바디", "response : ${response.errorBody()}")
-                        Log.d("태그: 메시지", "response : ${response.message()}")
-                        Log.d("태그: 코드", "response : ${response.code()}")
-                    }
-                })
-            }.run()
-        }*/
+            override fun onFailure(call: Call<UserInfo>, t: Throwable) {
+                Log.d("this is error", t.message.toString())
+            }
+        })
+    }
 
     override fun initAfterBinding() {
     }
@@ -110,4 +129,5 @@ class MypageFragment(): BaseFragment<FragmentMypageBinding>(FragmentMypageBindin
         fun instance() = MypageFragment()
     }
 }
+
 

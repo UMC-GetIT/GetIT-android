@@ -1,4 +1,4 @@
-package com.getit.getit
+package com.getit.getit.ui.main.home.server
 
 import com.google.gson.annotations.SerializedName
 
@@ -12,5 +12,6 @@ data class AuthResponse(
 )
 
 data class Result(
-    @SerializedName("jwt") val jwt: String
+    @SerializedName("accessToken") val accessToken: String,
+    @SerializedName("refreshToken") val refreshToken: String
 )
