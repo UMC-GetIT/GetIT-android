@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.mypage
+package com.getit.getit.utils
 
 import com.getit.getit.ui.login.getJwt
 import okhttp3.Interceptor
