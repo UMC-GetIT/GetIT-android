@@ -1,9 +1,10 @@
-package com.getit.getit.ui.main.home.server
+package com.getit.getit.ui.login.server
 
 import android.util.Log
 import com.getit.getit.data.User
 import com.getit.getit.ui.login.LoginView
 import com.getit.getit.ui.login.SignUpView
+import com.getit.getit.ui.login.data.Tokens
 import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,8 +58,7 @@ class AuthService {
 
                 when(val code = resp.code){
                     1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                    2006,2007 -> loginView.onLoginFailure()
-                    else -> loginView.onServerFailure()
+                    else -> loginView.onAutoLoginFailure()
                 }
             }
 
@@ -67,7 +67,26 @@ class AuthService {
             }
 
         })
+    }
 
-        Log.d("LOGIN", "HELLO")
+    fun autoLogin(tokens: Tokens){
+        val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
+        authService.autoLogin(tokens)
+            .enqueue(object: Callback<AuthResponse> {
+                override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                    val resp: AuthResponse = response.body()!!
+
+                    when(val code = resp.code){
+                        1000 -> loginView.onLoginSuccess(code, resp.result!!)
+                        2006,2007 -> loginView.onAutoLoginFailure()
+                        else -> loginView.onServerFailure()
+                    }
+                }
+
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                    Log.d("LOGIN/FAILURE", t.message.toString())
+                }
+
+            })
     }
 }

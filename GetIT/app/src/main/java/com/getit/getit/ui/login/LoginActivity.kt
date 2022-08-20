@@ -1,16 +1,21 @@
 package com.getit.getit.ui.login
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
-import com.getit.getit.utils.ApplicationClass
-import com.getit.getit.ui.main.home.server.AuthService
-import com.getit.getit.ui.main.home.server.Result
+import com.getit.getit.ui.login.server.AuthService
+import com.getit.getit.ui.login.server.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivityLoginBinding
+import com.getit.getit.databinding.DialogLoadingBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.login.data.Tokens
 import com.getit.getit.ui.main.MainActivity
+import com.getit.getit.utils.ApplicationClass
+import com.getit.getit.utils.LoadingDialog
+import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::inflate), LoginView {
 
@@ -32,9 +37,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             startActivity(Intent(this, MainActivity::class.java))
         }
 
+        if(getJwt() != null){
+            var loadingDialog: LoadingDialog = LoadingDialog(this)
+            loadingDialog.show();
+            val authService = AuthService()
+            authService.setLoginView(this)
+
+            authService.autoLogin(Tokens(getJwt().toString(),
+                ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
+            loadingDialog.hide()
+        }
     }
 
     private fun login() {
+
+
         if (binding.loginIdEt.text.toString().isEmpty()) {
             Toast.makeText(this, "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show()
             return
@@ -42,6 +59,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
         if (binding.loginPasswordEt.text.toString().isEmpty()) {
             Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val emailPattern: Pattern = Patterns.EMAIL_ADDRESS
+        if (!(emailPattern.matcher(binding.loginIdEt.text.toString().trim()).matches())) {
+            Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -67,6 +90,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
     override fun onServerFailure() {
         Toast.makeText(this, "알 수 없는 오류, 나중에 다시 시도하세요.", Toast.LENGTH_SHORT).show()
     }
+    override fun onAutoLoginFailure() {}
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - lastTimeBackPressed < 2000){

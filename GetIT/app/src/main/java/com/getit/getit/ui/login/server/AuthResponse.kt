@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.home.server
+package com.getit.getit.ui.login.server
 
 import com.google.gson.annotations.SerializedName
 
