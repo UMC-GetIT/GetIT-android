@@ -9,7 +9,7 @@
         android:id="@+id/login_title_tv"
         android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="120dp"
         android:paddingStart="60dp"
         android:paddingTop="20dp"
         android:paddingEnd="60dp"

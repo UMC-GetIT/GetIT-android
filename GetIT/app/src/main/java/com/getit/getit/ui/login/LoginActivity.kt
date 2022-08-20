@@ -25,13 +25,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("jwt", "abcdefg")
-        editor.apply()
-
         binding.loginBtn.setOnClickListener {
             login();
         }
@@ -69,16 +62,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
        
     }
 
-    private fun saveJwt(jwt: String) {
+    private fun saveJwt(accessToken: String) {
         val spf = getSharedPreferences("auth" , MODE_PRIVATE)
         val editor = spf.edit()
 
-        editor.putString("jwt", jwt)
+        editor.putString("accessToken", accessToken)
         editor.apply()
     }
 
     override fun onLoginSuccess(code: Int, result: Result) {
-        saveJwt(result.jwt)
+        saveJwt(result.accessToken)
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

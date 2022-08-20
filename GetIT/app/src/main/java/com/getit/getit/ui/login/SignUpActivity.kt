@@ -111,16 +111,16 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         authService.signUp(getUser())
     }
 
-    private fun saveJwt(jwt: String) {
+    private fun saveJwt(accessToken: String) {
         val spf = getSharedPreferences("auth" , MODE_PRIVATE)
         val editor = spf.edit()
 
-        editor.putString("jwt", jwt)
+        editor.putString("accessToken", accessToken)
         editor.apply()
     }
 
     override fun onSignUpSuccess(code: Int, result: Result) {
-        saveJwt(result.jwt)
+        saveJwt(result.accessToken)
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

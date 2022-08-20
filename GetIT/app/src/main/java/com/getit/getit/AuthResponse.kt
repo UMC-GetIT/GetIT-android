@@ -12,5 +12,5 @@ data class AuthResponse(
 )
 
 data class Result(
-    @SerializedName("jwt") val jwt: String
+    @SerializedName("accessToken") val accessToken: String
 )
