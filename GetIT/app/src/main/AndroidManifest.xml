@@ -29,13 +29,13 @@
         <activity android:name=".ui.login.SignUpActivity"/>
 <!--        <activity android:name=".ui.splash.SplashActivity"/>-->
         <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.main.search.detail.ProductDetailActivity"/>
-        <activity android:name=".ui.main.SearchActivity"/>
+        <activity android:name=".ui.main.category.detail.ProductDetailActivity"/>
+        <activity android:name=".ui.main.searchproduct.SearchActivity"/>
+        <activity android:name=".ui.main.searchproduct.SearchResultActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangePrivacyActivity"/>
         <activity android:name=".ui.main.mypage.settings.SettingActivity"/>
         <activity android:name=".ui.main.mypage.settings.ChangeProfileActivity"/>
         <activity android:name=".ui.main.mypage.settings.DeveloperInfoActivity"/>
-        <activity android:name=".ui.main.mypage.like.LikeProductAcitivity"/>
         <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>

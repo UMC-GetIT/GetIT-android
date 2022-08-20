@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityMainBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.main.searchproduct.SearchActivity
 
 
 class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
