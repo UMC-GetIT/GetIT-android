@@ -10,13 +10,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.getit.getit.AuthService
+import com.getit.getit.ui.main.home.server.AuthService
 import com.getit.getit.R
-import com.getit.getit.Result
+import com.getit.getit.ui.main.home.server.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivitySignupBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
+import com.getit.getit.utils.ApplicationClass
 import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView {
@@ -89,10 +90,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
 
         val passwordPattern : Pattern = Pattern.compile("""^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^+\-=])(?=\S+$).*$""")
         val passwordString : String = binding.signUpPasswordEt.text.toString().trim()
-        Log.d("테스트", passwordString)
-        Log.d("테스트", passwordPattern.matcher(passwordString).matches().toString())
-        Log.d("테스트", (passwordString.length !in 8..16).toString())
-        Log.d("테스트", passwordString.length.toString())
+
         if (!(passwordPattern.matcher(passwordString).matches())||
             passwordString.length !in 8..16
         ){
@@ -111,16 +109,8 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         authService.signUp(getUser())
     }
 
-    private fun saveJwt(accessToken: String) {
-        val spf = getSharedPreferences("auth" , MODE_PRIVATE)
-        val editor = spf.edit()
-
-        editor.putString("accessToken", accessToken)
-        editor.apply()
-    }
-
     override fun onSignUpSuccess(code: Int, result: Result) {
-        saveJwt(result.accessToken)
+        saveJwt(result.accessToken, result.refreshToken)
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
