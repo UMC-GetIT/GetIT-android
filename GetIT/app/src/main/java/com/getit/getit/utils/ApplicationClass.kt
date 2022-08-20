@@ -3,11 +3,10 @@ package com.getit.getit.utils
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.getit.getit.config.XAccessTokenInterceptor
+import com.getit.getit.ui.login.getJwt
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Header
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
@@ -34,7 +33,7 @@ class ApplicationClass : Application() {
         val client: OkHttpClient = OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.MILLISECONDS)
             .connectTimeout(30000, TimeUnit.MILLISECONDS)
-            .addNetworkInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
+            .addInterceptor(HeaderInterceptor(getJwt().toString())) // JWT 자동 헤더 전송
             .build()
 
         retrofit = Retrofit.Builder()
