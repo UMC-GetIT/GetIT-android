@@ -1,11 +1,8 @@
 package com.getit.getit.ui.main
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -59,10 +56,6 @@ class MainActivity: BaseActivity<ActivityMainBinding>(ActivityMainBinding::infla
 
     fun setLogoVisible(visibility : Int) {
         binding.logo.visibility = visibility
-
-    }
-    fun getSharedPreference(): SharedPreferences? {
-        return getSharedPreferences("auth" , MODE_PRIVATE)
 
     }
 }

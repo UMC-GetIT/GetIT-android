@@ -1,4 +1,4 @@
-package com.getit.getit
+package com.getit.getit.utils
 
 import android.app.Application
 import android.content.Context
@@ -7,15 +7,17 @@ import com.getit.getit.config.XAccessTokenInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Header
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
     companion object{
         const val X_ACCESS_TOKEN: String = "X-ACCESS-TOKEN"         // JWT Token Key
-        const val TAG: String = "TEMPLATE-APP"                      // Log, SharedPreference
+        const val X_REFRESH_TOKEN: String = "X_REFRESH_TOKEN"         // JWT Token Key
+        const val TAG: String = "GETIT_APP"                      // Log, SharedPreference
         const val APP_DATABASE = "$TAG-DB"
 
-        const val BASE_URL = "http://10.10.130.249:8080"
+        const val BASE_URL = "http://changni.shop"
 
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
