@@ -5,13 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityRecommendBinding
-import com.getit.getit.databinding.ActivitySignupBinding
 import com.getit.getit.ui.BaseActivity
-import com.getit.getit.ui.main.home.TermRVAdapter
-import com.getit.getit.ui.main.home.data.ItTermIcon
 
 class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecommendBinding::inflate) {
 

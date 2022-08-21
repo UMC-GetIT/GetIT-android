@@ -92,6 +92,8 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_dropdown_popup.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_edittext_background.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_editview.xml" value="0.203" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_explane_itterm.xml" value="0.141" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_speech_bubble.xml" value="0.141" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_spinner.xml" value="0.1535" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_summit_button.xml" value="0.1425" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_summit_button_off.xml" value="0.1425" />
@@ -99,6 +101,7 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_textview.xml" value="0.2135" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_top_rounded_corner.xml" value="0.203" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_comparison_after.xml" value="0.264" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_itterm_window.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_recommend.xml" value="0.2" />
@@ -111,7 +114,7 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/comparison_result.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_banner.xml" value="0.1" />
-        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_comparison.xml" value="0.536" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_comparison.xml" value="0.46536412078152756" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_match.xml" value="0.12604166666666666" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/fragment_mypage.xml" value="0.12604166666666666" />
