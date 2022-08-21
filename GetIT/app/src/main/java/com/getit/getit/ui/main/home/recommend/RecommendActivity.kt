@@ -2,6 +2,7 @@ package com.getit.getit.ui.main.home.recommend
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,20 +20,40 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
 
         setContentView(binding.root)
 
-        val toolbar : Toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close);
+        binding.laptopRecommendIb.setOnClickListener{
+            moveToQuestionView(1)
+        }
+
+        binding.phoneRecommendIb.setOnClickListener{
+            moveToQuestionView(2)
+        }
+
+        binding.tabletRecommendIb.setOnClickListener{
+            moveToQuestionView(3)
+        }
+
+        binding.speakerRecommendIb.setOnClickListener{
+            moveToQuestionView(4)
+        }
 
         binding.desktopRecommendIb.setOnClickListener{
-            startActivity(Intent(this, RecommendQuestionActivity::class.java))
+            moveToQuestionView(5)
         }
 
 
     }
 
-    override fun initAfterBinding() {
+    private fun moveToQuestionView(productKind : Int) {
+        intent = Intent(this, RecommendQuestionActivity::class.java)
+        intent.putExtra("productKind", productKind)
+        startActivity(intent)
+    }
 
+    override fun initAfterBinding() {
+        val toolbar : Toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close);
     }
 
     override fun onResume() {
