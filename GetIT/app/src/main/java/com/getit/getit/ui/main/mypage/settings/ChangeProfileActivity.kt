@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,14 +15,20 @@ import androidx.core.content.ContextCompat
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityLoginBinding
 import com.getit.getit.databinding.SettingChangeProfileBinding
+import com.getit.getit.ui.main.mypage.settings.changeProfile.ChangeProfileApi
 import com.getit.getit.ui.main.mypage.settings.changeProfile.ProfileRetrofit
 import com.getit.getit.ui.main.mypage.settings.changeProfile.newprofile
+import com.getit.getit.ui.main.mypage.settings.changeProfile.profile
+import com.getit.getit.utils.ApplicationClass
 import de.hdodenhof.circleimageview.CircleImageView
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ChangeProfileActivity : AppCompatActivity() {
 
@@ -167,10 +174,33 @@ class ChangeProfileActivity : AppCompatActivity() {
         /*private fun uploadProfile(selectedImageUri: Uri) {
 
 
-        val requestImage = RequestBody.create(MediaType.parse(""),selectedImageUri)
-        val body = MultipartBody.Part.createFormData("file",requestImage)
-    }
+            val requestImage = RequestBody.create(MediaType.parse("image/jpeg"), selectedImageUri)
+            val body = MultipartBody.Part.createFormData("file", requestImage)
 
+
+            fun changeData() {
+                val newProfileRetrofit =
+                    ApplicationClass.retrofit.create(ChangeProfileApi::class.java)
+                newProfileRetrofit.changeprofile("", body).enqueue(object : Callback<profile> {
+                    override fun onResponse(call: Call<profile>, response: Response<profile>) {
+                        if (response.isSuccessful) {
+                            Log.d("성공", response.body().toString())
+
+
+                        } else {
+                            Log.d("실패", response.body().toString())
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<profile>, t: Throwable) {
+                        Log.e("error : ", t.message.toString())
+
+                    }
+                })
+            }
+        }*/
+/*
 
     }
     private fun uploadProfile(selectedImageUri: Uri) {

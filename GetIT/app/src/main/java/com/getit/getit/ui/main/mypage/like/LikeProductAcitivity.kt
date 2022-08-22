@@ -48,6 +48,7 @@ class LikeProductActivity : BaseActivity<ActivityMypageLikeListBinding>(Activity
                     val body = response.body()
                     body?.let {
                         Log.d("테스트",response.body().toString())
+                        setAdapter(it.result)
 
 
                         if(body.result?.isEmpty()==true){

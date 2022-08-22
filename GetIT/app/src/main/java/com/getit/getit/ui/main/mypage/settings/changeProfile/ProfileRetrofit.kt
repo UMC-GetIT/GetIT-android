@@ -15,7 +15,7 @@ class ProfileRetrofit {
 
     /*fun changeData() {
         val newProfileRetrofit = ApplicationClass.retrofit.create(ChangeProfileApi::class.java)
-        newProfileRetrofit.changeprofile("","file").enqueue(object : Callback<profile> {
+        newProfileRetrofit.changeprofile().enqueue(object : Callback<profile> {
             override fun onResponse(call: Call<profile>, response: Response<profile>) {
                 if (response.isSuccessful) {
                     Log.d("성공", response.body().toString())

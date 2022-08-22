@@ -1,18 +1,16 @@
 package com.getit.getit.ui.main.mypage
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
+import com.getit.getit.databinding.ItemMypageLikelistBinding
+import com.getit.getit.databinding.ItemMypageProductReviewBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.mypage.like.LikeProductActivity
 import com.getit.getit.ui.main.mypage.review.ReviewProductActivity
@@ -24,11 +22,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate),
-    View.OnClickListener {
+class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener {
+
+    private lateinit var LikeBinding: ItemMypageLikelistBinding
+    private lateinit var ReviewBinding: ItemMypageProductReviewBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        LikeBinding = ItemMypageLikelistBinding.inflate(layoutInflater)
+        ReviewBinding = ItemMypageProductReviewBinding.inflate(layoutInflater)
+
         MypageData()
+
+
 
         setOnClickListenerAtMyPage()
 
@@ -84,24 +91,21 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         hideActionBar()
     }
 
+        fun LikeAdapter(MypageLikeList: List<likeProduct>) {
+            val mAdapter = MypageLikeRV(MypageLikeList, requireContext())
+            binding.mypageLikeRecyclerview.adapter = mAdapter
+            binding.mypageLikeRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            binding.mypageLikeRecyclerview.setHasFixedSize(false)
+        }
+
+        fun ReviewAdapter(MypageReviewList: List<Review>) {
+            val mAdapter = MypageReviewRV(MypageReviewList, requireContext())
+            binding.mypageReviewRecyclerview.adapter = mAdapter
+            binding.mypageReviewRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            binding.mypageReviewRecyclerview.setHasFixedSize(false)
+        }
+
     fun MypageData() {
-
-        val name = binding.name
-        val nickname = binding.nickname
-        val mypage_like_image_1 = binding.imagelike1
-        val mypage_like_image_2 = binding.imagelike2
-        val mypage_like_image_3 = binding.imagelike3
-        val mypage_like_text_1 = binding.productLike1
-        val mypage_like_text_2 = binding.productLike2
-        val mypage_like_text_3 = binding.productLike3
-        val mypage_price_1 = binding.productPrice1
-        val mypage_price_2 = binding.productPrice2
-        val mypage_price_3 = binding.productPrice3
-        val mypage_reivew_name_1=binding.productReviewName1
-        val mypage_review_name_2=binding.productReviewName2
-        val mypage_review_text_1=binding.productReviewText1
-        val mypage_review_text_2=binding.productReviewText2
-
 
         val mypageRetrofit = retrofit.create(MypageService::class.java)
         mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
@@ -110,34 +114,26 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
                     Log.d("테스트",response.body().toString())
                 if (response.isSuccessful) {
                     val body = response.body()
-                    body?.let {
-                        binding.name?.text = body.result?.email.toString()
-                        binding.nickname?.text = body.result?.nickname.toString()
-                        binding.productLike1?.text=body.result?.likeProduct?.toString()//name 넣어야 함
+                    val url = body?.result
+                        body.let {
+                        binding.name?.text = body?.result?.email.toString()
+                        binding.nickname?.text = body?.result?.nickname.toString()
+                        LikeAdapter(listOf(url!!.likeProduct))
+                        ReviewAdapter(listOf(url!!.review))
 
 
-
-                        if(body.result?.likeProduct?.isEmpty()==true){
-                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
-                            binding.frameLike1.setVisibility(View.INVISIBLE)
-                            binding.frameLike2.setVisibility(View.INVISIBLE)
-                            binding.frameLike3.setVisibility(View.INVISIBLE)
+                        if(listOf(url!!.likeProduct).isEmpty()==true){
+                            binding.mypageLikeRecyclerview.setVisibility(View.INVISIBLE)
                             binding.likeNoProduct.setVisibility(View.VISIBLE)
 
                         }
-                        if(body.result?.review?.isEmpty()==true){
-                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
-                            binding.frameReview2.setVisibility(View.INVISIBLE)
+                        if(listOf(url!!.review).isEmpty()==true){
+                            binding.mypageReviewRecyclerview.setVisibility(View.INVISIBLE)
                             binding.reviewNoProduct.setVisibility(View.VISIBLE)
                         }
                         else{
-                            binding.likeLinearlayout1.setVisibility(View.VISIBLE)
-                            binding.frameReview2.setVisibility(View.VISIBLE)
-                            binding.reviewNoProduct.setVisibility(View.INVISIBLE)
-                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
-                            binding.frameLike1.setVisibility(View.VISIBLE)
-                            binding.frameLike2.setVisibility(View.VISIBLE)
-                            binding.frameLike3.setVisibility(View.VISIBLE)
+                            binding.mypageReviewRecyclerview.setVisibility(View.INVISIBLE)
+                            binding.mypageLikeRecyclerview.setVisibility(View.INVISIBLE)
                             binding.likeNoProduct.setVisibility(View.INVISIBLE)
 
 

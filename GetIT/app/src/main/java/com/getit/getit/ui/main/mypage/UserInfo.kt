@@ -14,8 +14,8 @@ data class Result(
     @SerializedName("email") val email: String,
     @SerializedName("nickName") val nickname: String,
     @SerializedName("role") val role: String,
-    @SerializedName("likeProduct") val likeProduct:List<likeProduct>,
-    @SerializedName("review") val review:List<Review>
+    @SerializedName("likeProduct") val likeProduct:likeProduct,
+    @SerializedName("review") val review:Review,
 
     //@SerializedName("image")
     //val image:String
@@ -26,7 +26,7 @@ data class likeProduct(
     val productIdx: Int,
 
     @SerializedName("image")
-    val image: String,
+    val likeimage: String,
 
     @SerializedName("brand")
     val brand: String,
