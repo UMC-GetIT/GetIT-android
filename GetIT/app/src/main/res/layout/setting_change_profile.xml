@@ -31,12 +31,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="프로필 변경"
-            android:textSize="20sp"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
             android:fontFamily="@font/notosanskr_bold"
             android:textColor="@color/normal"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/backspace_btn"/>
 
         <TextView
@@ -49,6 +49,7 @@
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             />
 
@@ -83,13 +84,12 @@
         />
 
     <EditText
-        android:id="@+id/change_name_btn"
+        android:id="@+id/change_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/nickname"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:text="겟IT"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
