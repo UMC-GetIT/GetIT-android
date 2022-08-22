@@ -1,13 +1,11 @@
 package com.getit.getit.ui.main.category
 
-import com.getit.getit.data.Category
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface CategoryRetrofitInterface {
-//    /products/category?type=&requirement=
     @GET("/products/category")
     fun getCategory(
         @Query("type") type: String,
@@ -21,6 +19,4 @@ interface CategoryRetrofitInterface {
     fun getProductDetail(
         @Path("productIdx") type: String
     ): Call<ProductDetailResponse>
-
-//    @POST("/products/setLike")
 }
