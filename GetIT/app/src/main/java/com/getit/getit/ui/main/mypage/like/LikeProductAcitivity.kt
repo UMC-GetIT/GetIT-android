@@ -1,16 +1,18 @@
 package com.getit.getit.ui.main.mypage.like
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import com.getit.getit.R
-import com.getit.getit.databinding.MypageLikeListBinding
+import com.getit.getit.databinding.ActivityMypageLikeListBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.utils.ApplicationClass
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class LikeProductAcitivity : BaseActivity<MypageLikeListBinding>(MypageLikeListBinding::inflate) {
-    //private lateinit var adapter:RecyclerViewAdapter //adapter객체 먼저 선언해주기!
-    val mDatas=mutableListOf<LikeProducts>()
-
+class LikeProductActivity : BaseActivity<ActivityMypageLikeListBinding>(ActivityMypageLikeListBinding::inflate) {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,35 +24,52 @@ class LikeProductAcitivity : BaseActivity<MypageLikeListBinding>(MypageLikeListB
             backspace()
         }
 
-        ProductsData()
-        initRecyclerView()
+        //데이터불러오는 함수
+        loadLikeData()
+
     }
 
-    private fun ProductsData() {
-        with(mDatas) {
-            add(LikeProducts(R.drawable.samsong_labtop_img,"삼성전자 2021 갤럭시북 프로 " ))
-            add(LikeProducts(R.drawable.lg_labtop_img,"LG전자 2022 그램 16"))
-            add(LikeProducts(R.drawable.samsong_pro_labtop_img,"삼성전자 2021 갤럭시 북"))
-            add(LikeProducts(R.drawable.lg_gram_labtop_img,"2022 LG 그램 360 터치스크린 노트북",  ))
-            add(LikeProducts(R.drawable.apple_labtop_img,"Apple 2021 맥북프로 16"  ))
-            add(LikeProducts( R.drawable.legion_labtop_img,"레노버 Legion i7"))
-            add(LikeProducts(R.drawable.apple_labtop2_img,"Apple 2021 맥북프로 14"))
-            add(LikeProducts(R.drawable.samsong2_labtop_img,"풀스펙 NT371B5J 램16G SSD512G 윈도우10"))
-            add(LikeProducts(R.drawable.ipad_1,"Apple 아이패드프로11 3세대 M1"))
-            add(LikeProducts(R.drawable.ipad_2,"Apple 아이패드프로12.9 5세대 M1"))
-            add(LikeProducts(R.drawable.ipad_3,"Apple 2022 아이패드 에어 5세대, 퍼플"))
-            add(LikeProducts(R.drawable.speaker_1,"JBL Flip 6"))
-
-        }
+    private fun setAdapter(LikeList: List<result>){
+        val mAdapter = LikeRVAdatper(LikeList,this)
+        binding.userLikeRecyclerView.adapter = mAdapter
+        binding.userLikeRecyclerView.layoutManager =  GridLayoutManager(this, 3)
+        binding.userLikeRecyclerView.setHasFixedSize(false)
     }
 
-    fun initRecyclerView(){
-        val adapter=LikeRVAdatper() //어댑터 객체 만듦
-        adapter.datalist=mDatas //데이터 넣어줌
-        binding.recyclerView.adapter=adapter //리사이클러뷰에 어댑터 연결
-        binding.recyclerView.layoutManager= GridLayoutManager(this, 3) //레이아웃 매니저 연결
+
+    private fun loadLikeData(){
+        val mypageLikeRetrofit = ApplicationClass.retrofit.create(LikeApiService::class.java)
+        mypageLikeRetrofit.getLikeProducts().enqueue(object : Callback<LikeProducts> {
+
+
+            override fun onResponse(call: Call<LikeProducts>, response: Response<LikeProducts>) {
+                Log.d("테스트",response.body().toString())
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    body?.let {
+                        Log.d("테스트",response.body().toString())
+
+
+                        if(body.result?.isEmpty()==true){
+                            binding.userLikeNoProduct.setVisibility(View.VISIBLE)
+                            binding.userLikeRecyclerView.setVisibility(View.INVISIBLE)
+                        }
+
+                        else{
+                            binding.userLikeNoProduct.setVisibility(View.INVISIBLE)
+                            binding.userLikeRecyclerView.setVisibility(View.VISIBLE)
+                        }
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<LikeProducts>, t: Throwable) {
+            }
+        })
     }
 
-    override fun initAfterBinding() {}
-
+    override fun initAfterBinding() {
+    }
 }
+

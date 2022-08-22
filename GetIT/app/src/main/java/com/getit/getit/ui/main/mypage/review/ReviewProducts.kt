@@ -1,7 +1,20 @@
 package com.getit.getit.ui.main.mypage.review
 
-class ReviewProducts(
-    val img : Int,
-    val name: String,
+import com.google.gson.annotations.SerializedName
+
+data class ReviewProducts(
+
+    val isSuccess: String,
+    val code: Int,
+    val message: String,
+    val result: List<result>,
+
+
+)
+
+data class result(
+    @SerializedName("productName")
+    val productname: String,
+    @SerializedName("review")
     val review : String
 )
