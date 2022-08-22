@@ -17,5 +17,5 @@ data class CategoryProducts(
     @SerializedName("imgUrl") val imgUrl: String,
     @SerializedName("name") val name: String,
     @SerializedName("price") val price: String,
-    @SerializedName("productUrl") val productUrl: String
+    @SerializedName("productId") val productId: String
 )

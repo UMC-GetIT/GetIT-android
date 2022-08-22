@@ -1,7 +1,8 @@
 package com.getit.getit.ui.main.category
 
 import android.util.Log
-import com.getit.getit.data.Category
+import com.getit.getit.ui.main.category.detail.ProductDetailResponse
+import com.getit.getit.ui.main.category.detail.ProductDetailView
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
 import com.getit.getit.ui.main.searchproduct.RecommendView
 import com.getit.getit.utils.getRetrofit
@@ -12,6 +13,7 @@ import retrofit2.Response
 class CategoryService {
     private lateinit var categorySearchView: CategorySearchView
     private lateinit var recommendView: RecommendView
+    private lateinit var productDetailView: ProductDetailView
 
     fun setSearchView(categorySearchView: CategorySearchView){
         this.categorySearchView = categorySearchView
@@ -21,6 +23,10 @@ class CategoryService {
         this.recommendView = recommendView
     }
 
+    fun setProductDetailView(productDetailView: ProductDetailView) {
+        this.productDetailView = productDetailView
+    }
+
     fun getCategory(type: String, requirement: String){
         val categoryService = getRetrofit().create(CategoryRetrofitInterface::class.java)
 
@@ -28,9 +34,8 @@ class CategoryService {
 
         categoryService.getCategory(type, requirement).enqueue(object: Callback<CategoryResponse> {
             override fun onResponse(call: Call<CategoryResponse>, response: Response<CategoryResponse>) {
-                Log.d("TEST", "response 성공")
                 Log.d("TEST", response.toString())
-                if(response.isSuccessful && response.code() == 200) { // <- response code = 400
+                if(response.isSuccessful && response.code() == 200) {
                     val categoryResponse: CategoryResponse = response.body()!!
                     Log.d("CATEGORY-RESPONSE/SUCCESS", categoryResponse.toString())
 
@@ -41,7 +46,6 @@ class CategoryService {
                 }
             }
             override fun onFailure(call: Call<CategoryResponse>, t: Throwable) {
-                Log.d("TEST", "response 실패")
                 Log.d("CATEGORY-RESPONSE/FAILURE", t.message.toString())
                 categorySearchView.onGetCategoryFailure(400, "네트워크 오류가 발생했습니다.")
             }
@@ -69,5 +73,26 @@ class CategoryService {
             }
         })
         Log.d("RECOMMEND", "HELLO")
+    }
+
+    fun getproductDetail(productIdx: String) {
+        val productDetailService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+
+        productDetailService.getProductDetail(productIdx).enqueue(object: Callback<ProductDetailResponse>{
+            override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val productDetailResponse: ProductDetailResponse = response.body()!!
+
+                    when (val code = productDetailResponse.code){
+                        1000 -> productDetailView.onGetProductDetailSuccess(code, productDetailResponse.result)
+                        else -> productDetailView.onGetProductDetailFailure(code, productDetailResponse.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<ProductDetailResponse>, t: Throwable) {
+                Log.d("PRODUCT-DETAIL/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("PRODUCT-DETAIL", "HELLO")
     }
 }
