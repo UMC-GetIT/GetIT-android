@@ -23,13 +23,14 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okio.BufferedSink
 
-class ChangeProfileActivity : AppCompatActivity() {
+class ChangeProfileActivity : AppCompatActivity(){
 
 
     lateinit var binding: SettingChangeProfileBinding
     lateinit var _binding: ActivityLoginBinding
     lateinit var change_name: EditText
     lateinit var change_image: CircleImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,9 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         //완료하기 버튼
         binding.sucsses.setOnClickListener {
+
             //changeProfileData()
+
             //ApplicationClass.prefs.userId = binding.nickname.text.toString()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
             super.onBackPressed()
@@ -75,6 +78,7 @@ class ChangeProfileActivity : AppCompatActivity() {
     //프로필 사진 바꾸기
     private fun initImageViewProfile() {
 
+
         when {
             // 갤러리 접근 권한이 있는 경우
             ContextCompat.checkSelfPermission(
@@ -84,6 +88,7 @@ class ChangeProfileActivity : AppCompatActivity() {
             -> {
                 navigateGallery()
             }
+
 
             // 갤러리 접근 권한이 없는 경우 & 교육용 팝업을 보여줘야 하는 경우
             shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -97,7 +102,7 @@ class ChangeProfileActivity : AppCompatActivity() {
                 1000
             )
         }
-    }
+
 
     // 권한 요청 승인 이후 실행되는 함수
     override fun onRequestPermissionsResult(
@@ -139,8 +144,10 @@ class ChangeProfileActivity : AppCompatActivity() {
             2000 -> {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
+
                     binding.circleImage.setImageURI(selectedImageUri)
                     //uploadProfile(selectedImageUri)
+
 
                 } else {
                     Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
@@ -153,6 +160,7 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         }
 
+
     }
 
     /*private fun uploadProfile(selectedImageUri: Uri) {
@@ -162,12 +170,25 @@ class ChangeProfileActivity : AppCompatActivity() {
         val body = MultipartBody.Part.createFormData("file",requestImage)
     }
 
+
+    }
+    private fun uploadProfile(selectedImageUri: Uri) {
+        binding.circleImage.setImageURI(selectedImageUri)
+
+        val requestImage = RequestBody.create(MediaType.parse(""),selectedImageUri)
+        val body = MultipartBody.Part.createFormData("file",requestImage)
+    }
+
+
     inner class BitmapRequestBody(private val bitmap: Bitmap):RequestBody(){
         override fun contentType(): MediaType = "image/jpeg".toMediaType()
         override fun writeTo(sink: BufferedSink) {
             bitmap.compress(Bitmap.CompressFormat.JPEG,99,sink.outputStream())
         }
+
     }*/
+
+
     private fun showPermissionContextPopup() {
         AlertDialog.Builder(this)
             .setTitle("권한이 필요합니다.")
@@ -183,11 +204,82 @@ class ChangeProfileActivity : AppCompatActivity() {
 
 
 
+    private fun getnickname():newprofile{
+       //val newImageUrl = change_image
+        val newnickname:String = binding.changeName.getText().toString()
+
+        return newprofile(newnickname)
+
+    }
+
+    private fun changeProfileData(){
+        val profileData = ProfileRetrofit()
+        profileData.changeData(getnickname())
+
+
+    }
+
+
+    //sharedPreference로 데이터 저장
+
+    // Fetch the stored data in onResume()
+    // Because this is what will be called
+    // when the app opens again
+    /*override fun onResume() {
+        super.onResume()
+
+
+
 
 
 /* private fun getnickname():newprofile{
     //val newImageUrl = change_image
      val newnickname:String = binding.changeName.getText().toString()
+
+    }*/
+    /*private fun login() {
+        if (_binding.loginIdEt.text.toString().isEmpty()) {
+            Toast.makeText(this, "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (_binding.loginPasswordEt.text.toString().isEmpty()) {
+            Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val email: String = _binding.loginIdEt.text.toString()
+        val pwd: String = _binding.loginPasswordEt.text.toString()
+
+        val authService = AuthService()
+        authService.setLoginView(this)
+
+        authService.login(User(email, pwd, ""))
+
+
+        //sharedPreference
+
+    }
+
+    override fun onLoginSuccess(code: Int, result: Result) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoginFailure() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onServerFailure() {
+        TODO("Not yet implemented")
+    }
+    */
+    // Store the data in the SharedPreference
+    // in the onPause() method
+    // When the user closes the application
+    // onPause() will be called
+    // and data will be stored
+    /*override fun onPause() {
+        super.onPause()
 
      return newprofile(newnickname)
 
