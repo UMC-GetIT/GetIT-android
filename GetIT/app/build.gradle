@@ -78,4 +78,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
     implementation 'com.airbnb.android:lottie:3.0.7'
+
+    //readmore_review
+    implementation 'kr.co.prnd:readmore-textview:1.0.0'
 }
