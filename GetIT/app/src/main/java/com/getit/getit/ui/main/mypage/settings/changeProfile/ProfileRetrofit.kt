@@ -13,7 +13,7 @@ class ProfileRetrofit {
 
 
 
-    fun changeData() {
+    /*fun changeData() {
         val newProfileRetrofit = ApplicationClass.retrofit.create(ChangeProfileApi::class.java)
         newProfileRetrofit.changeprofile("","file").enqueue(object : Callback<profile> {
             override fun onResponse(call: Call<profile>, response: Response<profile>) {
@@ -32,5 +32,5 @@ class ProfileRetrofit {
 
             }
         })
-    }
+    }*/
 }
