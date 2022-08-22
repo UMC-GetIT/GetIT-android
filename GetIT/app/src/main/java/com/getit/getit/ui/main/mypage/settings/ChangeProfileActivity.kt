@@ -3,30 +3,42 @@ package com.getit.getit.ui.main.mypage.settings
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.getit.getit.R
-import com.getit.getit.databinding.ChangeProfileBinding
+import com.getit.getit.databinding.ActivityLoginBinding
+import com.getit.getit.databinding.SettingChangeProfileBinding
+import com.getit.getit.ui.main.mypage.settings.changeProfile.ProfileRetrofit
+import com.getit.getit.ui.main.mypage.settings.changeProfile.newprofile
+import de.hdodenhof.circleimageview.CircleImageView
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okio.BufferedSink
 
 class ChangeProfileActivity : AppCompatActivity() {
 
 
-    lateinit var binding: ChangeProfileBinding
-    private var name: EditText? = null
+    lateinit var binding: SettingChangeProfileBinding
+    lateinit var _binding: ActivityLoginBinding
+    lateinit var change_name: EditText
+    lateinit var change_image: CircleImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ChangeProfileBinding.inflate(layoutInflater)
+        binding = SettingChangeProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initImageViewProfile()
 
-        name = findViewById(R.id.change_name_btn)
+        change_name = findViewById(R.id.change_name)
+
 
         //binding.nickname.setText(ApplicationClass.prefs.userId)
 
@@ -35,8 +47,13 @@ class ChangeProfileActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
+        binding.circleImage.setOnClickListener {
+            initImageViewProfile()
+        }
+
         //완료하기 버튼
         binding.sucsses.setOnClickListener {
+            //changeProfileData()
             //ApplicationClass.prefs.userId = binding.nickname.text.toString()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
             super.onBackPressed()
@@ -49,63 +66,36 @@ class ChangeProfileActivity : AppCompatActivity() {
             val myEdit = sharedPreferences.edit()
 
             // write all the data entered by the user in SharedPreference and apply
-            myEdit.putString("name", name!!.text.toString())
+            myEdit.putString("name", change_name!!.text.toString())
             myEdit.apply()
         }
+
     }
-
-    // 3.툴바 메뉴 버튼을 설정
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_setting_toolbar_profile, menu)       // main_menu 메뉴를 toolbar 메뉴 버튼으로 설정
-        return true
-    }*/
-
-
-    /*
-    // 4.툴바 메뉴 버튼이 클릭 됐을 때 콜백
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // 클릭된 메뉴 아이템의 아이디 마다 when 구절로 클릭시 동작을 설정한다.
-        when(item!!.itemId){
-            R.id.menu_finish->{ // 메뉴 버튼
-                Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
-                //Snackbar.make(toolbar,"Menu pressed", Snackbar.LENGTH_SHORT).show()
-                val intent = Intent(this, settingActivity::class.java)
-                startActivity(intent)
-            }
-            android.R.id.home->{ //뒤로가기 버튼
-                val intent = Intent(this, settingActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
 
     //프로필 사진 바꾸기
     private fun initImageViewProfile() {
-        binding.circleImage.setOnClickListener {
-            when {
-                // 갤러리 접근 권한이 있는 경우
-                ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-                -> {
-                    navigateGallery()
-                }
 
-                // 갤러리 접근 권한이 없는 경우 & 교육용 팝업을 보여줘야 하는 경우
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                -> {
-                    showPermissionContextPopup()
-                }
-
-                // 권한 요청 하기(requestPermissions) -> 갤러리 접근(onRequestPermissionResult)
-                else -> requestPermissions(
-                    arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
-                    1000
-                )
+        when {
+            // 갤러리 접근 권한이 있는 경우
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+            -> {
+                navigateGallery()
             }
 
+            // 갤러리 접근 권한이 없는 경우 & 교육용 팝업을 보여줘야 하는 경우
+            shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+            -> {
+                showPermissionContextPopup()
+            }
+
+            // 권한 요청 하기(requestPermissions) -> 갤러리 접근(onRequestPermissionResult)
+            else -> requestPermissions(
+                arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+                1000
+            )
         }
     }
 
@@ -150,16 +140,34 @@ class ChangeProfileActivity : AppCompatActivity() {
                 val selectedImageUri: Uri? = data?.data
                 if (selectedImageUri != null) {
                     binding.circleImage.setImageURI(selectedImageUri)
+                    //uploadProfile(selectedImageUri)
+
                 } else {
                     Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
                 }
+
             }
             else -> {
                 Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
+
         }
+
     }
 
+    /*private fun uploadProfile(selectedImageUri: Uri) {
+
+
+        val requestImage = RequestBody.create(MediaType.parse(""),selectedImageUri)
+        val body = MultipartBody.Part.createFormData("file",requestImage)
+    }
+
+    inner class BitmapRequestBody(private val bitmap: Bitmap):RequestBody(){
+        override fun contentType(): MediaType = "image/jpeg".toMediaType()
+        override fun writeTo(sink: BufferedSink) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG,99,sink.outputStream())
+        }
+    }*/
     private fun showPermissionContextPopup() {
         AlertDialog.Builder(this)
             .setTitle("권한이 필요합니다.")
@@ -171,42 +179,100 @@ class ChangeProfileActivity : AppCompatActivity() {
             .create()
             .show()
     }
-
-    //sharedPreference로 데이터 저장
-
-    // Fetch the stored data in onResume()
-    // Because this is what will be called
-    // when the app opens again
-    override fun onResume() {
-        super.onResume()
-
-        // Fetching the stored data
-        // from the SharedPreference
-        val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val s1 = sh.getString("name", "")
-        val a = sh.getInt("age", 0)
-
-        // Setting the fetched data
-        // in the EditTexts
-        name!!.setText(s1)
-
-    }
-    // Store the data in the SharedPreference
-    // in the onPause() method
-    // When the user closes the application
-    // onPause() will be called
-    // and data will be stored
-    /*override fun onPause() {
-        super.onPause()
-
-        // Creating a shared pref object
-        // with a file name "MySharedPref"
-        // in private mode
-        val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
-        val myEdit = sharedPreferences.edit()
-
-        // write all the data entered by the user in SharedPreference and apply
-        myEdit.putString("name", name!!.text.toString())
-        myEdit.apply()
-    }*/
 }
+
+
+
+
+
+/* private fun getnickname():newprofile{
+    //val newImageUrl = change_image
+     val newnickname:String = binding.changeName.getText().toString()
+
+     return newprofile(newnickname)
+
+ }
+
+ /*private fun cngeProfileData(){
+     val profileData = ProfileRetrofit()
+     profileData.changeData(getnickname())
+
+
+ }*/
+
+
+ //sharedPreference로 데이터 저장
+
+ // Fetch the stored data in onResume()
+ // Because this is what will be called
+ // when the app opens again
+ /*override fun onResume() {
+     super.onResume()
+
+     // Fetching the stored data
+     // from the SharedPreference
+     val sh = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+     val s1 = sh.getString("name", "")
+     val a = sh.getInt("age", 0)
+
+     // Setting the fetched data
+     // in the EditTexts
+     name!!.setText(s1)
+
+ }*/
+ /*private fun login() {
+     if (_binding.loginIdEt.text.toString().isEmpty()) {
+         Toast.makeText(this, "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+         return
+     }
+
+     if (_binding.loginPasswordEt.text.toString().isEmpty()) {
+         Toast.makeText(this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+         return
+     }
+
+     val email: String = _binding.loginIdEt.text.toString()
+     val pwd: String = _binding.loginPasswordEt.text.toString()
+
+     val authService = AuthService()
+     authService.setLoginView(this)
+
+     authService.login(User(email, pwd, ""))
+
+
+     //sharedPreference
+
+ }
+
+ override fun onLoginSuccess(code: Int, result: Result) {
+     TODO("Not yet implemented")
+ }
+
+ override fun onLoginFailure() {
+     TODO("Not yet implemented")
+ }
+
+ override fun onServerFailure() {
+     TODO("Not yet implemented")
+ }
+ */
+ // Store the data in the SharedPreference
+ // in the onPause() method
+ // When the user closes the application
+ // onPause() will be called
+ // and data will be stored
+ /*override fun onPause() {
+     super.onPause()
+
+     // Creating a shared pref object
+     // with a file name "MySharedPref"
+     // in private mode
+     val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
+     val myEdit = sharedPreferences.edit()
+
+     // write all the data entered by the user in SharedPreference and apply
+     myEdit.putString("name", name!!.text.toString())
+     myEdit.apply()
+ }*/
+}
+ */

@@ -13,6 +13,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+
+
         <!--  뒤로가기  -->
         <ImageButton
             android:id="@+id/backspace_btn"

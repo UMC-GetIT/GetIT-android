@@ -18,9 +18,11 @@ class ApplicationClass : Application() {
 
         const val BASE_URL = "http://changni.shop"
 
+
         lateinit var mSharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
         lateinit var retrofit: Retrofit
+
     }
 
     override fun onCreate() {

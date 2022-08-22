@@ -1,9 +1,12 @@
 package com.getit.getit.ui.main.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -11,8 +14,8 @@ import androidx.core.view.children
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.mypage.like.LikeProductAcitivity
-import com.getit.getit.ui.main.mypage.review.ReviewProductAcitivity
+import com.getit.getit.ui.main.mypage.like.LikeProductActivity
+import com.getit.getit.ui.main.mypage.review.ReviewProductActivity
 import com.getit.getit.ui.main.mypage.settings.ChangeProfileActivity
 import com.getit.getit.ui.main.mypage.settings.SettingActivity
 import com.getit.getit.utils.ApplicationClass.Companion.retrofit
@@ -60,13 +63,13 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
             R.id.like_btn -> {
                 activity?.let {
-                    val intent = Intent(context, LikeProductAcitivity::class.java)
+                    val intent = Intent(context, LikeProductActivity::class.java)
                     startActivity(intent)
                 }
             }
             R.id.review_btn -> {
                 activity?.let {
-                    val intent = Intent(context, ReviewProductAcitivity::class.java)
+                    val intent = Intent(context, ReviewProductActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -75,6 +78,7 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
     }
 
+
     override fun onResume() {
         super.onResume()
         hideActionBar()
@@ -82,29 +86,60 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
     fun MypageData() {
 
-        val name = view?.findViewById<TextView>(R.id.name)
-        val nickname = view?.findViewById<TextView>(R.id.nickname)
+        val name = binding.name
+        val nickname = binding.nickname
+        val mypage_like_image_1 = binding.imagelike1
+        val mypage_like_image_2 = binding.imagelike2
+        val mypage_like_image_3 = binding.imagelike3
+        val mypage_like_text_1 = binding.productLike1
+        val mypage_like_text_2 = binding.productLike2
+        val mypage_like_text_3 = binding.productLike3
+        val mypage_price_1 = binding.productPrice1
+        val mypage_price_2 = binding.productPrice2
+        val mypage_price_3 = binding.productPrice3
+        val mypage_reivew_name_1=binding.productReviewName1
+        val mypage_review_name_2=binding.productReviewName2
+        val mypage_review_text_1=binding.productReviewText1
+        val mypage_review_text_2=binding.productReviewText2
+
 
         val mypageRetrofit = retrofit.create(MypageService::class.java)
         mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
 
-        val mypage_like_image_1 = view?.findViewById<ImageView>(R.id.imagelike1)
-        val mypage_like_image_2 = view?.findViewById<ImageView>(R.id.imagelike2)
-        val mypage_like_image_3 = view?.findViewById<ImageView>(R.id.imagelike3)
-        val mypage_like_text_1 = view?.findViewById<TextView>(R.id.product_like_1)
-        val mypage_like_text_2 = view?.findViewById<TextView>(R.id.product_like_2)
-        val mypage_like_text_3 = view?.findViewById<TextView>(R.id.product_like_3)
-
-
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
-
+                    Log.d("테스트",response.body().toString())
                 if (response.isSuccessful) {
                     val body = response.body()
                     body?.let {
-                        name?.text = body.result?.email.toString()
-                        nickname?.text = body.result?.nickname.toString()
+                        binding.name?.text = body.result?.email.toString()
+                        binding.nickname?.text = body.result?.nickname.toString()
+                        binding.productLike1?.text=body.result?.likeProduct?.toString()//name 넣어야 함
 
-                        if(body.result?.likeProduct==null){
+
+
+                        if(body.result?.likeProduct?.isEmpty()==true){
+                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
+                            binding.frameLike1.setVisibility(View.INVISIBLE)
+                            binding.frameLike2.setVisibility(View.INVISIBLE)
+                            binding.frameLike3.setVisibility(View.INVISIBLE)
+                            binding.likeNoProduct.setVisibility(View.VISIBLE)
+
+                        }
+                        if(body.result?.review?.isEmpty()==true){
+                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
+                            binding.frameReview2.setVisibility(View.INVISIBLE)
+                            binding.reviewNoProduct.setVisibility(View.VISIBLE)
+                        }
+                        else{
+                            binding.likeLinearlayout1.setVisibility(View.VISIBLE)
+                            binding.frameReview2.setVisibility(View.VISIBLE)
+                            binding.reviewNoProduct.setVisibility(View.INVISIBLE)
+                            binding.likeLinearlayout1.setVisibility(View.INVISIBLE)
+                            binding.frameLike1.setVisibility(View.VISIBLE)
+                            binding.frameLike2.setVisibility(View.VISIBLE)
+                            binding.frameLike3.setVisibility(View.VISIBLE)
+                            binding.likeNoProduct.setVisibility(View.INVISIBLE)
+
 
                         }
 

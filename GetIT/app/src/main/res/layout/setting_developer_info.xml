@@ -16,6 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+
+
         <ImageButton
             android:id="@+id/backspace_btn"
             android:layout_width="24dp"
