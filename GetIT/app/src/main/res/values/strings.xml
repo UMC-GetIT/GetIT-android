@@ -111,6 +111,14 @@
     <string name="protocol_4g">4G</string>
     <string name="protocol_5g">5G</string>
 
+    <!--it 용어-->
+    <string name="gpu">GPU</string>
+    <string name="save">저장 장치</string>
+    <string name="output">출력</string>
+    <string name="terminal">단자</string>
+    <string name="resolution">해상도</string>
+    <string name="pixel">화소</string>
+
     <!-- code -->
     <string name="string_null">null</string>
 

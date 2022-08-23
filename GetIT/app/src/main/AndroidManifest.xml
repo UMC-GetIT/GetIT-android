@@ -25,7 +25,7 @@
         </activity>
 
         <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".ui.main.home.WindowActivity"/>
+        <activity android:name=".ui.main.home.itterm.ItTermWindowActivity"/>
         <activity android:name=".ui.login.SignUpActivity"/>
 <!--        <activity android:name=".ui.splash.SplashActivity"/>-->
         <activity android:name=".ui.main.MainActivity"/>
@@ -39,7 +39,8 @@
         <activity android:name=".ui.main.mypage.review.ReviewProductAcitivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>
-
+        <activity android:name=".ui.main.home.recommend.RecommendResultActivity"/>
+        <activity android:name=".ui.main.comparison.CompareAfterActivity"/>
     </application>
 
 </manifest>

@@ -1,11 +1,14 @@
 package com.getit.getit.ui.main.home.recommend
 
 import android.content.Context
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -25,12 +28,15 @@ class RecommendQuestionRVAdapter(
         fun bind(question: RecommendQuestion) {
             binding.recommendQuestionTv.text = question.question
             var layoutManager: RecyclerView.LayoutManager
-            //val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
-            layoutManager = ChipsLayoutManager.newBuilder(activity).build()
+            layoutManager = ChipsLayoutManager.newBuilder(activity)
+                .setOrientation(ChipsLayoutManager.HORIZONTAL)
+                .build()
+
             binding.recommendAnswerRv.layoutManager = layoutManager
 
-            binding.recommendAnswerRv.adapter =
-                question.options?.let { RecommendAnswerRVAdapter(it) }
+            var recommendAnswerAdapter = question.options?.let { RecommendAnswerRVAdapter(it) }
+            binding.recommendAnswerRv.adapter  = recommendAnswerAdapter
+
         }
     }
 
