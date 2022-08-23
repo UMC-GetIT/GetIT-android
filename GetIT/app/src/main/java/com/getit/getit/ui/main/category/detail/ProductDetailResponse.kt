@@ -13,6 +13,7 @@ data class ProductDetailResult(
     @SerializedName("productIdx") val productIdx: String,
     @SerializedName("name") val name: String,
     @SerializedName("link") val link: String,
+    @SerializedName("photolist") val photolist: List<String>,
     @SerializedName("brand") val brand: String,
     @SerializedName("date") val date: String,
     @SerializedName("cpu") val cpu: String,

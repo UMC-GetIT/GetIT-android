@@ -10,14 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
-import com.getit.getit.ui.main.category.CategoryService
-import com.getit.getit.ui.main.category.Products
-import com.getit.getit.ui.main.category.ReviewRVAdatpter
-import com.getit.getit.ui.main.category.Reviews
+import com.getit.getit.ui.main.category.*
 import com.google.gson.Gson
 
 class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {
     private lateinit var productId: String
+    private lateinit var sideImageRVAdapter: SideImageRVAdapter
 
     override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
@@ -93,6 +91,17 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(purchaseLink)))
         }
 
+        // 이미지 리스트
+        val images = result.photolist
+        Log.d("PRODUCT-DETAIL", images.toString())
+        sideImageRVAdapter = SideImageRVAdapter(this, images)
+        binding.productDetailSideImagesRv.adapter = sideImageRVAdapter
+
+        sideImageRVAdapter.setMyItemClickListener(object : SideImageRVAdapter.MyItemClickListener{
+            override fun onItemClick(imageUrl: String) {
+                Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
+            }
+        })
     }
 
     override fun onGetProductDetailFailure(Code: Int, message: String) {
