@@ -1,6 +1,8 @@
 package com.getit.getit.ui.main.home.recommend
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.databinding.ItemRecommendAnswerBinding
@@ -11,7 +13,12 @@ class RecommendAnswerRVAdapter (private val recommendAnswerList: ArrayList<Strin
     inner class ViewHolder(val binding: ItemRecommendAnswerBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(option: String) {
             binding.recommendOptionChip.text = option;
+
         }
+    }
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecommendAnswerRVAdapter.ViewHolder {

@@ -3,6 +3,7 @@ package com.getit.getit.ui.login
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.getit.getit.ui.login.server.AuthService
@@ -34,17 +35,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        binding.tempMainActivity.setOnClickListener{
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
         if(getJwt() != null){
             loadingDialog.show();
-            val authService = AuthService()
-            authService.setLoginView(this)
-
-            authService.autoLogin(Tokens(getJwt().toString(),
-                ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
+            autoLoginMedium()
 
         }
     }
@@ -110,5 +103,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun initAfterBinding() {
         loadingDialog = LoadingDialog(this);
+    }
+
+    fun autoLoginMedium(){
+        val authService = AuthService()
+        authService.setLoginView(this)
+
+        Log.d("테스트 리프", ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString())
+        Log.d("테스트 엑세", getJwt().toString())
+        authService.autoLogin(Tokens(getJwt().toString(),
+            ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
     }
 }

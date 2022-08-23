@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.comparison
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentComparisonBinding
+import com.getit.getit.databinding.ItemCompareAnswerBinding
 import com.getit.getit.ui.BaseFragment
+import com.getit.getit.ui.login.SignUpActivity
 import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.comparison.data.ProductImageName
 
@@ -26,7 +29,14 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
         super.onCreateView(inflater, container, savedInstanceState)
         (activity as MainActivity).setLogoVisible(View.INVISIBLE);
         spinnerSetting()
+        binding.comparisonButton.setOnClickListener {
+            getComparisonResult();
+        }
         return binding.root
+    }
+
+    private fun getComparisonResult(){
+        startActivity(Intent(this.activity, CompareAfterActivity::class.java))
     }
 
     private fun spinnerSetting() {
@@ -81,17 +91,21 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
     }
 
     override fun initAfterBinding() {
+        setLikedProducts()
+    }
+
+    private fun setLikedProducts() {
         var likedProducts = ArrayList<ProductImageName>()
         // 더미데이터
         likedProducts.apply {
-            add(ProductImageName(R.drawable.samsong_labtop_img, "삼성전자 2021 갤럭시북 프로 360 13.3 + S펜" ))
-            add(ProductImageName(R.drawable.lg_labtop_img, "LG전자 2022 그램 16" ))
-            add(ProductImageName(R.drawable.samsong_pro_labtop_img, "삼성전자 2021 갤럭시 북 프로 360" ))
-            add(ProductImageName(R.drawable.lg_gram_labtop_img, "2022 LG 그램 360 터치스크린 노트북" ))
+            add(ProductImageName(R.drawable.samsong_labtop_img, "삼성전자 2021 갤럭시북 프로 360 13.3 + S펜"))
+            add(ProductImageName(R.drawable.lg_labtop_img, "LG전자 2022 그램 16"))
+            add(ProductImageName(R.drawable.samsong_pro_labtop_img, "삼성전자 2021 갤럭시 북 프로 360"))
+            add(ProductImageName(R.drawable.lg_gram_labtop_img, "2022 LG 그램 360 터치스크린 노트북"))
             add(ProductImageName(R.drawable.apple_labtop_img, "Apple 2021 맥북프로 14"))
             add(ProductImageName(R.drawable.legion_labtop_img, "레노버 Legion i7"))
             add(ProductImageName(R.drawable.apple_labtop2_img, "Apple 2021 맥북프로 14"))
-            add(ProductImageName(R.drawable.samsong2_labtop_img,"풀스펙 NT371B5J 램16G SSD512G 윈도우10"))
+            add(ProductImageName(R.drawable.samsong2_labtop_img, "풀스펙 NT371B5J 램16G SSD512G 윈도우10"))
         }
 
         val likeProductsRVAdapter = LikeProductsRVAdapter(likedProducts)
