@@ -4,15 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.FragmentMypageBinding
+import com.getit.getit.databinding.ItemMypageLikelistBinding
+import com.getit.getit.databinding.ItemMypageProductReviewBinding
 import com.getit.getit.ui.BaseFragment
-import com.getit.getit.ui.main.mypage.like.LikeProductAcitivity
-import com.getit.getit.ui.main.mypage.review.ReviewProductAcitivity
+import com.getit.getit.ui.main.mypage.like.LikeProductActivity
+import com.getit.getit.ui.main.mypage.review.ReviewProductActivity
 import com.getit.getit.ui.main.mypage.settings.ChangeProfileActivity
 import com.getit.getit.ui.main.mypage.settings.SettingActivity
 import com.getit.getit.utils.ApplicationClass.Companion.retrofit
@@ -21,11 +22,20 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate),
-    View.OnClickListener {
+class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBinding::inflate), View.OnClickListener {
+
+    private lateinit var LikeBinding: ItemMypageLikelistBinding
+    private lateinit var ReviewBinding: ItemMypageProductReviewBinding
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        LikeBinding = ItemMypageLikelistBinding.inflate(layoutInflater)
+        ReviewBinding = ItemMypageProductReviewBinding.inflate(layoutInflater)
+
         MypageData()
+
+
 
         setOnClickListenerAtMyPage()
 
@@ -60,13 +70,13 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
             R.id.like_btn -> {
                 activity?.let {
-                    val intent = Intent(context, LikeProductAcitivity::class.java)
+                    val intent = Intent(context, LikeProductActivity::class.java)
                     startActivity(intent)
                 }
             }
             R.id.review_btn -> {
                 activity?.let {
-                    val intent = Intent(context, ReviewProductAcitivity::class.java)
+                    val intent = Intent(context, ReviewProductActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -75,36 +85,57 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
     }
 
+
     override fun onResume() {
         super.onResume()
         hideActionBar()
     }
 
-    fun MypageData() {
+        fun LikeAdapter(MypageLikeList: List<likeProduct>) {
+            val mAdapter = MypageLikeRV(MypageLikeList, requireContext())
+            binding.mypageLikeRecyclerview.adapter = mAdapter
+            binding.mypageLikeRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            binding.mypageLikeRecyclerview.setHasFixedSize(false)
+        }
 
-        val name = view?.findViewById<TextView>(R.id.name)
-        val nickname = view?.findViewById<TextView>(R.id.nickname)
+        fun ReviewAdapter(MypageReviewList: List<Review>) {
+            val mAdapter = MypageReviewRV(MypageReviewList, requireContext())
+            binding.mypageReviewRecyclerview.adapter = mAdapter
+            binding.mypageReviewRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            binding.mypageReviewRecyclerview.setHasFixedSize(false)
+        }
+
+    fun MypageData() {
 
         val mypageRetrofit = retrofit.create(MypageService::class.java)
         mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
 
-        val mypage_like_image_1 = view?.findViewById<ImageView>(R.id.imagelike1)
-        val mypage_like_image_2 = view?.findViewById<ImageView>(R.id.imagelike2)
-        val mypage_like_image_3 = view?.findViewById<ImageView>(R.id.imagelike3)
-        val mypage_like_text_1 = view?.findViewById<TextView>(R.id.product_like_1)
-        val mypage_like_text_2 = view?.findViewById<TextView>(R.id.product_like_2)
-        val mypage_like_text_3 = view?.findViewById<TextView>(R.id.product_like_3)
-
-
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
-
+                    Log.d("테스트",response.body().toString())
                 if (response.isSuccessful) {
                     val body = response.body()
-                    body?.let {
-                        name?.text = body.result?.email.toString()
-                        nickname?.text = body.result?.nickname.toString()
+                    val url = body?.result
+                        body.let {
+                        binding.name?.text = body?.result?.email.toString()
+                        binding.nickname?.text = body?.result?.nickname.toString()
+                        LikeAdapter(listOf(url!!.likeProduct))
+                        ReviewAdapter(listOf(url!!.review))
 
-                        if(body.result?.likeProduct==null){
+
+                        if(listOf(url!!.likeProduct).isEmpty()==true){
+                            binding.mypageLikeRecyclerview.setVisibility(View.INVISIBLE)
+                            binding.likeNoProduct.setVisibility(View.VISIBLE)
+
+                        }
+                        if(listOf(url!!.review).isEmpty()==true){
+                            binding.mypageReviewRecyclerview.setVisibility(View.INVISIBLE)
+                            binding.reviewNoProduct.setVisibility(View.VISIBLE)
+                        }
+                        else{
+                            binding.mypageReviewRecyclerview.setVisibility(View.INVISIBLE)
+                            binding.mypageLikeRecyclerview.setVisibility(View.INVISIBLE)
+                            binding.likeNoProduct.setVisibility(View.INVISIBLE)
+
 
                         }
 
