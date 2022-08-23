@@ -10,14 +10,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.getit.getit.ui.main.home.server.AuthService
+import com.getit.getit.ui.login.server.AuthService
 import com.getit.getit.R
-import com.getit.getit.ui.main.home.server.Result
+import com.getit.getit.ui.login.server.Result
 import com.getit.getit.data.User
 import com.getit.getit.databinding.ActivitySignupBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.MainActivity
-import com.getit.getit.utils.ApplicationClass
 import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding::inflate), SignUpView {
@@ -72,19 +71,14 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         binding.signUpPasswordErrorTv.visibility = View.GONE
         binding.signUpPasswordCheckErrorTv.visibility = View.GONE
 
+        if (checkExistEmpty()) {
+            Toast.makeText(this, "입력되지 않은 곳이 있습니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val emailPattern: Pattern = Patterns.EMAIL_ADDRESS
         if (!(emailPattern.matcher(binding.signUpIdEt.text.toString().trim()).matches())) {
             Toast.makeText(this, "이메일 형식이 아닙니다.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (binding.signUpIdEt.text.toString().isEmpty()) {
-            Toast.makeText(this, "이메일이 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (binding.signUpNicknameEt.text.toString().isEmpty()){
-            Toast.makeText(this, "닉네임이 입력되지 않았습니다.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -145,7 +139,6 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            Log.e("테스트","실행전?" + p0.toString())
             enableSignUpButton()
         }
 
@@ -156,7 +149,7 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
 
     private fun checkExistEmpty() : Boolean {
         return binding.signUpIdEt.text.toString().isEmpty() || binding.signUpNicknameEt.text.toString().isEmpty()
-                ||binding.signUpPasswordEt.text.toString().isEmpty() || binding.signUpPasswordCheckErrorTv.text.toString().isEmpty()
+                ||binding.signUpPasswordEt.text.toString().isEmpty() || binding.signUpPasswordCheckEt.text.toString().isEmpty()
     }
 
 }

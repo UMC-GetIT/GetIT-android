@@ -17,30 +17,11 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommend_question_rv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/recommend_answer_summit_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layoutDirection="ltr"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:listitem="@layout/item_recommend_question" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/recommend_answer_summit_btn"
-        android:layout_width="140dp"
-        android:layout_height="48dp"
-        android:text="확인"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@color/background"
-        android:textColor="@color/outline"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_recommend_product"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

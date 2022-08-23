@@ -1,51 +1,82 @@
 package com.getit.getit.ui.main.mypage.settings
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.getit.getit.databinding.ChangePrivacyBinding
+import com.getit.getit.databinding.SettingChangePrivacyBinding
+import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.main.mypage.settings.changeprivacy.newpwd
+import com.getit.getit.ui.main.mypage.settings.changeprivacy.PwdRetrofit
 
 
-class ChangePrivacyActivity : AppCompatActivity() {
+class ChangePrivacyActivity : BaseActivity<SettingChangePrivacyBinding>(SettingChangePrivacyBinding::inflate) {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var binding = ChangePrivacyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.orginPassword.addTextChangedListener(textWatcher)
+        binding.changeNewPassword.addTextChangedListener(textWatcher)
+        binding.againPassword.addTextChangedListener(textWatcher)
+
+
 
         //뒤로가기 버튼
         binding.backspaceBtn.setOnClickListener {
             super.onBackPressed()
         }
+1
 
-        //완료하기 버튼
+
+//완료하기 버튼
         binding.sucsses.setOnClickListener {
+            changepwdData()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
             super.onBackPressed()
         }
+        }
+    private fun getpwd():newpwd{
+        val currentpwd:String =binding.orginPassword.getText().toString().trim()
+        val newpwd:String =binding.changeNewPassword.getText().toString().trim()
+
+        if(currentpwd.isEmpty()){
+            Toast.makeText(this, "현재 비밀번호를 입력해 주세요", Toast.LENGTH_SHORT).show()
+        }
+        if(newpwd.isEmpty()){
+            Toast.makeText(this,"새로운 비밀번호를 입력해주세요",Toast.LENGTH_SHORT).show()
+        }
+        if(currentpwd==newpwd){
+            Toast.makeText(this,"이전 비밀번호와 같습니다. 다시 입력해주세요",Toast.LENGTH_SHORT).show()
+        }
+
+
+        return newpwd(currentpwd,newpwd)
+
     }
 
-    /* // 3.툴바 메뉴 버튼을 설정
-     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-         menuInflater.inflate(R.menu.menu_setting_toolbar_profile, menu)       // main_menu 메뉴를 toolbar 메뉴 버튼으로 설정
-         return true
-     }
+        private fun changepwdData(){
+            val passwordData = PwdRetrofit()
+            passwordData.changeData(getpwd())
 
-     // 4.툴바 메뉴 버튼이 클릭 됐을 때 콜백
-     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         // 클릭된 메뉴 아이템의 아이디 마다 when 구절로 클릭시 동작을 설정한다.
-         when(item!!.itemId){
-             R.id.menu_finish->{ // 메뉴 버튼
-                 Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
-                 //Snackbar.make(toolbar,"Menu pressed", Snackbar.LENGTH_SHORT).show()
-                 val intent = Intent(this, settingActivity::class.java)
-                 startActivity(intent)
-             }
-             android.R.id.home->{ //뒤로가기 버튼
-                 val intent = Intent(this, settingActivity::class.java)
-                 startActivity(intent)
-             }
-         }
-         return super.onOptionsItemSelected(item)
-     }*/
+
+    }
+
+    private val textWatcher = object: TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            Log.d("테스트","실행전?" + p0.toString())
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+    }
+
+    override fun initAfterBinding() {
+    }
 }

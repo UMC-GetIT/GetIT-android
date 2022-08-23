@@ -4,13 +4,24 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.getit.getit.databinding.FragmentSettingsBinding
 import com.getit.getit.ui.login.LoginActivity
+import com.getit.getit.ui.main.mypage.like.LikeApiService
+import com.getit.getit.ui.main.mypage.like.LikeProducts
+import com.getit.getit.ui.main.mypage.settings.withdrawal.Withdrawal
+
+import com.getit.getit.ui.main.mypage.settings.withdrawal.WithdrawalApi
 import com.getit.getit.ui.splash.SplashActivity
+import com.getit.getit.utils.ApplicationClass
+import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SettingActivity : AppCompatActivity() {
@@ -21,8 +32,6 @@ class SettingActivity : AppCompatActivity() {
 
         binding = FragmentSettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
 
         //뒤로가기 버튼
@@ -77,9 +86,8 @@ class SettingActivity : AppCompatActivity() {
 
             fun toast() {
                 Toast.makeText(this, "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                //ApplicationClass.prefs.LoginActivity.email.remove("email") // 여기서 Shared Preference 를 remove 한다!
-                //ApplicationClass.prefs.password.remove("password")
-                //MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
+                ApplicationClass.mSharedPreferences.edit().clear()
+                    .commit()// sharedpreferences에 저장되어있는 토큰 제거
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
@@ -102,14 +110,28 @@ class SettingActivity : AppCompatActivity() {
             var dialog = AlertDialog.Builder(this)
             dialog.setTitle("회원탈퇴를 하시겠습니까?")
             dialog.setMessage("탈퇴 시 본인 계정의 모든 기록이 삭제됩니다.")
-            // dialog.setIcon 추후에 아이콘 삽입
+
+            fun datadelete(){
+            val deleteRetrofit = ApplicationClass.retrofit.create(WithdrawalApi::class.java)
+            deleteRetrofit.deleteuser().enqueue(object : Callback<Withdrawal> {
+                override fun onResponse(call: Call<Withdrawal>, response: Response<Withdrawal>) {
+                    if (response.isSuccessful) {
+                            Log.d("성공", response.body().toString())
+
+                        } else {
+                            Log.d("실패", response.body().toString())
+                        }
+                    }
+
+                override fun onFailure(call: Call<Withdrawal>, t: Throwable) {
+
+                }
+            })
+        }
 
 
             fun toast() {
                 Toast.makeText(this, "회원탈퇴 되었습니다.", Toast.LENGTH_SHORT).show()
-                //MyApplication.prefs.edit.remove("email") // 여기서 Shared Preference 를 remove 한다!
-                //MyApplication.prefs.edit.remove("password")
-                //MyApplication.prefs.edit.commit() // SP 삭제되는 것을 확인
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(intent)
@@ -117,8 +139,9 @@ class SettingActivity : AppCompatActivity() {
 
 
             var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
-                when (p1) {
-                    DialogInterface.BUTTON_POSITIVE -> toast()
+                if (DialogInterface.BUTTON_POSITIVE == p1) {
+                    datadelete()
+                    toast()
                 }
             }
             dialog.setPositiveButton("탈퇴하기", dialogLister)
@@ -127,21 +150,28 @@ class SettingActivity : AppCompatActivity() {
         }
 
 
-        // 1:1 문의
-        binding.onetoonelinear.setOnClickListener {
-                val emailIntent = Intent(Intent.ACTION_SENDTO,
-                Uri.fromParts("mailto","heekyoung2000@naver.com",null))
-                startActivity(Intent.createChooser(emailIntent,"Send email...."))
+
+
+            // 1:1 문의
+            binding.onetoonelinear.setOnClickListener {
+                val emailIntent = Intent(
+                    Intent.ACTION_SENDTO,
+                    Uri.fromParts("mailto", "heekyoung2000@naver.com", null)
+                )
+                startActivity(Intent.createChooser(emailIntent, "Send email...."))
+            }
+
+            binding.onetooneImageBtn.setOnClickListener {
+                val emailIntent = Intent(
+                    Intent.ACTION_SENDTO,
+                    Uri.fromParts("mailto", "heekyoung2000@naver.com", null)
+                )
+                startActivity(Intent.createChooser(emailIntent, "Send email...."))
+            }
         }
-
-        binding.onetooneImageBtn.setOnClickListener {
-            val emailIntent = Intent(Intent.ACTION_SENDTO,
-                Uri.fromParts("mailto","heekyoung2000@naver.com",null))
-            startActivity(Intent.createChooser(emailIntent,"Send email...."))
-        }
-        }
+    }
 
 
 
 
-}
+
