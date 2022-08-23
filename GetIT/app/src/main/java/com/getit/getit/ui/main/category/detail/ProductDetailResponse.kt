@@ -27,6 +27,7 @@ data class ProductDetailResult(
     @SerializedName("communication") val communication: String,
     @SerializedName("os") val os: String,
     @SerializedName("ssd") val ssd: String,
+    @SerializedName("hdd") val hdd: String,
     @SerializedName("output") val output: String,
     @SerializedName("terminal") val terminal: String
 )

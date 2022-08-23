@@ -6,16 +6,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.category.*
-import com.google.gson.Gson
 
 class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {
     private lateinit var productId: String
     private lateinit var sideImageRVAdapter: SideImageRVAdapter
+    private lateinit var infoRVAdapter: InformationRVAdapter
 
     override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
@@ -86,6 +85,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
         binding.productDetailProductNameTv.text = result.name
+        binding.productDetailProductTypeTv.text = result.type
         binding.productDetailPurchaseBtn.setOnClickListener {
             var purchaseLink = result.link
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(purchaseLink)))
@@ -102,6 +102,42 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                 Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
             }
         })
+
+        // 상세 정보
+        // 2차원 리스트에 index 0 = title, index 1 = content로 넣기
+//        var infoTitle = mutableListOf("제조사", "등록일", "CPU", "CPU 속도", "코어 종류",
+//            "화면 크기", "RAM", "저장용량", "통신규격", "운영체제",
+//            "SSD", "HDD", "출력", "단자 종류")
+//        var infoContent = mutableListOf(result.brand, result.date, result.cpu, result.cpurate, result.core,
+//            result.size, result.ram, result.innermemory, result.communication, result.os,
+//            result.ssd, result.hdd, result.output, result.terminal)
+
+        var productInfo = mutableListOf(
+            mutableListOf("제조사", result.brand),
+            mutableListOf("등록일", result.date),
+            mutableListOf("CPU", result.cpu),
+            mutableListOf("CPU 속도", result.cpurate),
+            mutableListOf("코어 종류", result.core),
+            mutableListOf("화면 크기", result.size),
+            mutableListOf("RAM", result.ram),
+            mutableListOf("저장용량", result.innermemory),
+            mutableListOf("통신규격", result.communication),
+            mutableListOf("운영체제", result.os),
+            mutableListOf("SSD", result.ssd),
+            mutableListOf("HDD", result.hdd),
+            mutableListOf("출력", result.output),
+            mutableListOf("단자 종류", result.terminal)
+        )
+
+        for (i in productInfo.size - 1 downTo 0) {
+            if (productInfo[i][1] == "미상") {
+                productInfo.removeAt(i)
+            }
+        }
+        Log.d("TEST", productInfo.toString())
+
+        infoRVAdapter = InformationRVAdapter(this, productInfo)
+        binding.productDetailInformationRv.adapter = infoRVAdapter
     }
 
     override fun onGetProductDetailFailure(Code: Int, message: String) {
