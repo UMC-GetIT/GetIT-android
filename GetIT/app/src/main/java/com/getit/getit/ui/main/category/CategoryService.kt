@@ -3,6 +3,8 @@ package com.getit.getit.ui.main.category
 import android.util.Log
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailView
+import com.getit.getit.ui.main.category.detail.review.ReviewResponse
+import com.getit.getit.ui.main.category.detail.review.ReviewView
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
 import com.getit.getit.ui.main.searchproduct.RecommendView
 import com.getit.getit.utils.getRetrofit
@@ -14,6 +16,7 @@ class CategoryService {
     private lateinit var categorySearchView: CategorySearchView
     private lateinit var recommendView: RecommendView
     private lateinit var productDetailView: ProductDetailView
+    private lateinit var reviewView: ReviewView
 
     fun setSearchView(categorySearchView: CategorySearchView){
         this.categorySearchView = categorySearchView
@@ -25,6 +28,10 @@ class CategoryService {
 
     fun setProductDetailView(productDetailView: ProductDetailView) {
         this.productDetailView = productDetailView
+    }
+
+    fun setReviewView(reviewView: ReviewView) {
+        this.reviewView = reviewView
     }
 
     fun getCategory(type: String, requirement: String){
@@ -94,5 +101,26 @@ class CategoryService {
             }
         })
         Log.d("PRODUCT-DETAIL", "HELLO")
+    }
+
+    fun getReviews(productIdx: String) {
+        val reviewService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+
+        reviewService.getReviews(productIdx).enqueue(object: Callback<ReviewResponse>{
+            override fun onResponse(call: Call<ReviewResponse>, response: Response<ReviewResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val reviewResponse: ReviewResponse = response.body()!!
+
+                    when (val code = reviewResponse.code){
+                        1000 -> reviewView.onGetReviewSuccess(code, reviewResponse.result)
+                        else -> reviewView.onGetReviewFailure(code, reviewResponse.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<ReviewResponse>, t: Throwable) {
+                Log.d("REVIEW/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("REVIEW", "HELLO")
     }
 }

@@ -10,11 +10,17 @@ import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.category.*
+import com.getit.getit.ui.main.category.detail.review.ReviewRVAdatpter
+import com.getit.getit.ui.main.category.detail.review.ReviewResult
+import com.getit.getit.ui.main.category.detail.review.ReviewView
+import com.getit.getit.ui.main.searchproduct.SearchProductRVAdapter
+import com.getit.getit.ui.main.searchproduct.SearchProductResult
 
-class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView, ReviewView {
     private lateinit var productId: String
     private lateinit var sideImageRVAdapter: SideImageRVAdapter
     private lateinit var infoRVAdapter: InformationRVAdapter
+    private lateinit var reviewRVAdatpter: ReviewRVAdatpter
 
     override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
@@ -67,6 +73,12 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         val categoryService = CategoryService()
         categoryService.setProductDetailView(this)
         categoryService.getproductDetail(id)
+    }
+
+    private fun getReviews(id: String) {
+        val reviewService = CategoryService()
+        reviewService.setReviewView(this)
+        reviewService.getReviews(id)
     }
 
 
@@ -142,5 +154,22 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     override fun onGetProductDetailFailure(Code: Int, message: String) {
         Log.d("PRODUCT-DETAIL", "로딩 실패")
+    }
+
+    override fun onGetReviewLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGetReviewSuccess(Code: Int, result: List<ReviewResult>) {
+        initRecyclerView(result)
+    }
+
+    override fun onGetReviewFailure(Code: Int, message: String) {
+        TODO("Not yet implemented")
+    }
+
+    private fun initRecyclerView(result: List<ReviewResult>) {
+        reviewRVAdatpter = ReviewRVAdatpter(this, result)
+        binding.productDetailReviewRv.adapter = reviewRVAdatpter
     }
 }
