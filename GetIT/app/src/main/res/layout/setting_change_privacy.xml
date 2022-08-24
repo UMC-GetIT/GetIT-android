@@ -13,6 +13,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+
+
         <!--  뒤로가기  -->
         <ImageButton
             android:id="@+id/backspace_btn"
@@ -31,12 +33,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="개인정보 변경"
-            android:textSize="20sp"
+            android:textSize="18dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
             android:fontFamily="@font/notosanskr_bold"
             android:textColor="@color/normal"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/backspace_btn"/>
 
         <TextView
@@ -46,10 +48,10 @@
             android:text="완료"
             android:textSize="15sp"
             android:layout_margin="10dp"
-            android:layout_marginTop="12dp"
             android:fontFamily="@font/notosanskr_regular"
             android:textColor="@color/normal"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             />
 
@@ -71,12 +73,13 @@
         />
 
     <EditText
-        android:id="@+id/password_edit"
+        android:id="@+id/orgin_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/password"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:inputType="textPassword"
 
         />
 
@@ -84,7 +87,7 @@
         android:id="@+id/new_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/password_edit"
+        app:layout_constraintTop_toBottomOf="@id/orgin_password"
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="새로운 비밀번호"
         android:textColor="@color/subText"
@@ -94,20 +97,21 @@
         />
 
     <EditText
-        android:id="@+id/new_password_edit"
+        android:id="@+id/change_new_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/new_password"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:hint="영문,숫자,특수문자 포함 8자 이상"
+        android:inputType="textPassword"
         />
 
     <TextView
         android:id="@+id/check_newpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/new_password_edit"
+        app:layout_constraintTop_toBottomOf="@id/change_new_password"
         app:layout_constraintLeft_toLeftOf="parent"
         android:text="새로운 비밀번호 확인"
         android:textColor="@color/subText"
@@ -117,12 +121,14 @@
         />
 
     <EditText
+        android:id="@+id/again_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/check_newpassword"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:hint="영문,숫자,특수문자 포함 8자 이상"
+        android:inputType="textPassword"
 
         />
 

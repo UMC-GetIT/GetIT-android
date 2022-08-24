@@ -16,6 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+
+
         <ImageButton
             android:id="@+id/backspace_btn"
             android:layout_width="24dp"
@@ -32,9 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="프로필 변경"
-            android:textSize="20sp"
+            android:textSize="18dp"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
             android:textColor="@color/normal"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/notosanskr_bold"

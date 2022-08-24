@@ -3,6 +3,7 @@ package com.getit.getit.ui.login
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.getit.getit.ui.login.server.AuthService
@@ -34,13 +35,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        binding.tempMainActivity.setOnClickListener{
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
         if(getJwt() != null){
-            loadingDialog.show();
-            autoLoginMedium();
+            loadingDialog.show()
+            autoLoginMedium()
 
         }
     }

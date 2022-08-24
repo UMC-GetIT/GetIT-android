@@ -2,11 +2,14 @@ package com.getit.getit.ui.main.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.flo.ui.main.home.BannerFragment
 import com.example.flo.ui.main.home.BannerVPAdapter
 import com.getit.getit.R
@@ -14,10 +17,14 @@ import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.MainActivity
 import com.getit.getit.ui.main.home.data.ItTermIcon
+import com.getit.getit.ui.main.home.itterm.ItTermWindowActivity
+import com.getit.getit.ui.main.home.itterm.TermRVAdapter
 import com.getit.getit.ui.main.home.recommend.RecommendActivity
+import com.getit.getit.ui.main.home.server.MainRecommendResult
+import com.getit.getit.ui.main.home.server.MainRecommendService
 
 
-class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), HomeView {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,32 +79,37 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
     override fun initAfterBinding() {
         setItTermIcon()
 
-        // 상품 클릭
+
+        val homeService = MainRecommendService()
+        homeService.setHomeView(this)
+
+        homeService.loadHomeRecommendProducts();
 
     }
 
     private fun setItTermIcon() {
         var ittermDatas = ArrayList<ItTermIcon>()
-        // 더미데이터
+
         ittermDatas.apply {
-            add(ItTermIcon(R.drawable.cpu_icon, "CPU"))
-            add(ItTermIcon(R.drawable.ram_icon, "RAM"))
-            add(ItTermIcon(R.drawable.gpu_icon, "GPU"))
-            add(ItTermIcon(R.drawable.ssd_icon, "저장장치"))
-            add(ItTermIcon(R.drawable.output_icon, "출력"))
-            add(ItTermIcon(R.drawable.terminal_icon, "단자"))
-            add(ItTermIcon(R.drawable.protocol_icon, "통신 규격"))
-            add(ItTermIcon(R.drawable.resolution_icon, "해상도"))
-            add(ItTermIcon(R.drawable.pixel_icon, "카메라 화소"))
+            add(ItTermIcon(R.drawable.cpu_icon, getString(R.string.cpu)))
+            add(ItTermIcon(R.drawable.ram_icon, getString(R.string.ram)))
+            add(ItTermIcon(R.drawable.gpu_icon, getString(R.string.gpu)))
+            add(ItTermIcon(R.drawable.ssd_icon, getString(R.string.save)))
+            add(ItTermIcon(R.drawable.output_icon, getString(R.string.output)))
+            add(ItTermIcon(R.drawable.terminal_icon, getString(R.string.terminal)))
+            add(ItTermIcon(R.drawable.protocol_icon, getString(R.string.protocol)))
+            add(ItTermIcon(R.drawable.resolution_icon, getString(R.string.resolution)))
+            add(ItTermIcon(R.drawable.pixel_icon, getString(R.string.pixel)))
         }
 
-        val termRVAdapter = TermRVAdapter(ittermDatas)
+        val termRVAdapter = this.activity?.let { TermRVAdapter(ittermDatas, it) }
         binding.ittermAnswerRv.adapter = termRVAdapter
 
         val linearLayoutManager = LinearLayoutManager(this.context)
         linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         binding.ittermAnswerRv.layoutManager = linearLayoutManager
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -125,7 +137,6 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         binding.recommendAnswer3Tv.text = arrangeName(result.products[2].name)
         binding.recommendAnswer4Tv.text = arrangeName(result.products[3].name)
         // 상품 클릭
-
     }
 
     private fun arrangeName(name : String) : String{
