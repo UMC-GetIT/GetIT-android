@@ -30,7 +30,6 @@ class AuthService {
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
                     1000 -> {
-                        Log.d("테스트", "진입성공 1000")
                         signUpView.onSignUpSuccess(resp.code, resp.result!!)
                     }
                     else -> {
@@ -53,7 +52,6 @@ class AuthService {
             .enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("테스트", response.toString())
-                Log.d("테스트", response.body().toString())
                 val resp: AuthResponse = response.body()!!
 
                 when(val code = resp.code){
@@ -71,8 +69,6 @@ class AuthService {
     }
 
     fun autoLogin(tokens: Tokens){
-        Log.d("테스트 accessToken", tokens.accessToken);
-        Log.d("테스트 refreshToken", tokens.refreshToken);
         val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
         authService.autoLogin(tokens)
             .enqueue(object: Callback<AuthResponse> {

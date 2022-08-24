@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.getit.getit.data.NameImagePriceProduct
 import com.getit.getit.databinding.ItemRecommendProductBinding
 
@@ -14,8 +15,7 @@ class RecommendResultRVAdapter (private val recommendProductsList: ArrayList<Nam
 
     inner class ViewHolder(val binding: ItemRecommendProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: NameImagePriceProduct) {
-            //Glide.with(activity).load(product.coverImg).into(binding.recommendProductIv)
-            product.coverImg?.let { binding.recommendProductIv.setImageResource(it) }
+            Glide.with(activity).load(product.coverImg).into(binding.recommendProductIv)
             binding.recommendProductNameTv.text = product.name
             binding.recommendProductPriceTv.text = product.price
         }

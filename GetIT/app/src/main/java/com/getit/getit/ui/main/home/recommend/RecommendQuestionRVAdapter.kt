@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.home.recommend
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,9 +10,11 @@ import com.getit.getit.ui.main.home.data.RecommendQuestion
 
 class RecommendQuestionRVAdapter(
     private val recommendQuestionList: ArrayList<RecommendQuestion>,
-    val activity: RecommendQuestionActivity
+    val activity: RecommendProductsQuestionActivity
 ) : RecyclerView.Adapter<RecommendQuestionRVAdapter.ViewHolder>() {
 
+    var answerMap : MutableMap<Int, String> = mutableMapOf()
+    val recommendQuestionRVAdapter = this
 
     inner class ViewHolder(val binding: ItemRecommendQuestionBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -24,8 +27,11 @@ class RecommendQuestionRVAdapter(
 
             binding.recommendAnswerRv.layoutManager = layoutManager
 
-            var recommendAnswerAdapter = question.options?.let { RecommendAnswerRVAdapter(it) }
+            var questionNum = answerMap.size
+            var recommendAnswerAdapter = question.options?.let { RecommendAnswerRVAdapter(it, activity, questionNum, recommendQuestionRVAdapter) }
             binding.recommendAnswerRv.adapter  = recommendAnswerAdapter
+
+            answerMap[questionNum] = ""
 
         }
     }
@@ -47,5 +53,9 @@ class RecommendQuestionRVAdapter(
     }
 
     override fun getItemCount(): Int = recommendQuestionList.size
+
+    fun updateAnswerList(questionNum : Int, answer:String){
+        answerMap[questionNum] = answer;
+    }
 
 }

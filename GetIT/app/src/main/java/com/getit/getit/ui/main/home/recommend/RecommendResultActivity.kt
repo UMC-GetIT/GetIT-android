@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.home.recommend
 
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
@@ -18,20 +19,19 @@ class RecommendResultActivity  : BaseActivity<ActivityRecommendResultBinding>(Ac
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_left);
 
+        var products = intent.getSerializableExtra("products") as ArrayList<NameImagePriceProduct>
 
-        var products = ArrayList<NameImagePriceProduct>()
-
-        products.apply {
-            add(NameImagePriceProduct("1","LG 그램 360","1,898,000원", R.drawable.gram_360))
-            add(NameImagePriceProduct("2","13형 MacBook Pro","1,960,000원", R.drawable.macbook))
-            add(NameImagePriceProduct("3","삼성전자 갤럭시북 프로", "1,499,000원", R.drawable.samsung))
+        if(products.size == 0){
+            binding.sorryTv.visibility  = View.VISIBLE
         }
+        else {
 
-        val recommendResultRVAdapter = this?.let { RecommendResultRVAdapter(products, it) }
-        binding.recommendProductsRv.adapter = recommendResultRVAdapter
+            val recommendResultRVAdapter = this?.let { RecommendResultRVAdapter(products, it) }
+            binding.recommendProductsRv.adapter = recommendResultRVAdapter
 
-        val linearLayoutManager = LinearLayoutManager(this)
-        binding.recommendProductsRv.layoutManager = linearLayoutManager
+            val linearLayoutManager = LinearLayoutManager(this)
+            binding.recommendProductsRv.layoutManager = linearLayoutManager
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

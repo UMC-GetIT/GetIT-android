@@ -109,9 +109,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         val authService = AuthService()
         authService.setLoginView(this)
 
-        Log.d("테스트 엑세", getJwt().toString())
-        Log.d("테스트 리프", ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString())
-
         authService.autoLogin(Tokens(getJwt().toString(),
             ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
     }
