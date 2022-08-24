@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.databinding.ItemProductReviewBinding
 
-class ReviewRVAdatpter(val context: Context, val result: List<ReviewResult>) : RecyclerView.Adapter<ReviewRVAdatpter.ViewHolder>(){
+class ReviewListRVAdatpter(val context: Context, val result: List<ReviewListResult>) : RecyclerView.Adapter<ReviewListRVAdatpter.ViewHolder>(){
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ReviewRVAdatpter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ReviewListRVAdatpter.ViewHolder {
         val binding: ItemProductReviewBinding = ItemProductReviewBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }

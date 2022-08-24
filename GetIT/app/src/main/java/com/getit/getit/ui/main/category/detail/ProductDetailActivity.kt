@@ -10,17 +10,16 @@ import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.category.*
-import com.getit.getit.ui.main.category.detail.review.ReviewRVAdatpter
-import com.getit.getit.ui.main.category.detail.review.ReviewResult
-import com.getit.getit.ui.main.category.detail.review.ReviewView
-import com.getit.getit.ui.main.searchproduct.SearchProductRVAdapter
-import com.getit.getit.ui.main.searchproduct.SearchProductResult
+import com.getit.getit.ui.main.category.detail.review.CreateReviewView
+import com.getit.getit.ui.main.category.detail.review.ReviewListRVAdatpter
+import com.getit.getit.ui.main.category.detail.review.ReviewListResult
+import com.getit.getit.ui.main.category.detail.review.ReviewListView
 
-class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView, ReviewView {
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView, ReviewListView, CreateReviewView {
     private lateinit var productId: String
     private lateinit var sideImageRVAdapter: SideImageRVAdapter
     private lateinit var infoRVAdapter: InformationRVAdapter
-    private lateinit var reviewRVAdatpter: ReviewRVAdatpter
+    private lateinit var reviewListRVAdatpter: ReviewListRVAdatpter
 
     override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
@@ -76,9 +75,16 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     private fun getReviews(id: String) {
-        val reviewService = CategoryService()
-        reviewService.setReviewView(this)
-        reviewService.getReviews(id)
+        val reviewListService = CategoryService()
+        reviewListService.setReviewListView(this)
+        reviewListService.getReviews(id)
+    }
+
+    private fun createReview() {
+        var review = binding.productDetailReviewInputEt.text.toString()
+        val createReviewService = CategoryService()
+        createReviewService.setCreateReviewView(this)
+        createReviewService.createReview(productId, review)
     }
 
 
@@ -150,6 +156,11 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
         infoRVAdapter = InformationRVAdapter(this, productInfo)
         binding.productDetailInformationRv.adapter = infoRVAdapter
+
+        binding.productDetailConfirmBtnFrameLayout.setOnClickListener {
+            createReview()
+            getReviews(productId)
+        }
     }
 
     override fun onGetProductDetailFailure(Code: Int, message: String) {
@@ -160,7 +171,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         TODO("Not yet implemented")
     }
 
-    override fun onGetReviewSuccess(Code: Int, result: List<ReviewResult>) {
+    override fun onGetReviewSuccess(Code: Int, result: List<ReviewListResult>) {
         initRecyclerView(result)
     }
 
@@ -168,8 +179,20 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         TODO("Not yet implemented")
     }
 
-    private fun initRecyclerView(result: List<ReviewResult>) {
-        reviewRVAdatpter = ReviewRVAdatpter(this, result)
-        binding.productDetailReviewRv.adapter = reviewRVAdatpter
+    private fun initRecyclerView(result: List<ReviewListResult>) {
+        reviewListRVAdatpter = ReviewListRVAdatpter(this, result)
+        binding.productDetailReviewRv.adapter = reviewListRVAdatpter
+    }
+
+    override fun onCreateReviewLoading() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCreateReviewSuccess(Code: Int, result: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCreateReviewFailure(Code: Int, message: String) {
+        TODO("Not yet implemented")
     }
 }
