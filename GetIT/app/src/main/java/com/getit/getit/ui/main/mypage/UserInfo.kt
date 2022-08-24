@@ -5,21 +5,17 @@ data class UserInfo(
     @SerializedName("code") val code: Int,
     @SerializedName("isSuccess") val isSuccess: String,
     @SerializedName("message") val message: String,
-    @SerializedName("result") val result: Result?
+    @SerializedName("result") val result: Result?,
 )
 
 
 data class Result(
     @SerializedName("userIdx") val userIdx: Int,
     @SerializedName("email") val email: String,
-    @SerializedName("nickname") val nickname: String,
-    @SerializedName("role")
-    val role: String,
-    @SerializedName("likeProduct")
-    val likeProduct:List<likeProduct>,
-
-    @SerializedName("review")
-    val review:List<Review>
+    @SerializedName("nickName") val nickname: String,
+    @SerializedName("role") val role: String,
+    @SerializedName("likeProduct") val likeProduct:likeProduct,
+    @SerializedName("review") val review:Review,
 
     //@SerializedName("image")
     //val image:String
@@ -30,7 +26,7 @@ data class likeProduct(
     val productIdx: Int,
 
     @SerializedName("image")
-    val image: String,
+    val likeimage: String,
 
     @SerializedName("brand")
     val brand: String,
@@ -48,18 +44,15 @@ data class likeProduct(
 )
 
 data class Review(
-    @SerializedName("userIdx")
-    val userIdx: Int,
-
-    @SerializedName("review")
-    val review: String,
-
-    @SerializedName("reviewImgUrl")
-    val reviewImgUrl: String,
-
-    @SerializedName("image")
-    val image: String,
-
-
+    @SerializedName("userIdx") val userIdx: Int,
+    @SerializedName("review") val review: String,
+    @SerializedName("reviewImgUrl") val reviewImgUrl: String,
+    @SerializedName("image") val image: String,
+    @SerializedName("reviewList") val reviewList:reviewList?
     )
+
+data class reviewList(
+    @SerializedName("productIdx") val productIdx: Int,
+    @SerializedName("name") val name:String
+)
 
