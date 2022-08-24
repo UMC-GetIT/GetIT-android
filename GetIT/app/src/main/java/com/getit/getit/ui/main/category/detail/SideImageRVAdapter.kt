@@ -13,15 +13,15 @@ import com.getit.getit.databinding.ItemProductDetailImageBinding
 
 class SideImageRVAdapter(val context: Context, val images : List<String>): RecyclerView.Adapter<SideImageRVAdapter.ViewHolder>() {
 
-    interface MyItemClickListener{
-        fun onItemClick(imageUrl: String)
-    }
-
-    private lateinit var mItemClickListener: MyItemClickListener
-
-    fun setMyItemClickListener(itemClickListener: MyItemClickListener){
-        mItemClickListener = itemClickListener
-    }
+//    interface MyItemClickListener{
+//        fun onItemClick(imageUrl: String)
+//    }
+//
+//    private lateinit var mItemClickListener: MyItemClickListener
+//
+//    fun setMyItemClickListener(itemClickListener: MyItemClickListener){
+//        mItemClickListener = itemClickListener
+//    }
 
 override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SideImageRVAdapter.ViewHolder {
         val binding: ItemProductDetailImageBinding = ItemProductDetailImageBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -34,10 +34,9 @@ override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): SideImageR
             Glide.with(context).load(images[position]).into(holder.sideImage)
         }
 
-        holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick(images[position])
-            Log.d("LOG", position.toString())
-        }
+//        holder.itemView.setOnClickListener {
+//            mItemClickListener.onItemClick(images[position])
+//        }
 
         // 초기 선택 이미지 이벤트
 //        if (position == 0) {

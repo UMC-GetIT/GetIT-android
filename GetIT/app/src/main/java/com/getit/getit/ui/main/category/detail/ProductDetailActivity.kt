@@ -97,11 +97,11 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         sideImageRVAdapter = SideImageRVAdapter(this, images)
         binding.productDetailSideImagesRv.adapter = sideImageRVAdapter
 
-        sideImageRVAdapter.setMyItemClickListener(object : SideImageRVAdapter.MyItemClickListener{
-            override fun onItemClick(imageUrl: String) {
-                Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
-            }
-        })
+//        sideImageRVAdapter.setMyItemClickListener(object : SideImageRVAdapter.MyItemClickListener{
+//            override fun onItemClick(imageUrl: String) {
+//                Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
+//            }
+//        })
 
         // 상세 정보
         // 2차원 리스트에 index 0 = title, index 1 = content로 넣기
@@ -134,7 +134,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                 productInfo.removeAt(i)
             }
         }
-        Log.d("TEST", productInfo.toString())
+//        Log.d("TEST", productInfo.toString())
 
         infoRVAdapter = InformationRVAdapter(this, productInfo)
         binding.productDetailInformationRv.adapter = infoRVAdapter
