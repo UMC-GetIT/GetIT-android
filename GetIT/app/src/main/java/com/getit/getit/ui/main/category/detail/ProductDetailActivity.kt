@@ -7,48 +7,81 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.category.*
 
-class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView, LikeView {
     private lateinit var productId: String
     private lateinit var sideImageRVAdapter: SideImageRVAdapter
     private lateinit var infoRVAdapter: InformationRVAdapter
+
+    private var isLiked: Boolean = false
 
     override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
             backspace()
         }
+//        isLiked = isLikedProduct()
+        setInit()
+        setOnClickListeners()
+    }
 
+    // 좋아요 클릭/해제
+    private fun setLikeProduct(productId: String) {
+        val likeService = ProductsService()
+        likeService.setLike(this)
+        likeService.like(productId)
+    }
+
+//    // db 좋아요 여부
+//    private fun isLikedProduct(productId: String): Boolean {
+//    }
+
+    private fun setOnClickListeners() {
+        binding.productDetailLikeBtnIb.setOnClickListener {
+            if(isLiked) {
+                binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
+            }
+            else {
+                binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
+            }
+            setLikeProduct(productId)
+        }
+    }
+
+   private fun setInit() {
         if (intent.hasExtra("productId")) {
             productId = intent.getStringExtra("productId").toString()
             binding.productDetailProductPriceTv.text = intent.getStringExtra("price").toString()
             val imageUrl = intent.getStringExtra("imageUrl").toString()
             if (imageUrl == "" || imageUrl == null) {
-            }
-            else {
+            } else {
                 Glide.with(this).load(imageUrl).into(binding.productDetailImgIv)
             }
         }
 
-        getProductDetail(productId)
-
-//        var reviewDatas = ArrayList<Reviews>()
-//        val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)
-//        binding.productDetailReviewRv.adapter = reviewRVAdatpter
-//        binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        binding.productDetailLikeBtnOffIb.setOnClickListener {
-            likeOn()
-        }
-        binding.productDetailLikeBtnOnIb.setOnClickListener {
-            likeOff()
+        if (isLiked) {
+            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
+        } else {
+            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
         }
 
-        binding.productDetailReviewInputEt.addTextChangedListener(object: TextWatcher {
+       changeButtonColor()
+    }
+
+    private fun getProductDetail(id: String) {
+        val categoryService = ProductsService()
+        categoryService.setProductDetailView(this)
+        categoryService.getproductDetail(id)
+    }
+
+    private fun changeButtonColor() {
+        binding.productDetailReviewInputEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var userinput = binding.productDetailReviewInputEt.text.toString()
                 binding.productDetailConfirmBtnOn.visibility = View.VISIBLE
@@ -58,25 +91,10 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                     binding.productDetailConfirmBtnOff.visibility = View.VISIBLE
                 }
             }
+
             override fun afterTextChanged(s: Editable?) {
             }
         })
-    }
-
-    private fun getProductDetail(id: String) {
-        val categoryService = CategoryService()
-        categoryService.setProductDetailView(this)
-        categoryService.getproductDetail(id)
-    }
-
-
-    private fun likeOn() {
-        binding.productDetailLikeBtnOnIb.visibility = View.VISIBLE
-        binding.productDetailLikeBtnOffIb.visibility = View.INVISIBLE
-    }
-    private fun likeOff() {
-        binding.productDetailLikeBtnOnIb.visibility = View.INVISIBLE
-        binding.productDetailLikeBtnOffIb.visibility = View.VISIBLE
     }
 
     override fun onGetProductDetailLoading() {
@@ -103,15 +121,17 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 //            }
 //        })
 
-        // 상세 정보
-        // 2차원 리스트에 index 0 = title, index 1 = content로 넣기
-//        var infoTitle = mutableListOf("제조사", "등록일", "CPU", "CPU 속도", "코어 종류",
-//            "화면 크기", "RAM", "저장용량", "통신규격", "운영체제",
-//            "SSD", "HDD", "출력", "단자 종류")
-//        var infoContent = mutableListOf(result.brand, result.date, result.cpu, result.cpurate, result.core,
-//            result.size, result.ram, result.innermemory, result.communication, result.os,
-//            result.ssd, result.hdd, result.output, result.terminal)
+        // 상세정보
+        var productInfo = getProductInfo(result)
+        infoRVAdapter = InformationRVAdapter(this, productInfo)
+        binding.productDetailInformationRv.adapter = infoRVAdapter
+    }
 
+    override fun onGetProductDetailFailure(Code: Int, message: String) {
+        Log.d("PRODUCT-DETAIL", "로딩 실패")
+    }
+
+    private fun getProductInfo(result: ProductDetailResult): MutableList<MutableList<String>> {
         var productInfo = mutableListOf(
             mutableListOf("제조사", result.brand),
             mutableListOf("등록일", result.date),
@@ -134,13 +154,15 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                 productInfo.removeAt(i)
             }
         }
-//        Log.d("TEST", productInfo.toString())
-
-        infoRVAdapter = InformationRVAdapter(this, productInfo)
-        binding.productDetailInformationRv.adapter = infoRVAdapter
+        return productInfo
     }
 
-    override fun onGetProductDetailFailure(Code: Int, message: String) {
-        Log.d("PRODUCT-DETAIL", "로딩 실패")
+    override fun onGetLikeSuccess(Code: Int, result: String) {
+        Log.d("LIKE", result)
+        showToast(result)
+    }
+
+    override fun onGetLikeFailure(Code: Int, message: String) {
+        Log.d("LIKE", "통신 실패")
     }
 }

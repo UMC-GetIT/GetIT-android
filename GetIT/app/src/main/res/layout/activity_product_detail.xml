@@ -145,33 +145,19 @@
                 android:textColor="@color/normal"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/product_detail_like_btn_frame_layout"
+                app:layout_constraintEnd_toStartOf="@+id/product_detail_like_btn_ib"
                 app:layout_constraintTop_toBottomOf="@id/product_detail_product_type_tv" />
 
-            <FrameLayout
-                android:id="@+id/product_detail_like_btn_frame_layout"
+            <ImageButton
+                android:id="@+id/product_detail_like_btn_ib"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_like_button_off"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="14dp"
                 app:layout_constraintStart_toEndOf="@+id/product_detail_product_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/product_detail_product_name_tv"
-                app:layout_constraintEnd_toEndOf="parent">
-                <ImageButton
-                    android:id="@+id/product_detail_like_btn_off_ib"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_like_button_off"
-                    android:background="@android:color/transparent"
-                    android:layout_marginEnd="14dp"/>
-
-                <ImageButton
-                    android:id="@+id/product_detail_like_btn_on_ib"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_like_button_on"
-                    android:background="@android:color/transparent"
-                    android:layout_marginEnd="14dp"
-                    android:visibility="gone"/>
-            </FrameLayout>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/product_detail_product_price_tv"

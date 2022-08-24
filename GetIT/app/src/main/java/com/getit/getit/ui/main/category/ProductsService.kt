@@ -1,6 +1,8 @@
 package com.getit.getit.ui.main.category
 
 import android.util.Log
+import com.getit.getit.ui.main.category.detail.LikeResponse
+import com.getit.getit.ui.main.category.detail.LikeView
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailView
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
@@ -10,10 +12,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoryService {
+class ProductsService {
     private lateinit var categorySearchView: CategorySearchView
     private lateinit var recommendView: RecommendView
     private lateinit var productDetailView: ProductDetailView
+    private lateinit var likeView: LikeView
 
     fun setSearchView(categorySearchView: CategorySearchView){
         this.categorySearchView = categorySearchView
@@ -27,8 +30,12 @@ class CategoryService {
         this.productDetailView = productDetailView
     }
 
+    fun setLike(likeView: LikeView) {
+        this.likeView = likeView
+    }
+
     fun getCategory(type: String, requirement: String){
-        val categoryService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val categoryService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         categorySearchView.onGetCategoryLoading()
 
@@ -55,7 +62,7 @@ class CategoryService {
     }
 
     fun getRecommend(){
-        val recommendService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val recommendService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         recommendService.getRecommend().enqueue(object: Callback<RecommendResponse>{
             override fun onResponse(call: Call<RecommendResponse>, response: Response<RecommendResponse>) {
@@ -76,7 +83,7 @@ class CategoryService {
     }
 
     fun getproductDetail(productIdx: String) {
-        val productDetailService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val productDetailService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         productDetailService.getProductDetail(productIdx).enqueue(object: Callback<ProductDetailResponse>{
             override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
@@ -94,5 +101,26 @@ class CategoryService {
             }
         })
         Log.d("PRODUCT-DETAIL", "HELLO")
+    }
+
+    fun like(productId: String) {
+        val likeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+
+        likeService.like(productId).enqueue(object: Callback<LikeResponse> {
+            override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val likeResponse: LikeResponse = response.body()!!
+
+                    when (val code = likeResponse.code){
+                        1000 -> likeView.onGetLikeSuccess(code, likeResponse.result)
+                        else -> likeView.onGetLikeFailure(code, likeResponse.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<LikeResponse>, t: Throwable) {
+                Log.d("LIKE/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("LIKE", "HELLO")
     }
 }
