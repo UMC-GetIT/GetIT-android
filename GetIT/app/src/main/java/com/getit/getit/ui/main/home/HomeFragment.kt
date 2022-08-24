@@ -104,4 +104,31 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         showActionBar()
         setActionBarTitle("")
     }
+
+    override fun setMainRecommendProducts(code: Int, result: MainRecommendResult) {
+        when(result.topic){
+            "최신 노트북" -> binding.recommendQuestionTv.text = "신상 노트북에 눈돌아가는 중 +_+"
+            "무선 이어폰" -> binding.recommendQuestionTv.text = "설마 아직도 줄 이어폰 쓰세요?"
+            "스피커" -> binding.recommendQuestionTv.text = "감성 있게 노래 듣고 싶을땐..."
+            "최신 핸드폰" -> binding.recommendQuestionTv.text = "요즘 인싸들은 이런 핸드폰 쓴다면서요?"
+            "게이밍 PC" ->  binding.recommendQuestionTv.text = "게임은 장비빨이죠"
+       }
+        Glide.with(this).load(result.products[0].imageUrl).into(binding.recommendAnswer1Iv)
+        Glide.with(this).load(result.products[1].imageUrl).into(binding.recommendAnswer2Iv)
+        Glide.with(this).load(result.products[2].imageUrl).into(binding.recommendAnswer3Iv)
+        Glide.with(this).load(result.products[3].imageUrl).into(binding.recommendAnswer4Iv)
+
+        Log.d("테스트",result.products[0].imageUrl)
+
+        binding.recommendAnswer1Tv.text = arrangeName(result.products[0].name)
+        binding.recommendAnswer2Tv.text = arrangeName(result.products[1].name)
+        binding.recommendAnswer3Tv.text = arrangeName(result.products[2].name)
+        binding.recommendAnswer4Tv.text = arrangeName(result.products[3].name)
+        // 상품 클릭
+
+    }
+
+    private fun arrangeName(name : String) : String{
+        return name.replace("<b>", "").replace("</b>","")
+    }
 }

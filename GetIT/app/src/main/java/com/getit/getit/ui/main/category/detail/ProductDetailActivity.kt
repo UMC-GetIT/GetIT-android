@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
-import com.getit.getit.ui.main.category.Products
+import com.getit.getit.data.Products
 import com.getit.getit.ui.main.category.ReviewRVAdatpter
 import com.getit.getit.ui.main.category.Reviews
 import com.google.gson.Gson

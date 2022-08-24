@@ -71,15 +71,22 @@ class AuthService {
     }
 
     fun autoLogin(tokens: Tokens){
+        Log.d("테스트 accessToken", tokens.accessToken);
+        Log.d("테스트 refreshToken", tokens.refreshToken);
         val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
         authService.autoLogin(tokens)
             .enqueue(object: Callback<AuthResponse> {
                 override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                    val resp: AuthResponse = response.body()!!
+                    Log.d("테스트", response.toString());
+                    if(response.body() == null){
+                        loginView.onAutoLoginFailure()
+                    }else {
 
-                    when(val code = resp.code){
-                        1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                        else -> loginView.onAutoLoginFailure()
+                        val resp: AuthResponse = response.body()!!
+                        when (val code = resp.code) {
+                            1000 -> loginView.onLoginSuccess(code, resp.result!!)
+                            else -> loginView.onAutoLoginFailure()
+                        }
                     }
                 }
 

@@ -40,11 +40,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
         if(getJwt() != null){
             loadingDialog.show();
-            val authService = AuthService()
-            authService.setLoginView(this)
-
-            authService.autoLogin(Tokens(getJwt().toString(),
-                ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
+            autoLoginMedium();
 
         }
     }
@@ -110,5 +106,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
     override fun initAfterBinding() {
         loadingDialog = LoadingDialog(this);
+    }
+
+    fun autoLoginMedium(){
+        val authService = AuthService()
+        authService.setLoginView(this)
+
+        Log.d("테스트 엑세", getJwt().toString())
+        Log.d("테스트 리프", ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString())
+
+        authService.autoLogin(Tokens(getJwt().toString(),
+            ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
     }
 }
