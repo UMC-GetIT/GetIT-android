@@ -57,13 +57,4 @@ class SearchProductRVAdapter(val context: Context, val result: List<SearchProduc
         val name: TextView = binding.itemSearchProductNameTv
         val price: TextView = binding.itemSearchProductPriceTv
     }
-
-    interface ProductClickListener {
-        fun onProductClick(productId: Int)
-    }
-    private lateinit var productClickListener: ProductClickListener
-
-    fun setProductClickListener(itemClickListener: ProductClickListener) {
-        productClickListener = itemClickListener
-    }
 }
