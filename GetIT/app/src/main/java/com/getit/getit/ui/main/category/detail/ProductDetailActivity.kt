@@ -250,6 +250,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     override fun onCreateReviewSuccess(Code: Int, result: String) {
         Log.d("CREATE-REVIEW", "전송 성공")
+        showToast(result)
         getReviews(productId)
         binding.productDetailReviewInputEt.text = null
     }
