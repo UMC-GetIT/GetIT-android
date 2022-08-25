@@ -10,7 +10,7 @@ data class SearchProductResponse (
 )
 data class SearchProductResult(
     @SerializedName("title") val title: String,
-    @SerializedName("link") val link: String,
+    @SerializedName("productId") val productId: String,
     @SerializedName("image") val image: String,
     @SerializedName("lprice") val lprice : Int
 )

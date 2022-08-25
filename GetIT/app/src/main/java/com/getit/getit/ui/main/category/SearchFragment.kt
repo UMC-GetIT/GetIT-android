@@ -18,7 +18,14 @@ import com.google.gson.Gson
 
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate), CategorySearchView {
     private lateinit var searchRVAdatpter: SearchRVAdapter
-    var seletedCategory = "laptop"
+
+    lateinit var laptop : String
+    lateinit var phone : String
+    lateinit var tablet : String
+    lateinit var speaker : String
+    lateinit var desktop : String
+
+    lateinit var seletedCategory : String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +38,14 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     override fun initAfterBinding() {
+        laptop = getString(R.string.laptop)
+        phone = getString(R.string.phone)
+        tablet = getString(R.string.tablet)
+        speaker = getString(R.string.speaker)
+        desktop = getString(R.string.desktop)
+
+        seletedCategory = laptop
+
         onLaptopBtn()
 
         binding.searchBtnConstraint.setOnClickListener{
@@ -43,31 +58,36 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
              offAllCategoryBtn() // 모든 버튼 초기화 및 비활성화
              onLaptopBtn()
              offAllDetailCategoryBtn()  // 다른 제품 세부 카테고리 초기화 기능
-             seletedCategory = "laptop"
+             seletedCategory = laptop
+             getCategory(getString(R.string.laptop), getString(R.string.string_null))
          }
         binding.phoneCardView.setOnClickListener {
             offAllCategoryBtn()
             onPhoneBtn()
             offAllDetailCategoryBtn()
-            seletedCategory = "phone"
+            seletedCategory = phone
+            getCategory(getString(R.string.phone), getString(R.string.string_null))
         }
         binding.tabletCardView.setOnClickListener {
             offAllCategoryBtn()
             onTabletBtn()
             offAllDetailCategoryBtn()
-            seletedCategory = "tablet"
+            seletedCategory = tablet
+            getCategory(getString(R.string.tablet), getString(R.string.string_null))
         }
         binding.speakerCardView.setOnClickListener {
             offAllCategoryBtn()
             onSpeakerBtn()
             offAllDetailCategoryBtn()
-            seletedCategory = "speaker"
+            seletedCategory = speaker
+            getCategory(getString(R.string.speaker), getString(R.string.string_null))
         }
         binding.desktopCardView.setOnClickListener {
             offAllCategoryBtn()
             onDesktopBtn()
             offAllDetailCategoryBtn()
-            seletedCategory = "desktop"
+            seletedCategory = desktop
+            getCategory(getString(R.string.desktop), getString(R.string.string_null))
         }
 
         // 노트북 카테고리
@@ -75,7 +95,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
             selectScreensize()
         }
         binding.searchDetailCategoryLaptopPriceBtn.setOnClickListener {
-            selectHighPrice("laptop")
+            selectHighPrice(laptop)
         }
         binding.searchDetailCategoryLaptopBrandBtn.setOnClickListener {
             selectBrand()
@@ -92,33 +112,33 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         // 휴대폰 카테고리
         binding.searchDetailCategoryPhonePriceBtn.setOnClickListener {
-            selectHighPrice("phone")
+            selectHighPrice(phone)
         }
         binding.searchDetailCategoryPhoneProtocolBtn.setOnClickListener {
             selectProtocol()
         }
         binding.searchDetailCategoryPhoneInternalStorageBtn.setOnClickListener {
-            selectMemory("phone")
+            selectMemory(phone)
         }
         binding.searchDetailCategoryPhoneRamBtn.setOnClickListener {
-            selectLowRam("phone")
+            selectLowRam(phone)
         }
         binding.searchDetailCategoryPhoneBrandBtn.setOnClickListener {
-            selectFewBrand("phone")
+            selectFewBrand(phone)
         }
 
         // 태블릿 카테고리
         binding.searchDetailTabletCategoryPriceBtn.setOnClickListener {
-            selectHighPrice("tablet")
+            selectHighPrice(tablet)
         }
         binding.searchDetailTabletCategoryStorageCapacityBtn.setOnClickListener {
-            selectMemory("tablet")
+            selectMemory(tablet)
         }
         binding.searchDetailTabletCategoryRamBtn.setOnClickListener {
-            selectLowRam("tablet")
+            selectLowRam(tablet)
         }
         binding.searchDetailTabletCategoryBrandBtn.setOnClickListener {
-            selectFewBrand("tablet")
+            selectFewBrand(tablet)
         }
         binding.searchDetailTabletCategoryCpuBtn.setOnClickListener {
             selectTabletCpu()
@@ -140,7 +160,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
         // 데스크탑 카테고리
         binding.searchDetailCategoryDesktopPriceBtn.setOnClickListener {
-            selectHighPrice("desktop")
+            selectHighPrice(desktop)
         }
         binding.searchDetailCategoryDesktopBrandBtn.setOnClickListener {
             selectDesktopBrand()
@@ -158,7 +178,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     override fun onStart() {
         super.onStart()
-        getCategory()
+        getCategory(getString(R.string.laptop), getString(R.string.string_null))
     }
 
     private fun initRecyclerView(result: CategoryResult) {
@@ -173,24 +193,64 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 //        })
     }
 
-    private fun getCategory() {
+    private fun getCategory(type: String, requirement: String) {
         val categoryService = CategoryService()
         categoryService.setSearchView(this)
-        categoryService.getCategory(getString(R.string.laptop), getString(R.string.string_null))
+        categoryService.getCategory(type, requirement)
     }
 
     private fun search() {
         lateinit var requirement: String
         when(seletedCategory){
-            "laptop" -> {
+            laptop -> {
                 requirement = binding.searchDetailCategoryLaptopScreensizeBtn.text.toString() + "," +
-                        binding.searchDetailCategoryLaptopPriceBtn.text.toString().replace(" ","") + "," +
+                        binding.searchDetailCategoryLaptopPriceBtn.text.toString() + "," +
                         binding.searchDetailCategoryLaptopBrandBtn.text.toString() + "," +
                         binding.searchDetailCategoryLaptopCpuBtn.text.toString() + "," +
-                        binding.searchDetailCategoryLaptopWeightBtn.text.toString().replace(" ","")
+                        binding.searchDetailCategoryLaptopWeightBtn.text.toString()
+            }
+            phone -> {
+                requirement = binding.searchDetailCategoryPhonePriceBtn.text.toString() + "," +
+                        binding.searchDetailCategoryPhoneBrandBtn.text.toString() + "," +
+                        binding.searchDetailCategoryPhoneInternalStorageBtn.text.toString() + "," +
+                        binding.searchDetailCategoryPhoneRamBtn.text.toString() + "," +
+                        binding.searchDetailCategoryPhoneProtocolBtn.text.toString()
+            }
+            tablet -> {
+                requirement = binding.searchDetailTabletCategoryScreensizeBtn.text.toString() + "," +
+                        binding.searchDetailTabletCategoryPriceBtn.text.toString() + "," +
+                        binding.searchDetailTabletCategoryCpuBtn.text.toString() + "," +
+                        binding.searchDetailTabletCategoryRamBtn.text.toString() + "," +
+                        binding.searchDetailTabletCategoryStorageCapacityBtn.text.toString()
+            }
+            speaker -> {
+                requirement = binding.searchDetailCategorySpeakerPriceBtn.text.toString() + "," +
+                        binding.searchDetailCategoryPhoneBrandBtn.text.toString() + "," +
+                        binding.searchDetailCategorySpeakerWattOutputBtn.text.toString()
+            }
+            desktop -> {
+                requirement = binding.searchDetailCategoryDesktopScreensizeBtn.text.toString() + "," +
+                        binding.searchDetailCategoryDesktopPriceBtn.text.toString() + "," +
+                        binding.searchDetailCategoryDesktopBrandBtn.text.toString() + "," +
+                        binding.searchDetailCategoryDesktopCpuBtn.text.toString() + "," +
+                        binding.searchDetailCategoryDesktopRamBtn.text.toString()
             }
         }
-        Log.d("TEST", requirement)
+        requirement = cleanUnselectedKeyword(requirement)
+        getCategory(seletedCategory, requirement)
+    }
+
+    private fun cleanUnselectedKeyword(requirement: String): String {
+        var result = requirement
+        var categoryList : List<String> = listOf(getString(R.string.screen_size), getString(R.string.price)
+            , getString(R.string.brand), getString(R.string.cpu), getString(R.string.ram), getString(R.string.weight)
+            , getString(R.string.storage_capacity), getString(R.string.protocol), getString(R.string.watt_output))
+
+        for (keyword in categoryList) {
+            result =  result.replace(keyword, getString(R.string.string_null))
+        }
+        result = result.replace(" ","")
+        return result
     }
 
     private fun onDetailCategoryButton(btn: Button) {
@@ -285,19 +345,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 else -> getString(R.string.price_200_up)
             }
             when (product) {
-                "laptop" -> {
+                laptop -> {
                     binding.searchDetailCategoryLaptopPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryLaptopPriceBtn)
                 }
-                "phone" -> {
+                phone -> {
                     binding.searchDetailCategoryPhonePriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryPhonePriceBtn)
                 }
-                "tablet" -> {
+                tablet -> {
                     binding.searchDetailTabletCategoryPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailTabletCategoryPriceBtn)
                 }
-                "desktop" -> {
+                desktop -> {
                     binding.searchDetailCategoryDesktopPriceBtn.text = price
                     onDetailCategoryButton(binding.searchDetailCategoryDesktopPriceBtn)
                 }
@@ -398,11 +458,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 else -> getString(R.string.ect)
             }
             when (product) {
-                "phone" -> {
+                phone -> {
                     binding.searchDetailCategoryPhoneInternalStorageBtn.text = memory
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneInternalStorageBtn)
                     }
-                "tablet" ->{
+                tablet ->{
                     binding.searchDetailTabletCategoryStorageCapacityBtn.text = memory
                     onDetailCategoryButton(binding.searchDetailTabletCategoryStorageCapacityBtn)
                     }
@@ -420,11 +480,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 else -> getString(R.string.ect)
             }
             when (product) {
-                "phone" -> {
+                phone -> {
                     binding.searchDetailCategoryPhoneRamBtn.text = ram
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneRamBtn)
                 }
-                "tablet" ->{
+                tablet ->{
                     binding.searchDetailTabletCategoryRamBtn.text = ram
                     onDetailCategoryButton(binding.searchDetailTabletCategoryRamBtn)
                 }
@@ -455,11 +515,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 else -> getString(R.string.ect)
             }
             when (product) {
-                "phone" -> {
+                phone -> {
                     binding.searchDetailCategoryPhoneBrandBtn.text = brand
                     onDetailCategoryButton(binding.searchDetailCategoryPhoneBrandBtn)
                 }
-                "tablet" ->{
+                tablet ->{
                     binding.searchDetailTabletCategoryBrandBtn.text = brand
                     onDetailCategoryButton(binding.searchDetailTabletCategoryBrandBtn)
                 }

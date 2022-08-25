@@ -11,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.getit.getit.databinding.FragmentSettingsBinding
 import com.getit.getit.ui.login.LoginActivity
-import com.getit.getit.ui.main.mypage.like.LikeApiService
 import com.getit.getit.ui.main.mypage.like.LikeProducts
 import com.getit.getit.ui.main.mypage.settings.withdrawal.Withdrawal
 
