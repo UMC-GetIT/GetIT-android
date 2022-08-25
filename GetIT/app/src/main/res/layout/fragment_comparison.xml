@@ -81,6 +81,7 @@
         android:drawableStart="@drawable/ic_baseline_compare_arrows_off"
         android:paddingStart="100dp"
         android:paddingEnd="100dp"
+        android:clickable="false"
         android:text="비교하기"
         android:textColor="@color/outline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,6 +102,17 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/comparison_button" />
+
+    <TextView
+        android:id="@+id/like_no_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="좋아요한 상품이 없습니다."
+        app:layout_constraintTop_toBottomOf="@id/like_products_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/like_products_rv"
