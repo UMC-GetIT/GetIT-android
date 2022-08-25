@@ -11,8 +11,12 @@ import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.category.*
+import com.getit.getit.ui.main.category.detail.Like.IsLike
+import com.getit.getit.ui.main.category.detail.Like.IsLikeView
+import com.getit.getit.ui.main.category.detail.Like.LikeView
 
-class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView, LikeView {
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView,
+    IsLikeView, LikeView {
     private lateinit var productId: String
     private lateinit var sideImageRVAdapter: SideImageRVAdapter
     private lateinit var infoRVAdapter: InformationRVAdapter
@@ -23,21 +27,24 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.backspaceBtn.setOnClickListener {
             backspace()
         }
-//        isLiked = isLikedProduct()
         setInit()
         setOnClickListeners()
     }
 
     // 좋아요 클릭/해제
     private fun setLikeProduct(productId: String) {
+        Log.d("TEST", "좋아요 클릭")
         val likeService = ProductsService()
         likeService.setLike(this)
         likeService.like(productId)
     }
 
-//    // db 좋아요 여부
-//    private fun isLikedProduct(productId: String): Boolean {
-//    }
+    // db 좋아요 여부
+    private fun isLikedProduct(productId: String) {
+        val isLikeService = ProductsService()
+        isLikeService.setIsLike(this)
+        isLikeService.isLike(productId)
+    }
 
     private fun setOnClickListeners() {
         binding.productDetailLikeBtnIb.setOnClickListener {
@@ -54,12 +61,16 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
    private fun setInit() {
         if (intent.hasExtra("productId")) {
             productId = intent.getStringExtra("productId").toString()
+            binding.productDetailProductNameTv.text = intent.getStringExtra("productName").toString()
             binding.productDetailProductPriceTv.text = intent.getStringExtra("price").toString()
+            Log.d("TEST", "$productId")
             val imageUrl = intent.getStringExtra("imageUrl").toString()
             if (imageUrl == "" || imageUrl == null) {
             } else {
                 Glide.with(this).load(imageUrl).into(binding.productDetailImgIv)
             }
+            getProductDetail(productId)
+            isLikedProduct(productId)
         }
 
         if (isLiked) {
@@ -102,7 +113,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
-        binding.productDetailProductNameTv.text = result.name
         binding.productDetailProductTypeTv.text = result.type
         binding.productDetailPurchaseBtn.setOnClickListener {
             var purchaseLink = result.link
@@ -163,6 +173,15 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetLikeFailure(Code: Int, message: String) {
-        Log.d("LIKE", "통신 실패")
+        Log.d("LIKE", "$message")
+    }
+
+    override fun onIsLikeSuccess(Code: Int, result: IsLike) {
+        isLiked = result.isLike
+        Log.d("TEST", "기존 좋아요 여부: $isLiked")
+    }
+
+    override fun onIsLikeFailure(Code: Int, message: String) {
+        Log.d("IS-LIKE", "$message")
     }
 }

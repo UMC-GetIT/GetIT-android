@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.category.detail
+package com.getit.getit.ui.main.category.detail.Like
 
 import com.google.gson.annotations.SerializedName
 

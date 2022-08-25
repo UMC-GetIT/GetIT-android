@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.category
 
-import com.getit.getit.ui.main.category.detail.LikeResponse
+import com.getit.getit.ui.main.category.detail.Like.IsLikeResponse
+import com.getit.getit.ui.main.category.detail.Like.LikeResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
 import retrofit2.Call
@@ -20,6 +21,11 @@ interface ProductsRetrofitInterface {
     fun getProductDetail(
         @Path("productIdx") type: String
     ): Call<ProductDetailResponse>
+
+    @GET("/products/isLike")
+    fun isLike(
+        @Query("productId") type: String
+    ): Call<IsLikeResponse>
 
     @POST("/products/setLike")
     fun like(@Body productId : String): Call<LikeResponse>

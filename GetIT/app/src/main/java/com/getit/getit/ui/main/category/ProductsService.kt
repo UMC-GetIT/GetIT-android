@@ -1,8 +1,10 @@
 package com.getit.getit.ui.main.category
 
 import android.util.Log
-import com.getit.getit.ui.main.category.detail.LikeResponse
-import com.getit.getit.ui.main.category.detail.LikeView
+import com.getit.getit.ui.main.category.detail.Like.IsLikeResponse
+import com.getit.getit.ui.main.category.detail.Like.IsLikeView
+import com.getit.getit.ui.main.category.detail.Like.LikeResponse
+import com.getit.getit.ui.main.category.detail.Like.LikeView
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailView
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
@@ -17,6 +19,7 @@ class ProductsService {
     private lateinit var recommendView: RecommendView
     private lateinit var productDetailView: ProductDetailView
     private lateinit var likeView: LikeView
+    private lateinit var isLikeView: IsLikeView
 
     fun setSearchView(categorySearchView: CategorySearchView){
         this.categorySearchView = categorySearchView
@@ -32,6 +35,10 @@ class ProductsService {
 
     fun setLike(likeView: LikeView) {
         this.likeView = likeView
+    }
+
+    fun setIsLike(isLikeView: IsLikeView) {
+        this.isLikeView = isLikeView
     }
 
     fun getCategory(type: String, requirement: String){
@@ -122,5 +129,29 @@ class ProductsService {
             }
         })
         Log.d("LIKE", "HELLO")
+    }
+
+    fun isLike(productId: String) {
+        val isLikeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+
+        isLikeService.isLike(productId).enqueue(object: Callback<IsLikeResponse> {
+            override fun onResponse(call: Call<IsLikeResponse>, response: Response<IsLikeResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val isLikeResponse: IsLikeResponse = response.body()!!
+
+                    when (val code = isLikeResponse.code){
+                        1000 -> isLikeView.onIsLikeSuccess(code, isLikeResponse.result)
+                        else -> {
+                            isLikeView.onIsLikeFailure(code, isLikeResponse.message)
+                            Log.d("IsLIKE", "$code")
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<IsLikeResponse>, t: Throwable) {
+                Log.d("IsLIKE/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("IsLIKE", "HELLO")
     }
 }
