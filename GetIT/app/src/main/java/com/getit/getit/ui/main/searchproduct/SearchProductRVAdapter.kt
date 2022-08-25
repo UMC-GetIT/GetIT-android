@@ -40,6 +40,7 @@ class SearchProductRVAdapter(val context: Context, val result: List<SearchProduc
         holder.binding.itemProduct.setOnClickListener{
             val intent = Intent(context, ProductDetailActivity::class.java)
             intent.putExtra("productId", result[position].productId)
+            intent.putExtra("productName", result[position].title)
             intent.putExtra("price", strPrice)
             intent.putExtra("imageUrl", result[position].image)
             startActivity(holder.itemView.context, intent, null)

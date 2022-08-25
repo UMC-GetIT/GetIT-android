@@ -19,5 +19,6 @@ data class MainRecommendResult(
 data class MainRecommendProducts(
     @SerializedName("imgUrl") val imageUrl: String,
     @SerializedName("name") val name: String,
+    @SerializedName("lprice") val lprice: String,
     @SerializedName("productId") val productId: String
 )
