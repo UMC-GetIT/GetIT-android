@@ -1,14 +1,18 @@
 package com.getit.getit.ui.main.searchproduct
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ItemSearchBinding
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import java.text.DecimalFormat
 
 class SearchProductRVAdapter(val context: Context, val result: List<SearchProductResult>) : RecyclerView.Adapter<SearchProductRVAdapter.ViewHolder>(){
@@ -32,6 +36,14 @@ class SearchProductRVAdapter(val context: Context, val result: List<SearchProduc
         val df = DecimalFormat("###,###")
         val strPrice = df.format(price) + " 원"
         holder.price.text = strPrice
+
+        holder.binding.itemProduct.setOnClickListener{
+            val intent = Intent(context, ProductDetailActivity::class.java)
+            intent.putExtra("productId", result[position].productId)
+            intent.putExtra("price", strPrice)
+            intent.putExtra("imageUrl", result[position].image)
+            startActivity(holder.itemView.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,14 +56,5 @@ class SearchProductRVAdapter(val context: Context, val result: List<SearchProduc
         val productImg: ImageView = binding.itemSearchImgIv
         val name: TextView = binding.itemSearchProductNameTv
         val price: TextView = binding.itemSearchProductPriceTv
-    }
-
-    interface ProductClickListener {
-        fun onProductClick(productId: Int)
-    }
-    private lateinit var productClickListener: ProductClickListener
-
-    fun setProductClickListener(itemClickListener: ProductClickListener) {
-        productClickListener = itemClickListener
     }
 }

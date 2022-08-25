@@ -1,11 +1,12 @@
 package com.getit.getit.ui.main.category.detail
 
-import android.os.Bundle
+import android.content.Intent
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.getit.getit.R
+import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.data.Products
@@ -13,36 +14,35 @@ import com.getit.getit.ui.main.category.ReviewRVAdatpter
 import com.getit.getit.ui.main.category.Reviews
 import com.google.gson.Gson
 import java.text.DecimalFormat
+import com.getit.getit.ui.main.category.*
 
-class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate) {
-    private var gson: Gson = Gson()
+class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {
+    private lateinit var productId: String
+    private lateinit var sideImageRVAdapter: SideImageRVAdapter
+    private lateinit var infoRVAdapter: InformationRVAdapter
 
-    override fun initAfterBinding() {}
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun initAfterBinding() {
         binding.backspaceBtn.setOnClickListener {
             backspace()
         }
 
-        val intent = intent
-        val productJson = intent.getStringExtra("product")
-        val product = gson.fromJson(productJson, Products::class.java)
-        setInit(product)
-
-
-        var reviewDatas = ArrayList<Reviews>()
-        // 더미데이터
-        reviewDatas.apply {
-            add(Reviews(R.drawable.dummy_review_img ,"재니퍼", "역대급 성능입니다! 웬만한 작업으로는 팬도 안 돌아가서 소음도 느껴지지 않네요. 강추합니다! 역대급 성능입니다! 웬만한 작업으로는 팬도 안 돌아가서 소음도 느껴지지 않네요. 강추합니다!"))
-            add(Reviews(R.drawable.dummy_review_img ,"지온", "저는 포토샵이나 파이널컷 프로 정도 살짝 건드리는 수준인데 약간 오버스펙인 면이 없지 않아있지만 만족합니다."))
-            add(Reviews(R.drawable.dummy_review_img ,"설기", "상자 뜯는 재미가 있어서 좋았습니다. 성능이 상상을 초월하네요 기대하고 구매했는데 잘 사용하겠습니다."))
+        if (intent.hasExtra("productId")) {
+            productId = intent.getStringExtra("productId").toString()
+            binding.productDetailProductPriceTv.text = intent.getStringExtra("price").toString()
+            val imageUrl = intent.getStringExtra("imageUrl").toString()
+            if (imageUrl == "" || imageUrl == null) {
+            }
+            else {
+                Glide.with(this).load(imageUrl).into(binding.productDetailImgIv)
+            }
         }
 
-        val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)
-        binding.productDetailReviewRv.adapter = reviewRVAdatpter
-        binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        getProductDetail(productId)
+
+//        var reviewDatas = ArrayList<Reviews>()
+//        val reviewRVAdatpter = ReviewRVAdatpter(reviewDatas)
+//        binding.productDetailReviewRv.adapter = reviewRVAdatpter
+//        binding.productDetailReviewRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         binding.productDetailLikeBtnOffIb.setOnClickListener {
             likeOn()
@@ -68,6 +68,13 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         })
     }
 
+    private fun getProductDetail(id: String) {
+        val categoryService = CategoryService()
+        categoryService.setProductDetailView(this)
+        categoryService.getproductDetail(id)
+    }
+
+
     private fun likeOn() {
         binding.productDetailLikeBtnOnIb.visibility = View.VISIBLE
         binding.productDetailLikeBtnOffIb.visibility = View.INVISIBLE
@@ -77,13 +84,68 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.productDetailLikeBtnOffIb.visibility = View.VISIBLE
     }
 
-    private fun setInit(product: Products) {
-        binding.productDetailImgIv.setImageResource(product.coverImg!!)
-        binding.productDetailProductNameTv.text = product.name
-        // 천 단위 콤마 넣기
-        var price = product.price
-        val dec = DecimalFormat("#,###")
-        binding.productDetailProductPriceTv.text = dec.format(price).toString() + "원"
+    override fun onGetProductDetailLoading() {
+        Log.d("PRODUCT-DETAIL", "로딩중")
+    }
 
+    override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
+        binding.productDetailProductNameTv.text = result.name
+        binding.productDetailProductTypeTv.text = result.type
+        binding.productDetailPurchaseBtn.setOnClickListener {
+            var purchaseLink = result.link
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(purchaseLink)))
+        }
+
+        // 이미지 리스트
+        val images = result.photolist
+        Log.d("PRODUCT-DETAIL", images.toString())
+        sideImageRVAdapter = SideImageRVAdapter(this, images)
+        binding.productDetailSideImagesRv.adapter = sideImageRVAdapter
+
+//        sideImageRVAdapter.setMyItemClickListener(object : SideImageRVAdapter.MyItemClickListener{
+//            override fun onItemClick(imageUrl: String) {
+//                Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
+//            }
+//        })
+
+        // 상세 정보
+        // 2차원 리스트에 index 0 = title, index 1 = content로 넣기
+//        var infoTitle = mutableListOf("제조사", "등록일", "CPU", "CPU 속도", "코어 종류",
+//            "화면 크기", "RAM", "저장용량", "통신규격", "운영체제",
+//            "SSD", "HDD", "출력", "단자 종류")
+//        var infoContent = mutableListOf(result.brand, result.date, result.cpu, result.cpurate, result.core,
+//            result.size, result.ram, result.innermemory, result.communication, result.os,
+//            result.ssd, result.hdd, result.output, result.terminal)
+
+        var productInfo = mutableListOf(
+            mutableListOf("제조사", result.brand),
+            mutableListOf("등록일", result.date),
+            mutableListOf("CPU", result.cpu),
+            mutableListOf("CPU 속도", result.cpurate),
+            mutableListOf("코어 종류", result.core),
+            mutableListOf("화면 크기", result.size),
+            mutableListOf("RAM", result.ram),
+            mutableListOf("저장용량", result.innermemory),
+            mutableListOf("통신규격", result.communication),
+            mutableListOf("운영체제", result.os),
+            mutableListOf("SSD", result.ssd),
+            mutableListOf("HDD", result.hdd),
+            mutableListOf("출력", result.output),
+            mutableListOf("단자 종류", result.terminal)
+        )
+
+        for (i in productInfo.size - 1 downTo 0) {
+            if (productInfo[i][1] == "미상") {
+                productInfo.removeAt(i)
+            }
+        }
+//        Log.d("TEST", productInfo.toString())
+
+        infoRVAdapter = InformationRVAdapter(this, productInfo)
+        binding.productDetailInformationRv.adapter = infoRVAdapter
+    }
+
+    override fun onGetProductDetailFailure(Code: Int, message: String) {
+        Log.d("PRODUCT-DETAIL", "로딩 실패")
     }
 }

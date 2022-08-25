@@ -23,7 +23,7 @@ class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>(ActivityS
 
     private fun getProducts(keyword: String) {
         val searchProductService = SearchProductService()
-        searchProductService.setSearchProductView(this) // <- 문제
+        searchProductService.setSearchProductView(this)
         searchProductService.getSearchProducts(keyword)
     }
 
