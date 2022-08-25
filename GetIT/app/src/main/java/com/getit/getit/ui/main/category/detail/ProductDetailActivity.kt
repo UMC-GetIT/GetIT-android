@@ -56,9 +56,11 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.productDetailLikeBtnIb.setOnClickListener {
             if(isLiked) {
                 binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
+                setLikeProduct(productId)
             }
             else {
                 binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
+                setLikeProduct(productId)
             }
             setLikeProduct(productId)
         }

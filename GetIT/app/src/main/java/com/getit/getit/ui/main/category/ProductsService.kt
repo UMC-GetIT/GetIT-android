@@ -10,7 +10,7 @@ import com.getit.getit.ui.main.category.detail.ProductDetailView
 import com.getit.getit.ui.main.category.detail.review.*
 import com.getit.getit.ui.main.searchproduct.RecommendResponse
 import com.getit.getit.ui.main.searchproduct.RecommendView
-import com.getit.getit.utils.getRetrofit
+import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +53,7 @@ class ProductsService {
     }
 
     fun getCategory(type: String, requirement: String){
-        val categoryService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val categoryService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         categorySearchView.onGetCategoryLoading()
 
@@ -80,7 +80,7 @@ class ProductsService {
     }
 
     fun getRecommend(){
-        val recommendService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val recommendService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         recommendService.getRecommend().enqueue(object: Callback<RecommendResponse>{
             override fun onResponse(call: Call<RecommendResponse>, response: Response<RecommendResponse>) {
@@ -101,7 +101,7 @@ class ProductsService {
     }
 
     fun getproductDetail(productIdx: String) {
-        val productDetailService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val productDetailService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         productDetailService.getProductDetail(productIdx).enqueue(object: Callback<ProductDetailResponse>{
             override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
@@ -122,7 +122,7 @@ class ProductsService {
     }
 
     fun like(productId: String) {
-        val likeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val likeService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         likeService.like(productId).enqueue(object: Callback<LikeResponse> {
             override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
@@ -143,7 +143,7 @@ class ProductsService {
     }
 
     fun isLike(productId: String) {
-        val isLikeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val isLikeService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         isLikeService.isLike(productId).enqueue(object: Callback<IsLikeResponse> {
             override fun onResponse(call: Call<IsLikeResponse>, response: Response<IsLikeResponse>) {
@@ -168,7 +168,7 @@ class ProductsService {
     }
 
     fun getReviews(productIdx: String) {
-        val reviewListService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val reviewListService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         reviewListService.getReviews(productIdx).enqueue(object: Callback<ReviewListResponse>{
             override fun onResponse(call: Call<ReviewListResponse>, response: Response<ReviewListResponse>) {
@@ -190,7 +190,7 @@ class ProductsService {
     }
 
     fun createReview(productId: String, review: String) {
-        val createReviewService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+        val createReviewService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
         createReviewService.createReview(productId, review).enqueue(object: Callback<CreateReviewResponse>{
             override fun onResponse(call: Call<CreateReviewResponse>, response: Response<CreateReviewResponse>) {

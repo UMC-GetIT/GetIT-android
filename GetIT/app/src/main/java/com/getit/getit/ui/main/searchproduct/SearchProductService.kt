@@ -1,7 +1,7 @@
 package com.getit.getit.ui.main.searchproduct
 
 import android.util.Log
-import com.getit.getit.utils.getRetrofit
+import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,7 +14,7 @@ class SearchProductService {
     }
 
     fun getSearchProducts(keyword: String){
-        val seachProductService = getRetrofit().create(SearchProductRetrofitInterface::class.java)
+        val seachProductService = ApplicationClass.retrofit.create(SearchProductRetrofitInterface::class.java)
 
         searchProductView.onGetSearchProductLoading()
 
