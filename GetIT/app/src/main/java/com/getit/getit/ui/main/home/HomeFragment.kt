@@ -16,12 +16,14 @@ import com.getit.getit.R
 import com.getit.getit.databinding.FragmentHomeBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.MainActivity
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import com.getit.getit.ui.main.home.data.ItTermIcon
 import com.getit.getit.ui.main.home.itterm.ItTermWindowActivity
 import com.getit.getit.ui.main.home.itterm.TermRVAdapter
 import com.getit.getit.ui.main.home.recommend.RecommendActivity
 import com.getit.getit.ui.main.home.server.MainRecommendResult
 import com.getit.getit.ui.main.home.server.MainRecommendService
+import java.text.DecimalFormat
 
 
 class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate), HomeView {
@@ -134,7 +136,32 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         binding.recommendAnswer2Tv.text = arrangeName(result.products[1].name)
         binding.recommendAnswer3Tv.text = arrangeName(result.products[2].name)
         binding.recommendAnswer4Tv.text = arrangeName(result.products[3].name)
+
         // 상품 클릭
+        binding.recommendAnswer1.setOnClickListener {
+            ClickProduct(0, result)
+        }
+        binding.recommendAnswer2.setOnClickListener {
+            ClickProduct(1, result)
+        }
+        binding.recommendAnswer3.setOnClickListener {
+            ClickProduct(2, result)
+        }
+        binding.recommendAnswer4.setOnClickListener {
+            ClickProduct(3, result)
+        }
+    }
+
+    private fun ClickProduct(index: Int, result: MainRecommendResult) {
+        var price = result.products[index].lprice
+        val df = DecimalFormat("###,###")
+        val strPrice = df.format(price.toInt()) + " 원"
+        var intent = Intent(context, ProductDetailActivity::class.java)
+        intent.putExtra("productId", result.products[index].productId)
+        intent.putExtra("productName", arrangeName(result.products[index].name))
+        intent.putExtra("price", strPrice)
+        intent.putExtra("imageUrl", result.products[index].imageUrl)
+        startActivity(intent)
     }
 
     private fun arrangeName(name : String) : String{

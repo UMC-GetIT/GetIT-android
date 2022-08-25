@@ -26,7 +26,7 @@ class RecommendResultActivity  : BaseActivity<ActivityRecommendResultBinding>(Ac
         }
         else {
 
-            val recommendResultRVAdapter = this?.let { RecommendResultRVAdapter(products, it) }
+            val recommendResultRVAdapter = this?.let { RecommendResultRVAdapter(this, products, it) }
             binding.recommendProductsRv.adapter = recommendResultRVAdapter
 
             val linearLayoutManager = LinearLayoutManager(this)
