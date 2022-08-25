@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.login.getJwt
 import com.getit.getit.ui.main.category.*
 import com.getit.getit.ui.main.category.detail.review.CreateReviewView
 import com.getit.getit.ui.main.category.detail.review.ReviewListRVAdatpter
@@ -75,7 +76,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                 Glide.with(this).load(imageUrl).into(binding.productDetailImgIv)
             }
             getProductDetail(productId)
-            isLikedProduct(productId)
         }
 
         if (isLiked) {
@@ -97,7 +97,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.productDetailReviewInputEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var userinput = binding.productDetailReviewInputEt.text.toString()
                 binding.productDetailConfirmBtnOn.visibility = View.VISIBLE
@@ -107,43 +106,28 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                     binding.productDetailConfirmBtnOff.visibility = View.VISIBLE
                 }
             }
-
             override fun afterTextChanged(s: Editable?) {
             }
         })
     }
 
-    private fun getProductDetail(id: String) {
-        val categoryService = CategoryService()
-        categoryService.setProductDetailView(this)
-        categoryService.getproductDetail(id)
-    }
-
     private fun getReviews(id: String) {
-        val reviewListService = CategoryService()
+        val reviewListService = ProductsService()
         reviewListService.setReviewListView(this)
         reviewListService.getReviews(id)
     }
 
     private fun createReview() {
         var review = binding.productDetailReviewInputEt.text.toString()
-        val createReviewService = CategoryService()
+        val createReviewService = ProductsService()
         createReviewService.setCreateReviewView(this)
         createReviewService.createReview(productId, review)
     }
 
-
-    private fun likeOn() {
-        binding.productDetailLikeBtnOnIb.visibility = View.VISIBLE
-        binding.productDetailLikeBtnOffIb.visibility = View.INVISIBLE
-    }
-    private fun likeOff() {
-        binding.productDetailLikeBtnOnIb.visibility = View.INVISIBLE
-        binding.productDetailLikeBtnOffIb.visibility = View.VISIBLE
-    }
-
+    // 제품 상세정보 서버 연결
     override fun onGetProductDetailLoading() {
         Log.d("PRODUCT-DETAIL", "로딩중")
+        // 터치 막기 OR 로딩 중 띄우기
     }
 
     override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
@@ -156,10 +140,10 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
         // 이미지 리스트
         val images = result.photolist
-        Log.d("PRODUCT-DETAIL", images.toString())
         sideImageRVAdapter = SideImageRVAdapter(this, images)
         binding.productDetailSideImagesRv.adapter = sideImageRVAdapter
 
+        // 이미지 클릭 시 메인 이미지 변경
 //        sideImageRVAdapter.setMyItemClickListener(object : SideImageRVAdapter.MyItemClickListener{
 //            override fun onItemClick(imageUrl: String) {
 //                Glide.with(applicationContext).load(imageUrl).into(binding.productDetailImgIv)
@@ -174,6 +158,11 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         infoRVAdapter = InformationRVAdapter(this, productInfo)
         binding.productDetailInformationRv.adapter = infoRVAdapter
 
+        // 좋아요 여부
+        Log.d("TEST", "$productId, ${getJwt()}")
+        isLikedProduct(productId)
+
+        // 리뷰 작성
         binding.productDetailConfirmBtnFrameLayout.setOnClickListener {
             createReview()
             getReviews(productId)
@@ -181,7 +170,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetProductDetailFailure(Code: Int, message: String) {
-        Log.d("PRODUCT-DETAIL", "로딩 실패")
+        Log.d("PRODUCT-DETAIL", "$message")
     }
 
     private fun getProductInfo(result: ProductDetailResult): MutableList<MutableList<String>> {
@@ -210,6 +199,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         return productInfo
     }
 
+    // 좋아요
     override fun onGetLikeSuccess(Code: Int, result: String) {
         Log.d("LIKE", result)
         showToast(result)
@@ -228,6 +218,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         Log.d("IS-LIKE", "$message")
     }
 
+    // 리뷰
     override fun onGetReviewLoading() {
         TODO("Not yet implemented")
     }
