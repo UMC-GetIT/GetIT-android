@@ -158,7 +158,7 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         val strPrice = df.format(price.toInt()) + " 원"
         var intent = Intent(context, ProductDetailActivity::class.java)
         intent.putExtra("productId", result.products[index].productId)
-        intent.putExtra("productName", result.products[index].name)
+        intent.putExtra("productName", arrangeName(result.products[index].name))
         intent.putExtra("price", strPrice)
         intent.putExtra("imageUrl", result.products[index].imageUrl)
         startActivity(intent)

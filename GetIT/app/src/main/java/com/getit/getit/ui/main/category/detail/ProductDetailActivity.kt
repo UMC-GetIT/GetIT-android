@@ -56,9 +56,11 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         binding.productDetailLikeBtnIb.setOnClickListener {
             if(isLiked) {
                 binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
+                setLikeProduct(productId)
             }
             else {
                 binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
+                setLikeProduct(productId)
             }
             setLikeProduct(productId)
         }
@@ -111,10 +113,10 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         })
     }
 
-    private fun getReviews(id: String) {
+    private fun getReviews(productId: String) {
         val reviewListService = ProductsService()
         reviewListService.setReviewListView(this)
-        reviewListService.getReviews(id)
+        reviewListService.getReviews(productId)
     }
 
     private fun createReview() {
@@ -131,6 +133,12 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
+        // 기존 좋아요 여부
+        Log.d("TEST", "$productId, ${getJwt()}")
+        isLikedProduct(productId)
+        // 기존 리뷰 리스트
+        getReviews(productId)
+
         binding.productDetailProductNameTv.text = result.name
         binding.productDetailProductTypeTv.text = result.type
         binding.productDetailPurchaseBtn.setOnClickListener {
@@ -157,10 +165,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
         infoRVAdapter = InformationRVAdapter(this, productInfo)
         binding.productDetailInformationRv.adapter = infoRVAdapter
-
-        // 좋아요 여부
-        Log.d("TEST", "$productId, ${getJwt()}")
-        isLikedProduct(productId)
 
         // 리뷰 작성
         binding.productDetailConfirmBtnFrameLayout.setOnClickListener {
@@ -206,7 +210,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetLikeFailure(Code: Int, message: String) {
-        Log.d("LIKE", "$message")
+        Log.d("LIKE", "로딩 실패ㅜㅜ")
     }
 
     override fun onIsLikeSuccess(Code: Int, result: IsLike) {
@@ -220,15 +224,16 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     // 리뷰
     override fun onGetReviewLoading() {
-        TODO("Not yet implemented")
+        Log.d("REVIEW-LIST", "로딩중")
     }
 
     override fun onGetReviewSuccess(Code: Int, result: List<ReviewListResult>) {
+        Log.d("REVIEW-LIST", "리뷰 리스트 불러오기 성공!")
         initRecyclerView(result)
     }
 
     override fun onGetReviewFailure(Code: Int, message: String) {
-        TODO("Not yet implemented")
+        Log.d("REVIEW-LIST", "로딩 실패ㅜㅜ")
     }
 
     private fun initRecyclerView(result: List<ReviewListResult>) {
