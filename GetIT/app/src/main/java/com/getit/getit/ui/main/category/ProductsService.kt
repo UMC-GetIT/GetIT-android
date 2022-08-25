@@ -147,6 +147,7 @@ class ProductsService {
 
         isLikeService.isLike(productId).enqueue(object: Callback<IsLikeResponse> {
             override fun onResponse(call: Call<IsLikeResponse>, response: Response<IsLikeResponse>) {
+                Log.d("IsLIKE", "response code = $response")
                 if(response.isSuccessful && response.code() == 200) {
                     val isLikeResponse: IsLikeResponse = response.body()!!
 
@@ -154,7 +155,7 @@ class ProductsService {
                         1000 -> isLikeView.onIsLikeSuccess(code, isLikeResponse.result)
                         else -> {
                             isLikeView.onIsLikeFailure(code, isLikeResponse.message)
-                            Log.d("IsLIKE", "$code")
+                            Log.d("IsLIKE", "$code, ${isLikeResponse.message}")
                         }
                     }
                 }
@@ -171,6 +172,7 @@ class ProductsService {
 
         reviewListService.getReviews(productIdx).enqueue(object: Callback<ReviewListResponse>{
             override fun onResponse(call: Call<ReviewListResponse>, response: Response<ReviewListResponse>) {
+                Log.d("REVIEW-LIST", "response code = $response")
                 if(response.isSuccessful && response.code() == 200) {
                     val reviewResponse: ReviewListResponse = response.body()!!
 
