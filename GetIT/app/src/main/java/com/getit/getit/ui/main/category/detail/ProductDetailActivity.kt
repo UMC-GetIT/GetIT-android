@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.getit.getit.R
+import com.getit.getit.data.Review
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.login.getJwt
@@ -43,6 +44,14 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         val likeService = ProductsService()
         likeService.setLike(this)
         likeService.like(productId)
+
+        Log.d("TEST", "${getJwt()}")
+        Log.d("TEST", "$productId")
+
+        isLiked = !isLiked
+        setLikeColor()
+        Log.d("TEST", "기존 좋아요 여부: $isLiked")
+
     }
 
     // db 좋아요 여부
@@ -54,19 +63,12 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     private fun setOnClickListeners() {
         binding.productDetailLikeBtnIb.setOnClickListener {
-            if(isLiked) {
-                binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
-                setLikeProduct(productId)
-            }
-            else {
-                binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
-                setLikeProduct(productId)
-            }
             setLikeProduct(productId)
         }
     }
 
-   private fun setInit() {
+
+    private fun setInit() {
         if (intent.hasExtra("productId")) {
             productId = intent.getStringExtra("productId").toString()
             binding.productDetailProductNameTv.text = intent.getStringExtra("productName").toString()
@@ -78,12 +80,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
                 Glide.with(this).load(imageUrl).into(binding.productDetailImgIv)
             }
             getProductDetail(productId)
-        }
-
-        if (isLiked) {
-            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
-        } else {
-            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
         }
 
        changeButtonColor()
@@ -119,11 +115,10 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         reviewListService.getReviews(productId)
     }
 
-    private fun createReview() {
-        var review = binding.productDetailReviewInputEt.text.toString()
+    private fun createReview(review: Review) {
         val createReviewService = ProductsService()
         createReviewService.setCreateReviewView(this)
-        createReviewService.createReview(productId, review)
+        createReviewService.createReview(review)
     }
 
     // 제품 상세정보 서버 연결
@@ -133,8 +128,6 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onGetProductDetailSuccess(Code: Int, result: ProductDetailResult) {
-        // 기존 좋아요 여부
-        Log.d("TEST", "$productId, ${getJwt()}")
         isLikedProduct(productId)
         // 기존 리뷰 리스트
         getReviews(productId)
@@ -166,10 +159,10 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
         infoRVAdapter = InformationRVAdapter(this, productInfo)
         binding.productDetailInformationRv.adapter = infoRVAdapter
 
-        // 리뷰 작성
-        binding.productDetailConfirmBtnFrameLayout.setOnClickListener {
-            createReview()
-            getReviews(productId)
+        binding.productDetailConfirmBtnOn.setOnClickListener {
+            Log.d("TEST", "리뷰 작성 버튼 클릭")
+            var review = binding.productDetailReviewInputEt.text.toString()
+            createReview(Review(productId, review))
         }
     }
 
@@ -216,6 +209,15 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     override fun onIsLikeSuccess(Code: Int, result: IsLike) {
         isLiked = result.isLike
         Log.d("TEST", "기존 좋아요 여부: $isLiked")
+        setLikeColor()
+    }
+
+    private fun setLikeColor() {
+        if (isLiked) {
+            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_on)
+        } else {
+            binding.productDetailLikeBtnIb.setImageResource(R.drawable.ic_like_button_off)
+        }
     }
 
     override fun onIsLikeFailure(Code: Int, message: String) {
@@ -229,6 +231,7 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     override fun onGetReviewSuccess(Code: Int, result: List<ReviewListResult>) {
         Log.d("REVIEW-LIST", "리뷰 리스트 불러오기 성공!")
+        Log.d("REVIEW-LIST", "$result")
         initRecyclerView(result)
     }
 
@@ -242,14 +245,16 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
     }
 
     override fun onCreateReviewLoading() {
-        TODO("Not yet implemented")
+        Log.d("CREATE-REVIEW", "로딩중")
     }
 
     override fun onCreateReviewSuccess(Code: Int, result: String) {
-        TODO("Not yet implemented")
+        Log.d("CREATE-REVIEW", "전송 성공")
+        getReviews(productId)
+        binding.productDetailReviewInputEt.text = null
     }
 
     override fun onCreateReviewFailure(Code: Int, message: String) {
-        TODO("Not yet implemented")
+        Log.d("CREATE-REVIEW", "전송 실패ㅜㅜ")
     }
 }
