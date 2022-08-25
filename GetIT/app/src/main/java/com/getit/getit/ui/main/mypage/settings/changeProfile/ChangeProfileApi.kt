@@ -9,10 +9,11 @@ interface ChangeProfileApi {
     @Multipart//파일이나 이미지 업로드 할때 사용
     @PATCH("/users/profile")
 
-    fun changeprofile(@Part data: String,
-                      @Part file: MultipartBody.Part
+    fun changeprofile(
+        @Part("user") user: RequestBody,
+        @Part image: MultipartBody.Part
     ): Call<profile>
     //MultipartBody.Part는 Bitmap 형태로 보냄
-
+    //part 추가시 requestbody를 사용
 
 }

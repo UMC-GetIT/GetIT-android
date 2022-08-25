@@ -14,14 +14,15 @@ data class Result(
     @SerializedName("email") val email: String,
     @SerializedName("nickName") val nickname: String,
     @SerializedName("role") val role: String,
-    @SerializedName("likeProduct") val likeProduct:likeProduct,
-    @SerializedName("review") val review:Review,
+    @SerializedName("likeProduct") val likeProduct:List<likeProduct>,
+    @SerializedName("review") val review:List<Review>,
 
     //@SerializedName("image")
     //val image:String
 )
 
 data class likeProduct(
+
     @SerializedName("productIdx")
     val productIdx: Int,
 
@@ -33,6 +34,8 @@ data class likeProduct(
 
     @SerializedName("name")
     val name: String,
+    @SerializedName("lowestprice")
+    val price:String,
 
     @SerializedName("productUrl")
     val productUrl: String

@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 
 interface LikeApiService {
-    @GET("/users/mylike")
+    @GET("/users/mylike?type=")
 
 
     fun getLikeProducts(): Call<LikeProducts>
