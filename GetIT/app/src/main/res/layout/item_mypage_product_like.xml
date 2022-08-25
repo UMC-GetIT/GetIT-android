@@ -19,10 +19,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/product_like_1"/>
+            app:layout_constraintBottom_toTopOf="@+id/like_product_name"/>
 
         <TextView
-            android:id="@+id/product_like_1"
+            android:id="@+id/like_product_name"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="삼성전자 2021 갤럭시북 프로 "
@@ -32,7 +32,7 @@
             app:layout_constraintTop_toBottomOf="@id/imagelike1" />
 
         <TextView
-            android:id="@+id/product_price_1"
+            android:id="@+id/like_product_price"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosanskr_bold"
@@ -40,7 +40,7 @@
             android:textColor="@color/normal"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/imagelike1"
-            app:layout_constraintTop_toBottomOf="@id/product_like_1" />
+            app:layout_constraintTop_toBottomOf="@id/like_product_name" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
