@@ -29,7 +29,7 @@ class LikeProductActivity : BaseActivity<ActivityMypageLikeListBinding>(Activity
 
     }
 
-    private fun setAdapter(LikeList: List<result>){
+    private fun setAdapter(LikeList: List<likeProduct>){
         val mAdapter = LikeRVAdatper(LikeList,this)
         binding.userLikeRecyclerView.adapter = mAdapter
         binding.userLikeRecyclerView.layoutManager =  GridLayoutManager(this, 3)
@@ -48,10 +48,10 @@ class LikeProductActivity : BaseActivity<ActivityMypageLikeListBinding>(Activity
                     val body = response.body()
                     body?.let {
                         Log.d("테스트",response.body().toString())
-                        setAdapter(it.result)
+                        setAdapter(body.result!!.likeProduct)
 
 
-                        if(body.result?.isEmpty()==true){
+                        if(body.result?.likeProduct.isEmpty()==true){
                             binding.userLikeNoProduct.setVisibility(View.VISIBLE)
                             binding.userLikeRecyclerView.setVisibility(View.INVISIBLE)
                         }

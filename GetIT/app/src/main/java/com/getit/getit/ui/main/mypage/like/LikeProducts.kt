@@ -7,11 +7,11 @@ data class LikeProducts (
     val isSuccess : String,
     val code : Int,
     val message : String,
-    val result: List<result>,
+    val result: result?,
 )
 
 data class result(
-    val likeProduct:likeProduct,
+    val likeProduct:List<likeProduct>,
     val userIdx:Int
 )
 data class likeProduct(

@@ -1,10 +1,17 @@
 package com.getit.getit.ui.main.mypage.review
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.getit.getit.R
 import com.getit.getit.databinding.ActivityMypageReviewListBinding
+import com.getit.getit.databinding.ItemMypageProductReviewBinding
+import com.getit.getit.databinding.ItemMypageReviewlistBinding
 import com.getit.getit.ui.BaseActivity
 import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
@@ -14,13 +21,33 @@ import retrofit2.Response
 
 class ReviewProductActivity : BaseActivity<ActivityMypageReviewListBinding>(ActivityMypageReviewListBinding::inflate) {
 
+    lateinit var DeleteBinding:ItemMypageReviewlistBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        DeleteBinding = ItemMypageReviewlistBinding.inflate(layoutInflater)
         //뒤로가기 버튼
         binding.backspaceBtn.setOnClickListener {
             backspace()
+        }
+
+        val deletebtn = findViewById<ImageButton>(R.id.review_delete_btn)
+
+        DeleteBinding.reviewDeleteBtn.setOnClickListener{
+            var dialog = AlertDialog.Builder(this)
+            dialog.setTitle("삭제 후에는 복구할 수 없습니다. ")
+            dialog.setMessage("정말 삭제하시겠습니까?")
+
+            var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
+                if (DialogInterface.BUTTON_POSITIVE == p1) {
+                    ReviewDeleteDialog().reviewdelete()
+                    toast()
+                }
+            }
+            dialog.setPositiveButton("삭제", dialogLister)
+            dialog.setNegativeButton("취소", null)
+            dialog.show()
         }
 
 
@@ -51,6 +78,7 @@ class ReviewProductActivity : BaseActivity<ActivityMypageReviewListBinding>(Acti
                         Log.d("테스트",response.body().toString())
                         setAdapter(it.result)
 
+
                         if(body.result?.isEmpty()==true){
                             binding.userReviewNoProduct.setVisibility(View.VISIBLE)
                             binding.userReviewRecyclerView.setVisibility(View.INVISIBLE)
@@ -66,9 +94,32 @@ class ReviewProductActivity : BaseActivity<ActivityMypageReviewListBinding>(Acti
             }
 
             override fun onFailure(call: Call<ReviewProducts>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
         })
+    }
+
+    fun toast() {
+        showToast("삭제되었습니다")
+        //Toast.makeText(this, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+
+    }
+
+    fun dialog() {
+        var dialog = AlertDialog.Builder(this)
+        dialog.setTitle("삭제 후에는 복구할 수 없습니다. ")
+        dialog.setMessage("정말 삭제하시겠습니까?")
+
+        var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
+            if (DialogInterface.BUTTON_POSITIVE == p1) {
+                ReviewDeleteDialog().reviewdelete()
+                toast()
+            }
+        }
+        dialog.setPositiveButton("삭제", dialogLister)
+        dialog.setNegativeButton("취소", null)
+        dialog.show()
+
     }
 
     override fun initAfterBinding() {

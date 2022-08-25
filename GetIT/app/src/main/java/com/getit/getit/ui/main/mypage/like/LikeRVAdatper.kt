@@ -20,7 +20,7 @@ import java.net.MalformedURLException
 import java.net.URL
 
 
-class LikeRVAdatper(val LikeList : List<result>, val context : Context)
+class LikeRVAdatper(val LikeList : List<likeProduct>, val context : Context)
     : RecyclerView.Adapter<LikeRVAdatper.ViewHolder>() {
 
 
@@ -44,11 +44,12 @@ class LikeRVAdatper(val LikeList : List<result>, val context : Context)
         val img = itemView?.findViewById<ImageView>(R.id.itemimg)
         val name = itemView?.findViewById<TextView>(R.id.name)
 
-        fun bind(itemLikeProducts: result, context: Context) {
+        fun bind(itemLikeProducts: likeProduct, context: Context) {
             //이미지 url 불러옴
-            val urlString = itemLikeProducts?.likeProduct.image.toString()
-            if (!urlString.isEmpty()) {
+            val urlString = itemLikeProducts?.image.toString()
+            if (urlString.isEmpty()) {
                 Log.d("사진 데이터 로딩 오류", "다시할것")
+
 
 
             } else {
@@ -61,7 +62,7 @@ class LikeRVAdatper(val LikeList : List<result>, val context : Context)
                 }
                 //img?.visibility=View.GONE
             }
-            name?.text = itemLikeProducts?.likeProduct.name
+            name?.text = itemLikeProducts?.name
 
         }
 

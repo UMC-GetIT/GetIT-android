@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
@@ -40,13 +41,14 @@ class MypageLikeRV(val MypageLikeList: List<likeProduct>, val context: Context)
     }
 
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        val img = itemView?.findViewById<ImageView>(R.id.itemimg)
-        val name = itemView?.findViewById<TextView>(R.id.name)
+        val img = itemView?.findViewById<ImageView>(R.id.imagelike1)
+        val name = itemView?.findViewById<TextView>(R.id.like_product_name)
+        val price = itemView?.findViewById<TextView>(R.id.like_product_price)
 
         fun bind(itemLikeProducts: likeProduct, context: Context) {
             //이미지 url 불러옴
             val urlString = itemLikeProducts?.likeimage.toString()
-            if (!urlString.isEmpty()) {
+            if (urlString.isEmpty()) {
                 Log.d("사진 데이터 로딩 오류", "다시할것")
 
 
@@ -61,6 +63,9 @@ class MypageLikeRV(val MypageLikeList: List<likeProduct>, val context: Context)
                 //img?.visibility=View.GONE
             }
             name?.text = itemLikeProducts?.name
+            price?.text = itemLikeProducts?.price
+
+
 
         }
 
