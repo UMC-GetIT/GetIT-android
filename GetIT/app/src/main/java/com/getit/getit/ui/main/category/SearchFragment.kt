@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat.getColor
 import com.getit.getit.R
-import com.getit.getit.data.Products
 import com.getit.getit.databinding.FragmentSearchBinding
 import com.getit.getit.ui.BaseFragment
 import com.getit.getit.ui.main.category.dialog.*
