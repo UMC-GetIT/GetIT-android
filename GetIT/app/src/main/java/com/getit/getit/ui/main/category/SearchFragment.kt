@@ -194,7 +194,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun getCategory(type: String, requirement: String) {
-        val categoryService = CategoryService()
+        val categoryService = ProductsService()
         categoryService.setSearchView(this)
         categoryService.getCategory(type, requirement)
     }
@@ -697,14 +697,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.tabletCardView.isEnabled = true
         binding.speakerCardView.isEnabled = true
         binding.desktopCardView.isEnabled = true
-    }
-
-    private fun changeProductActivity(products: Products) {
-        val intent = Intent(context, ProductDetailActivity::class.java)
-        val gson = Gson()
-        val productJson = gson.toJson(products)
-        intent.putExtra("product", productJson)
-        startActivity(intent)
     }
 
     // 타이틀 변경

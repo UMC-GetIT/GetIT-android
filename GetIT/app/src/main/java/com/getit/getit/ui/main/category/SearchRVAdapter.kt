@@ -39,6 +39,7 @@ class SearchRVAdapter(val context: Context, val result: CategoryResult) : Recycl
         holder.binding.itemProduct.setOnClickListener{
             val intent = Intent(context, ProductDetailActivity::class.java)
             intent.putExtra("productId", result.products[position].productId)
+            intent.putExtra("productName", result.products[position].name)
             intent.putExtra("price", price)
             intent.putExtra("imageUrl", result.products[position].imgUrl)
             ContextCompat.startActivity(holder.itemView.context, intent, null)

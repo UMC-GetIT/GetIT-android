@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import com.getit.getit.databinding.ActivitySearchBinding
 import com.getit.getit.ui.BaseActivity
-import com.getit.getit.ui.main.category.CategoryService
+import com.getit.getit.ui.main.category.ProductsService
 
 class SearchActivity: BaseActivity<ActivitySearchBinding>(ActivitySearchBinding::inflate), RecommendView {
     private lateinit var recommendAdapter: RecommendRVAdapter
@@ -35,7 +35,7 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>(ActivitySearchBinding:
     }
 
     private fun getRecommend() {
-        val recommendService = CategoryService()
+        val recommendService = ProductsService()
         recommendService.setRecommendView(this)
         recommendService.getRecommend()
     }

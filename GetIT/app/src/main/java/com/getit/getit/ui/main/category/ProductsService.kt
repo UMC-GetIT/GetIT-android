@@ -1,6 +1,10 @@
 package com.getit.getit.ui.main.category
 
 import android.util.Log
+import com.getit.getit.ui.main.category.detail.Like.IsLikeResponse
+import com.getit.getit.ui.main.category.detail.Like.IsLikeView
+import com.getit.getit.ui.main.category.detail.Like.LikeResponse
+import com.getit.getit.ui.main.category.detail.Like.LikeView
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailView
 import com.getit.getit.ui.main.category.detail.review.*
@@ -11,10 +15,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoryService {
+class ProductsService {
     private lateinit var categorySearchView: CategorySearchView
     private lateinit var recommendView: RecommendView
     private lateinit var productDetailView: ProductDetailView
+    private lateinit var likeView: LikeView
+    private lateinit var isLikeView: IsLikeView
     private lateinit var reviewListView: ReviewListView
     private lateinit var createReviewView: CreateReviewView
 
@@ -30,6 +36,14 @@ class CategoryService {
         this.productDetailView = productDetailView
     }
 
+    fun setLike(likeView: LikeView) {
+        this.likeView = likeView
+    }
+
+    fun setIsLike(isLikeView: IsLikeView) {
+        this.isLikeView = isLikeView
+    }
+
     fun setReviewListView(reviewListView: ReviewListView) {
         this.reviewListView = reviewListView
     }
@@ -39,7 +53,7 @@ class CategoryService {
     }
 
     fun getCategory(type: String, requirement: String){
-        val categoryService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val categoryService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         categorySearchView.onGetCategoryLoading()
 
@@ -66,7 +80,7 @@ class CategoryService {
     }
 
     fun getRecommend(){
-        val recommendService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val recommendService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         recommendService.getRecommend().enqueue(object: Callback<RecommendResponse>{
             override fun onResponse(call: Call<RecommendResponse>, response: Response<RecommendResponse>) {
@@ -87,7 +101,7 @@ class CategoryService {
     }
 
     fun getproductDetail(productIdx: String) {
-        val productDetailService = getRetrofit().create(CategoryRetrofitInterface::class.java)
+        val productDetailService = getRetrofit().create(ProductsRetrofitInterface::class.java)
 
         productDetailService.getProductDetail(productIdx).enqueue(object: Callback<ProductDetailResponse>{
             override fun onResponse(call: Call<ProductDetailResponse>, response: Response<ProductDetailResponse>) {
@@ -105,6 +119,51 @@ class CategoryService {
             }
         })
         Log.d("PRODUCT-DETAIL", "HELLO")
+    }
+
+    fun like(productId: String) {
+        val likeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+
+        likeService.like(productId).enqueue(object: Callback<LikeResponse> {
+            override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val likeResponse: LikeResponse = response.body()!!
+
+                    when (val code = likeResponse.code){
+                        1000 -> likeView.onGetLikeSuccess(code, likeResponse.result)
+                        else -> likeView.onGetLikeFailure(code, likeResponse.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<LikeResponse>, t: Throwable) {
+                Log.d("LIKE/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("LIKE", "HELLO")
+    }
+
+    fun isLike(productId: String) {
+        val isLikeService = getRetrofit().create(ProductsRetrofitInterface::class.java)
+
+        isLikeService.isLike(productId).enqueue(object: Callback<IsLikeResponse> {
+            override fun onResponse(call: Call<IsLikeResponse>, response: Response<IsLikeResponse>) {
+                if(response.isSuccessful && response.code() == 200) {
+                    val isLikeResponse: IsLikeResponse = response.body()!!
+
+                    when (val code = isLikeResponse.code){
+                        1000 -> isLikeView.onIsLikeSuccess(code, isLikeResponse.result)
+                        else -> {
+                            isLikeView.onIsLikeFailure(code, isLikeResponse.message)
+                            Log.d("IsLIKE", "$code")
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<IsLikeResponse>, t: Throwable) {
+                Log.d("IsLIKE/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("IsLIKE", "HELLO")
     }
 
     fun getReviews(productIdx: String) {
