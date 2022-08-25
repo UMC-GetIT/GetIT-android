@@ -2,6 +2,7 @@ package com.getit.getit.ui.main.mypage.review
 
 import android.content.Context
 import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.R
+import com.getit.getit.utils.ApplicationClass
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : RecyclerView.Adapter<ReviewpdRVAdapter.ViewHolder>(){
@@ -48,19 +53,39 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
 
                 var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
                     if (DialogInterface.BUTTON_POSITIVE == p1) {
-                        ReviewDeleteDialog().reviewdelete()
+                        val deleteRetrofit = ApplicationClass.retrofit.create(ReviewApiService::class.java)
+                        deleteRetrofit.reviewDelete(12).enqueue(object : Callback<DeleteReview> {
+                            override fun onResponse(
+                                call: Call<DeleteReview>,
+                                response: Response<DeleteReview>
+                            ) {
+                                Log.d("테스트", response.body().toString())
+                                if (response.isSuccessful) {
+                                    Log.d("성공", response.body().toString())
+
+                                } else {
+                                    Log.d("실패", response.body().toString())
+                                }
+                            }
+
+                            override fun onFailure(call: Call<DeleteReview>, t: Throwable) {
+
+                            }
+                        })
+                    }
                         Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                     }
-                }
                 dialog.setPositiveButton("삭제", dialogLister)
                 dialog.setNegativeButton("취소", null)
                 dialog.show()
+                }
+
 
             }
         }
     }
 
-}
+
 
 
 
