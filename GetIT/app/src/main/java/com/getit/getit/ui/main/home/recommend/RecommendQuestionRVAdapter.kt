@@ -1,27 +1,20 @@
 package com.getit.getit.ui.main.home.recommend
 
-import android.content.Context
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
-import android.widget.RelativeLayout
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager
 import com.getit.getit.databinding.ItemRecommendQuestionBinding
 import com.getit.getit.ui.main.home.data.RecommendQuestion
-import java.security.AccessController.getContext
 
 class RecommendQuestionRVAdapter(
     private val recommendQuestionList: ArrayList<RecommendQuestion>,
-    val activity: RecommendQuestionActivity
+    val activity: RecommendProductsQuestionActivity
 ) : RecyclerView.Adapter<RecommendQuestionRVAdapter.ViewHolder>() {
 
+    var answerMap : MutableMap<Int, String> = mutableMapOf()
+    val recommendQuestionRVAdapter = this
 
     inner class ViewHolder(val binding: ItemRecommendQuestionBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -34,8 +27,11 @@ class RecommendQuestionRVAdapter(
 
             binding.recommendAnswerRv.layoutManager = layoutManager
 
-            var recommendAnswerAdapter = question.options?.let { RecommendAnswerRVAdapter(it) }
+            var questionNum = answerMap.size
+            var recommendAnswerAdapter = question.options?.let { RecommendAnswerRVAdapter(it, activity, questionNum, recommendQuestionRVAdapter) }
             binding.recommendAnswerRv.adapter  = recommendAnswerAdapter
+
+            answerMap[questionNum] = ""
 
         }
     }
@@ -57,5 +53,9 @@ class RecommendQuestionRVAdapter(
     }
 
     override fun getItemCount(): Int = recommendQuestionList.size
+
+    fun updateAnswerList(questionNum : Int, answer:String){
+        answerMap[questionNum] = answer;
+    }
 
 }

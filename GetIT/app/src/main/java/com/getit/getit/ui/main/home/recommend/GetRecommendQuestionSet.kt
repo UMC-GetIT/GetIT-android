@@ -57,7 +57,7 @@ fun getQuestionSet(productKind: Int) : ArrayList<RecommendQuestion>{
                 add(
                     RecommendQuestion(
                         "예산이 어떻게 되시나요?",
-                        arrayListOf("100만 원 이하","100만 원 이상")
+                        arrayListOf("80만 원 이하","80만 원 이상")
                     )
                 )
                 add(RecommendQuestion("어떤 크기의 스크린을 원하시나요?",
@@ -75,12 +75,12 @@ fun getQuestionSet(productKind: Int) : ArrayList<RecommendQuestion>{
                 add(
                     RecommendQuestion(
                         "예산이 어떻게 되시나요?",
-                        arrayListOf("10만 원 이하","10만 원 이상 40만원 이하","40만 원 이상")
+                        arrayListOf("10만 원 이하","10만 원 이상")
                     )
                 )
                 add (RecommendQuestion(
                     "주로 어떤 용도로 사용하시나요?",
-                    arrayListOf("휴대용", "전문용", "PC용", "텔레비전용", "기타")))
+                    arrayListOf("전문용", "PC용", "텔레비전용")))
             }
         }
         5 -> {

@@ -130,8 +130,6 @@ class HomeFragment(): BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inf
         Glide.with(this).load(result.products[2].imageUrl).into(binding.recommendAnswer3Iv)
         Glide.with(this).load(result.products[3].imageUrl).into(binding.recommendAnswer4Iv)
 
-        Log.d("테스트",result.products[0].imageUrl)
-
         binding.recommendAnswer1Tv.text = arrangeName(result.products[0].name)
         binding.recommendAnswer2Tv.text = arrangeName(result.products[1].name)
         binding.recommendAnswer3Tv.text = arrangeName(result.products[2].name)

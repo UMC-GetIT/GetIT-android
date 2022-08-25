@@ -42,7 +42,7 @@
         <activity android:name=".ui.main.mypage.review.ReviewProductActivity"/>
         <activity android:name=".ui.main.mypage.like.LikeProductActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendActivity"/>
-        <activity android:name=".ui.main.home.recommend.RecommendQuestionActivity"/>
+        <activity android:name=".ui.main.home.recommend.RecommendProductsQuestionActivity"/>
         <activity android:name=".ui.main.home.recommend.RecommendResultActivity"/>
         <activity android:name=".ui.main.comparison.CompareAfterActivity"/>
 

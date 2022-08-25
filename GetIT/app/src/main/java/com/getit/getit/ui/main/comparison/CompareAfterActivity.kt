@@ -33,11 +33,11 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
         var compareAnswers = ArrayList<CompareAnswer>()
         // 더미데이터
         compareAnswers.apply {
-            add(CompareAnswer("가격", "1,626,200", "1,626,200"))
+            add(CompareAnswer("가격", "1,626,200", "4,440,000"))
             add(CompareAnswer("브랜드", "LG전자", "Apple"))
-            add(CompareAnswer("CPU", "11세대 인텔 코어\ni5-1135 G7", "11세대 인텔 코어\ni5-1135 G7"))
-            add(CompareAnswer("RAM", "8GB", "8GB"))
-            add(CompareAnswer("무게", "약 1,480g", "약 1,480g"))
+            add(CompareAnswer("CPU", "11세대 인텔 코어\ni5-1135 G7", "M1 pro\n10코어"))
+            add(CompareAnswer("RAM", "8GB", "16GB"))
+            add(CompareAnswer("무게", "약 1,480g", "약 2,100g"))
         }
 
         val compareResultRVAdapter = CompareResultRVAdapter(compareAnswers)
