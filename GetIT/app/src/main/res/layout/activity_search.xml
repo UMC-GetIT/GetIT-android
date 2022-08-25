@@ -27,9 +27,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/background_cv"
-            android:layout_width="342dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
             android:backgroundTint="@color/background"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toEndOf="@id/backspace_btn"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,14 +53,14 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/search_edittext_et"
-                    android:layout_width="260dp"
+                    android:layout_width="0dp"
                     android:layout_height="32dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:singleLine="true"
-                    android:imeOptions="actionGo"
+                    android:layout_marginEnd="10dp"
                     android:hint="@string/search_hint"
                     android:textSize="12sp"
+                    android:singleLine="true"
+                    android:imeOptions="actionGo"
                     app:layout_constraintStart_toEndOf="@+id/search_icon_iv"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/delete_btn_ib"

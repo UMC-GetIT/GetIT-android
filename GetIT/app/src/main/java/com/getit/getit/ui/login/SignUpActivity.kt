@@ -118,6 +118,9 @@ class SignUpActivity : BaseActivity<ActivitySignupBinding>(ActivitySignupBinding
             2000 -> {
                 binding.signUpNicknameErrorTv.visibility = View.VISIBLE
             }
+            else ->{
+                showToast("일시적인 오류입니다. 나중에 다시 시도해 주세요.")
+            }
         }
     }
 

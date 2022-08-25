@@ -2,7 +2,6 @@ package com.getit.getit.ui.main.home.recommend
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.getit.getit.R
@@ -16,33 +15,8 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
 
         setContentView(binding.root)
 
-        binding.laptopRecommendIb.setOnClickListener{
-            moveToQuestionView(1)
-        }
+        moveToQuestionViewManage()
 
-        binding.phoneRecommendIb.setOnClickListener{
-            moveToQuestionView(2)
-        }
-
-        binding.tabletRecommendIb.setOnClickListener{
-            moveToQuestionView(3)
-        }
-
-        binding.speakerRecommendIb.setOnClickListener{
-            moveToQuestionView(4)
-        }
-
-        binding.desktopRecommendIb.setOnClickListener{
-            moveToQuestionView(5)
-        }
-
-
-    }
-
-    private fun moveToQuestionView(productKind : Int) {
-        intent = Intent(this, RecommendQuestionActivity::class.java)
-        intent.putExtra("productKind", productKind)
-        startActivity(intent)
     }
 
     override fun initAfterBinding() {
@@ -51,6 +25,35 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(ActivityRecomme
         supportActionBar?.setDisplayHomeAsUpEnabled(true);
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close);
     }
+
+    private fun moveToQuestionViewManage() {
+        binding.laptopRecommendIb.setOnClickListener {
+            moveToQuestionView(1)
+        }
+
+        binding.phoneRecommendIb.setOnClickListener {
+            moveToQuestionView(2)
+        }
+
+        binding.tabletRecommendIb.setOnClickListener {
+            moveToQuestionView(3)
+        }
+
+        binding.speakerRecommendIb.setOnClickListener {
+            moveToQuestionView(4)
+        }
+
+        binding.desktopRecommendIb.setOnClickListener {
+            moveToQuestionView(5)
+        }
+    }
+
+    private fun moveToQuestionView(productKind : Int) {
+        intent = Intent(this, RecommendProductsQuestionActivity::class.java)
+        intent.putExtra("productKind", productKind)
+        startActivity(intent)
+    }
+
 
     override fun onResume() {
         super.onResume()

@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         }
 
         if(getJwt() != null){
-            loadingDialog.show();
+            loadingDialog.show()
             autoLoginMedium()
 
         }
@@ -109,8 +109,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         val authService = AuthService()
         authService.setLoginView(this)
 
-        Log.d("테스트 리프", ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString())
-        Log.d("테스트 엑세", getJwt().toString())
         authService.autoLogin(Tokens(getJwt().toString(),
             ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString()))
     }

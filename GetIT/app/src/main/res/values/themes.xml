@@ -43,4 +43,9 @@
         <item name="android:background">@drawable/style_bottom_sheet_border</item>
     </style>
 
+    <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/color_chip_background</item>
+        <item name="android:textColor">@color/color_chip_text</item>
+    </style>
+
 </resources>
