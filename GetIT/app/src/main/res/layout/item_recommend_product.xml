@@ -16,20 +16,24 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/recommend_text_set"
         android:layout_marginStart="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/recommend_product_detail_iv"
         app:layout_constraintStart_toEndOf="@id/recommend_product_iv">
     <TextView
         android:id="@+id/recommend_product_name_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
         android:text="LG 그램 360"
         android:textSize="14dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintBottom_toTopOf="@id/recommend_product_price_tv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

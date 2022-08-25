@@ -37,7 +37,6 @@ class MainRecommendService {
 
                         when (resp.code) {
                             1000 -> {
-                                Log.d("테스트", "진입성공 1000")
                                 homeView.setMainRecommendProducts(resp.code, resp.result!!)
                             }
                         }

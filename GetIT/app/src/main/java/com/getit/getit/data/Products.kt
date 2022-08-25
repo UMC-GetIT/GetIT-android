@@ -1,4 +1,4 @@
-package com.getit.getit.ui.main.category
+package com.getit.getit.data
 
 data class Products(
     var name: String? = "",

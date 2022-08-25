@@ -9,6 +9,11 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.getit.getit.databinding.ActivityProductDetailBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.data.Products
+import com.getit.getit.ui.main.category.ReviewRVAdatpter
+import com.getit.getit.ui.main.category.Reviews
+import com.google.gson.Gson
+import java.text.DecimalFormat
 import com.getit.getit.ui.main.category.*
 
 class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate), ProductDetailView {

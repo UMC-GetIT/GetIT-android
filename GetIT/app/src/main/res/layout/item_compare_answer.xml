@@ -8,7 +8,7 @@
         android:id="@+id/condition_box"
         android:layout_width="64dp"
         android:layout_height="24dp"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/normal"
         android:layout_marginStart="24dp"
         android:text="가격"

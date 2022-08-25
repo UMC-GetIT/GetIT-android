@@ -30,7 +30,6 @@ class AuthService {
                 val resp: AuthResponse = response.body()!!
                 when(resp.code){
                     1000 -> {
-                        Log.d("테스트", "진입성공 1000")
                         signUpView.onSignUpSuccess(resp.code, resp.result!!)
                     }
                     else -> {
@@ -53,7 +52,6 @@ class AuthService {
             .enqueue(object: Callback<AuthResponse> {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("테스트", response.toString())
-                Log.d("테스트", response.body().toString())
                 val resp: AuthResponse = response.body()!!
 
                 when(val code = resp.code){
@@ -75,11 +73,16 @@ class AuthService {
         authService.autoLogin(tokens)
             .enqueue(object: Callback<AuthResponse> {
                 override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                    val resp: AuthResponse = response.body()!!
+                    Log.d("테스트", response.toString());
+                    if(response.body() == null){
+                        loginView.onAutoLoginFailure()
+                    }else {
 
-                    when(val code = resp.code){
-                        1000 -> loginView.onLoginSuccess(code, resp.result!!)
-                        else -> loginView.onAutoLoginFailure()
+                        val resp: AuthResponse = response.body()!!
+                        when (val code = resp.code) {
+                            1000 -> loginView.onLoginSuccess(code, resp.result!!)
+                            else -> loginView.onAutoLoginFailure()
+                        }
                     }
                 }
 
