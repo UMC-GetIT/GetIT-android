@@ -132,7 +132,8 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
         binding.comparisonButton.setOnClickListener {
             startActivity(Intent(this.activity, CompareAfterActivity::class.java)
                 .putExtra("product1", selectedProducts[0].id)
-                .putExtra("product2", selectedProducts[1].id))
+                .putExtra("product2", selectedProducts[1].id)
+                .putExtra("kind", binding.comparisonProductKindSp.selectedItem.toString()))
         }
     }
 
@@ -191,24 +192,27 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
             0 -> {
                 setToInit1(false,null)
                 setToInit2(false, null)
-                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_summit_button_off)
-                binding.comparisonButton.setCompoundDrawables(null,null,getDrawable(requireContext(),R.drawable.style_summit_button_off), null)
-                binding.comparisonButton.isClickable = false
+                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_button_off)
+                binding.comparisonButton.setTextColor(getColor(this.requireContext(),R.color.subText))
+                binding.comparisonButton.setCompoundDrawablesWithIntrinsicBounds(getDrawable(requireContext(),R.drawable.ic_baseline_compare_arrows_off),null,null, null)
+                binding.comparisonButton.isEnabled = false
             }
             1->{
                 setToInit1(true,selectedProducts[0])
                 setToInit2(false, null)
-                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_summit_button_off)
-                binding.comparisonButton.setCompoundDrawables(null,null,getDrawable(requireContext(),R.drawable.style_summit_button_off), null)
-                binding.comparisonButton.isClickable = false
+                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_button_off)
+                binding.comparisonButton.setTextColor(getColor(this.requireContext(),R.color.subText))
+                binding.comparisonButton.setCompoundDrawablesWithIntrinsicBounds(getDrawable(requireContext(),R.drawable.ic_baseline_compare_arrows_off),null,null, null)
+                binding.comparisonButton.isEnabled = false
             }
             2->{
 
                 setToInit1(true,selectedProducts[0])
                 setToInit2(true, selectedProducts[1])
-                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_summit_button_on)
-                binding.comparisonButton.setCompoundDrawables(null,null,getDrawable(requireContext(),R.drawable.style_summit_button_on), null)
-                binding.comparisonButton.isClickable = true
+                binding.comparisonButton.setTextColor(getColor(this.requireContext(),R.color.primary))
+                binding.comparisonButton.background = getDrawable(requireContext(),R.drawable.style_button)
+                binding.comparisonButton.setCompoundDrawablesWithIntrinsicBounds(getDrawable(requireContext(),R.drawable.ic_baseline_compare_arrows_24),null,null, null)
+                binding.comparisonButton.isEnabled = true
             }
         }
     }

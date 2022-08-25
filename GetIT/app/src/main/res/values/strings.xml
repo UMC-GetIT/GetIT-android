@@ -50,7 +50,7 @@
     <string name="price_100_to_200">100만원 ~ 200만원</string>
     <string name="price_200_up">200만원 이상</string>
 
-    <string name="brand">브랜드</string>
+    <string name="brand">제조사</string>
     <string name="brand_lg">LG</string>
     <string name="brand_lg_electronics">LG전자</string>
     <string name="brand_apple">APPLE</string>
@@ -119,6 +119,16 @@
     <string name="resolution">해상도</string>
     <string name="pixel">화소</string>
 
+    <!--분류 조건-->
+    <string name="date">등록일</string>
+    <string name="cpurate">CPU 속도</string>
+    <string name="core">코어 개수</string>
+    <string name="size">화면 크기</string>
+    <string name="innermemory">저장 용량</string>
+    <string name="communication">통신 규격</string>
+    <string name="os">운영체제</string>
+    <string name="ssd">SSD</string>
+    <string name="hdd">HHD</string>
     <!-- code -->
     <string name="string_null">null</string>
 

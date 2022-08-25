@@ -179,20 +179,20 @@ class ProductDetailActivity: BaseActivity<ActivityProductDetailBinding>(Activity
 
     private fun getProductInfo(result: ProductDetailResult): MutableList<MutableList<String>> {
         var productInfo = mutableListOf(
-            mutableListOf("제조사", result.brand),
-            mutableListOf("등록일", result.date),
-            mutableListOf("CPU", result.cpu),
-            mutableListOf("CPU 속도", result.cpurate),
-            mutableListOf("코어 종류", result.core),
-            mutableListOf("화면 크기", result.size),
-            mutableListOf("RAM", result.ram),
-            mutableListOf("저장용량", result.innermemory),
-            mutableListOf("통신규격", result.communication),
-            mutableListOf("운영체제", result.os),
-            mutableListOf("SSD", result.ssd),
-            mutableListOf("HDD", result.hdd),
-            mutableListOf("출력", result.output),
-            mutableListOf("단자 종류", result.terminal)
+            mutableListOf(getString(R.string.brand), result.brand),
+            mutableListOf(getString(R.string.date), result.date),
+            mutableListOf(getString(R.string.cpurate), result.cpurate),
+            mutableListOf(getString(R.string.cpu), result.cpu),
+            mutableListOf(getString(R.string.core), result.core),
+            mutableListOf(getString(R.string.size), result.size),
+            mutableListOf(getString(R.string.ram), result.ram),
+            mutableListOf(getString(R.string.innermemory), result.innermemory),
+            mutableListOf(getString(R.string.communication), result.communication),
+            mutableListOf(getString(R.string.os), result.os),
+            mutableListOf(getString(R.string.ssd), result.ssd),
+            mutableListOf(getString(R.string.hdd), result.hdd),
+            mutableListOf(getString(R.string.output), result.output),
+            mutableListOf(getString(R.string.terminal), result.terminal)
         )
 
         for (i in productInfo.size - 1 downTo 0) {
