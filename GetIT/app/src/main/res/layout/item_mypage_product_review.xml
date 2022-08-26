@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
+    android:paddingBottom="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <TextView
@@ -15,7 +15,7 @@
                 android:layout_weight="4"
                 android:layout_gravity="center"
                 android:textSize="14dp"
-                android:fontFamily="@font/notosanskr_bold"
+                android:fontFamily="@font/notosanskr_regular"
                 android:textColor="@color/normal"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

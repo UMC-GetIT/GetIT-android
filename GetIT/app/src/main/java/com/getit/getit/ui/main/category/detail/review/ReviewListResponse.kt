@@ -14,4 +14,5 @@ data class ReviewListResult(
     @SerializedName("productIdx") val productIdx: Int,
     @SerializedName("nickName") val nickName: String,
     @SerializedName("review") val review: String,
+    @SerializedName("profileImgUrl") val profileImgUrl: String
 )
