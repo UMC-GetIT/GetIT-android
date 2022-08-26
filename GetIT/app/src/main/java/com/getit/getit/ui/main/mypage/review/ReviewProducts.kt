@@ -13,9 +13,14 @@ data class ReviewProducts(
 )
 
 data class result(
-    @SerializedName("productName") val productname: String,
-    @SerializedName("review") val review : String,
-    @SerializedName("productId") val productId : String,
-    @SerializedName("productPrice") val price : String,
-    @SerializedName("productImgUrl") val productImgUrl : String
+    @SerializedName("productName")
+    val productname: String,
+    @SerializedName("review")
+    val review : String,
+    @SerializedName("productIdx")
+    val productIdx : String,
+    @SerializedName("reviewIdx")
+    val reviewIdx :Int,
+    @SerializedName("profileIngUrl")
+    val reviewImg:String
 )

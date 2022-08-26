@@ -17,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ReviewDeleteDialog{
+/*class ReviewDeleteDialog{
     fun reviewdelete() {
         val deleteRetrofit = ApplicationClass.retrofit.create(ReviewApiService::class.java)
         deleteRetrofit.reviewDelete().enqueue(object : Callback<DeleteReview> {
@@ -39,5 +39,5 @@ class ReviewDeleteDialog{
         })
     }
 
-}
+}*/
 
