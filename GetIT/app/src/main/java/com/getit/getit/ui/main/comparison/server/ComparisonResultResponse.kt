@@ -25,7 +25,6 @@ data class ComparisonResultListResult(
     @SerializedName("size") val size : String,
     @SerializedName("ram") val ram : String,
     @SerializedName("weight") val weight : String,
-    @SerializedName("lprice") val price : String,
     //@SerializedName("type") val type : String,
     @SerializedName("innermemory") val innermemory : String,
     @SerializedName("communication") val communication : String,
