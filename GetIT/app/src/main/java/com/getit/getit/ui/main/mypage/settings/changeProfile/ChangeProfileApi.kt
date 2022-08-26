@@ -13,9 +13,7 @@ interface ChangeProfileApi {
     @POST("/users/profileImg")
 
     fun changeprofile(
-        @Part("profileImg") image: MultipartBody.Part,
-        @Part("_method") method: RequestBody = RequestBody.create(
-            "text/plain".toMediaTypeOrNull(), "PATCH")
+        @Part("profileImg") image: MultipartBody.Part?,
     ): Call<profile>
 
 
