@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.mypage.like
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
@@ -9,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.R
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +21,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.net.MalformedURLException
 import java.net.URL
+import java.text.DecimalFormat
 
 
 class LikeRVAdatper(val LikeList : List<likeProduct>, val context : Context)
@@ -45,6 +49,21 @@ class LikeRVAdatper(val LikeList : List<likeProduct>, val context : Context)
         val name = itemView?.findViewById<TextView>(R.id.name)
 
         fun bind(itemLikeProducts: likeProduct, context: Context) {
+
+            // API에 상품 가격 추가 필요
+//            val price = itemLikeProducts.lowestprice
+//            val df = DecimalFormat("###,###")
+//            val strPrice = df.format(price) + " 원"
+
+            itemView.setOnClickListener{
+                val intent = Intent(context, ProductDetailActivity::class.java)
+                intent.putExtra("productId", itemLikeProducts.productId)
+                intent.putExtra("productName", itemLikeProducts.name)
+//                intent.putExtra("price", strPrice)
+                intent.putExtra("imageUrl", itemLikeProducts.image)
+                ContextCompat.startActivity(itemView.context, intent, null)
+            }
+
             //이미지 url 불러옴
             val urlString = itemLikeProducts?.image.toString()
             if (urlString.isEmpty()) {

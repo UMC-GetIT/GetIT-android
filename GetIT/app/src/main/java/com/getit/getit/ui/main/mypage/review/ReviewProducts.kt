@@ -16,5 +16,7 @@ data class result(
     @SerializedName("productName")
     val productname: String,
     @SerializedName("review")
-    val review : String
+    val review : String,
+    @SerializedName("productIdx")
+    val productIdx : String
 )
