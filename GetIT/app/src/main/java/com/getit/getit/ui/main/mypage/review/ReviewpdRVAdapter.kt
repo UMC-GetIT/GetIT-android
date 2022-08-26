@@ -2,6 +2,7 @@ package com.getit.getit.ui.main.mypage.review
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +11,19 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.R
 import com.getit.getit.utils.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.logging.Handler
 
 
 class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : RecyclerView.Adapter<ReviewpdRVAdapter.ViewHolder>(){
 
+    lateinit var rList : List<result>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ReviewpdRVAdapter.ViewHolder(
             LayoutInflater.from(context)
@@ -38,6 +42,15 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
         return ReviewList.count()
     }
 
+    /*fun DeleteItemCount(position: Int){
+        if(position > 0){
+            ReviewList.removeAt(position)
+            notifyDataSetChanged()
+        }
+    }*/
+
+
+
     class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
         val name = itemView?.findViewById<TextView>(R.id.item_name)
         val review = itemView?.findViewById<TextView>(R.id.item_review)
@@ -46,6 +59,7 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
         fun bind(itemReviewProducts: result?, context: Context) {
             name?.text = itemReviewProducts?.productname
             review?.text=itemReviewProducts?.review
+            val reviewindex : Int? = itemReviewProducts?.reviewIdx
             deletebtn?.setOnClickListener{
                 var dialog = AlertDialog.Builder(context)
                 dialog.setTitle("삭제 후에는 복구할 수 없습니다. ")
@@ -54,7 +68,7 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
                 var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
                     if (DialogInterface.BUTTON_POSITIVE == p1) {
                         val deleteRetrofit = ApplicationClass.retrofit.create(ReviewApiService::class.java)
-                        deleteRetrofit.reviewDelete(12).enqueue(object : Callback<DeleteReview> {
+                        deleteRetrofit.reviewDelete(reviewindex!!).enqueue(object : Callback<DeleteReview> {
                             override fun onResponse(
                                 call: Call<DeleteReview>,
                                 response: Response<DeleteReview>
@@ -62,6 +76,7 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
                                 Log.d("테스트", response.body().toString())
                                 if (response.isSuccessful) {
                                     Log.d("성공", response.body().toString())
+                                    Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
 
                                 } else {
                                     Log.d("실패", response.body().toString())
@@ -73,7 +88,7 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
                             }
                         })
                     }
-                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+
                     }
                 dialog.setPositiveButton("삭제", dialogLister)
                 dialog.setNegativeButton("취소", null)

@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.mypage
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -36,7 +37,7 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
         MypageData()
 
-
+        getArguments()?.getString("name",binding.nickname!!.text.toString())
 
         setOnClickListenerAtMyPage()
 
@@ -98,7 +99,7 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         fun LikeAdapter(MypageLikeList: List<likeProduct>) {
             val mAdapter = MypageLikeRV(MypageLikeList, requireContext())
             binding.mypageLikeRecyclerview.adapter = mAdapter
-            binding.mypageLikeRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+            binding.mypageLikeRecyclerview.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             binding.mypageLikeRecyclerview.setHasFixedSize(false)
         }
 

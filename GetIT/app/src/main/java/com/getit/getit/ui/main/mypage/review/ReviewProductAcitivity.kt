@@ -34,21 +34,21 @@ class ReviewProductActivity : BaseActivity<ActivityMypageReviewListBinding>(Acti
 
         val deletebtn = findViewById<ImageButton>(R.id.review_delete_btn)
 
-        DeleteBinding.reviewDeleteBtn.setOnClickListener{
+        /*DeleteBinding.reviewDeleteBtn.setOnClickListener{
             var dialog = AlertDialog.Builder(this)
             dialog.setTitle("삭제 후에는 복구할 수 없습니다. ")
             dialog.setMessage("정말 삭제하시겠습니까?")
 
             var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
                 if (DialogInterface.BUTTON_POSITIVE == p1) {
-                    ReviewDeleteDialog().reviewdelete()
+                    //ReviewDeleteDialog().reviewdelete()
                     toast()
                 }
             }
             dialog.setPositiveButton("삭제", dialogLister)
             dialog.setNegativeButton("취소", null)
             dialog.show()
-        }
+        }*/
 
 
 
@@ -112,7 +112,7 @@ class ReviewProductActivity : BaseActivity<ActivityMypageReviewListBinding>(Acti
 
         var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
             if (DialogInterface.BUTTON_POSITIVE == p1) {
-                ReviewDeleteDialog().reviewdelete()
+                //ReviewDeleteDialog().reviewdelete()
                 toast()
             }
         }

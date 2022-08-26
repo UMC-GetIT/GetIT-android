@@ -1,8 +1,9 @@
 package com.getit.getit.ui.main.mypage.settings.changeProfile
 
 import com.google.gson.annotations.SerializedName
+import okhttp3.MultipartBody
+import retrofit2.http.Part
 
 class newprofile (
-    @SerializedName("profileImg") val profileImg:String,
-    @SerializedName("user") val nickname:String
+    @Part("profileImg") val image:MultipartBody.Part
         )

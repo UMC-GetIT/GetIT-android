@@ -10,7 +10,7 @@ data class ReviewProducts(
     val result: List<result>,
 
 
-)
+    )
 
 data class result(
     @SerializedName("productName")
@@ -18,5 +18,9 @@ data class result(
     @SerializedName("review")
     val review : String,
     @SerializedName("productIdx")
-    val productIdx : String
+    val productIdx : String,
+    @SerializedName("reviewIdx")
+    val reviewIdx :Int,
+    @SerializedName("profileIngUrl")
+    val reviewImg:String
 )
