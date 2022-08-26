@@ -2,6 +2,7 @@ package com.getit.getit.ui.main.mypage.review
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.R
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
+import java.text.DecimalFormat
 
 
 class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : RecyclerView.Adapter<ReviewpdRVAdapter.ViewHolder>(){
@@ -39,6 +43,18 @@ class ReviewpdRVAdapter(val ReviewList : List<result>, val context : Context) : 
         val deletebtn = itemView?.findViewById<ImageButton>(R.id.review_delete_btn)
 
         fun bind(itemReviewProducts: result?, context: Context) {
+//            val price = itemReviewProducts!!.price
+//            val df = DecimalFormat("###,###")
+//            val strPrice = df.format(price.toInt()) + " 원"
+//            itemView.setOnClickListener{
+//                val intent = Intent(context, ProductDetailActivity::class.java)
+//                intent.putExtra("productId", itemReviewProducts!!.productId)
+//                intent.putExtra("productName", itemReviewProducts.productname)
+//                intent.putExtra("price", strPrice)
+//                intent.putExtra("imageUrl", itemReviewProducts.productImgUrl)
+//                ContextCompat.startActivity(itemView.context, intent, null)
+//            }
+
             name?.text = itemReviewProducts?.productname
             review?.text=itemReviewProducts?.review
             deletebtn?.setOnClickListener{
