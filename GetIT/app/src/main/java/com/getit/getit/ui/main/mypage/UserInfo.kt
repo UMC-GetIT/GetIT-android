@@ -26,6 +26,9 @@ data class likeProduct(
     @SerializedName("productIdx")
     val productIdx: Int,
 
+    @SerializedName("productId")
+    val productId: String,
+
     @SerializedName("image")
     val likeimage: String,
 
