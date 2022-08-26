@@ -81,6 +81,7 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
         when(type){
             getString(R.string.phone) ->{
                 compareAnswers.add(CompareAnswer(getString(R.string.date), result[0].date, result[1].date))
+                compareAnswers.add(CompareAnswer(getString(R.string.price), result[0].price, result[1].price))
                 compareAnswers.add(CompareAnswer(getString(R.string.brand), result[0].brand, result[1].brand))
                 compareAnswers.add(CompareAnswer(getString(R.string.size), result[0].size, result[1].size))
                 compareAnswers.add(CompareAnswer(getString(R.string.weight), result[0].weight, result[1].weight))
@@ -95,6 +96,7 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
             }
             getString(R.string.desktop) ->{
                 compareAnswers.add(CompareAnswer(getString(R.string.date), result[0].date, result[1].date))
+                compareAnswers.add(CompareAnswer(getString(R.string.price), result[0].price, result[1].price))
                 compareAnswers.add(CompareAnswer(getString(R.string.brand), result[0].brand, result[1].brand))
                 compareAnswers.add(CompareAnswer(getString(R.string.cpu), result[0].cpu, result[1].cpu))
                 compareAnswers.add(CompareAnswer(getString(R.string.ram), result[0].ram, result[1].ram))
@@ -108,6 +110,7 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
             }
             getString(R.string.laptop) ->{
                 compareAnswers.add(CompareAnswer(getString(R.string.date), result[0].date, result[1].date))
+                compareAnswers.add(CompareAnswer(getString(R.string.price), result[0].price, result[1].price))
                 compareAnswers.add(CompareAnswer(getString(R.string.brand), result[0].brand, result[1].brand))
                 compareAnswers.add(CompareAnswer(getString(R.string.size), result[0].size, result[1].size))
                 compareAnswers.add(CompareAnswer(getString(R.string.weight), result[0].weight, result[1].weight))
@@ -122,6 +125,7 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
             }
             getString(R.string.speaker) ->{
                 compareAnswers.add(CompareAnswer(getString(R.string.date), result[0].date, result[1].date))
+                compareAnswers.add(CompareAnswer(getString(R.string.price), result[0].price, result[1].price))
                 compareAnswers.add(CompareAnswer(getString(R.string.brand), result[0].brand, result[1].brand))
                 compareAnswers.add(CompareAnswer(getString(R.string.output), result[0].output, result[1].output))
                 compareAnswers.add(CompareAnswer(getString(R.string.terminal), result[0].terminal, result[1].terminal))
@@ -131,6 +135,7 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
             }
             getString(R.string.tablet) ->{
                 compareAnswers.add(CompareAnswer(getString(R.string.date), result[0].date, result[1].date))
+                compareAnswers.add(CompareAnswer(getString(R.string.price), result[0].price, result[1].price))
                 compareAnswers.add(CompareAnswer(getString(R.string.brand), result[0].brand, result[1].brand))
                 compareAnswers.add(CompareAnswer(getString(R.string.size), result[0].size, result[1].size))
                 compareAnswers.add(CompareAnswer(getString(R.string.weight), result[0].weight, result[1].weight))
