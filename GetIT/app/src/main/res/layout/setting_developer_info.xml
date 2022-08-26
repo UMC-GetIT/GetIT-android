@@ -64,7 +64,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -93,7 +93,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -122,7 +122,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -151,7 +151,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -188,7 +188,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -217,7 +217,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -246,7 +246,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
@@ -275,7 +275,7 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/man3"
+                android:src="@drawable/person"
                 />
 
             <TextView
