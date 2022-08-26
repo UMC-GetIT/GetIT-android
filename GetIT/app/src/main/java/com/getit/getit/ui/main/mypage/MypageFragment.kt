@@ -57,6 +57,9 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         }
     }
 
+
+    
+
     private fun setOnClickListenerAtMyPage() {
         val buttonSequence = binding.container.children
         buttonSequence.forEach { btn ->

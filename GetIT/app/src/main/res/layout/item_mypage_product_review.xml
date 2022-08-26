@@ -22,6 +22,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
 
+
+
+
         <kr.co.prnd.readmore.ReadMoreTextView
             android:id="@+id/item_review"
             android:layout_width="0dp"
