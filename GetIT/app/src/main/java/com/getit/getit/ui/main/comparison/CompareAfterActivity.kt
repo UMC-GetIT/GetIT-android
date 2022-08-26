@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.comparison
 
+import android.content.Intent
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
@@ -8,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.getit.getit.R
 import com.getit.getit.databinding.ActivityComparisonAfterBinding
 import com.getit.getit.ui.BaseActivity
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import com.getit.getit.ui.main.comparison.data.CompareAnswer
 import com.getit.getit.ui.main.comparison.server.ComparisonResultListResult
 import com.getit.getit.ui.main.comparison.server.ComparisonResultService
@@ -74,6 +76,22 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
         //binding.compareResultProduct1Btn -> result[0].productIdx
         //binding.compareResultProduct2Btn -> result[1].productIdx
         //여기에 바로 상세 뷰 띄워주면 됩니다
+        binding.compareResultProduct1Btn.setOnClickListener {
+            changeActivity(0, result)
+        }
+        binding.compareResultProduct2Btn.setOnClickListener {
+            changeActivity(1, result)
+        }
+    }
+
+    private fun changeActivity(index: Int, result: List<ComparisonResultListResult>) {
+        intent = Intent(this, ProductDetailActivity::class.java)
+        intent.putExtra("productId", result[index].productIdx)
+        intent.putExtra("price", result[index].price + " 원")
+        intent.putExtra("productName", result[index].name)
+        intent.putExtra("imageUrl", result[index].imgurl[0])
+        Log.d("TEST", "${result[index].imgurl}")
+        startActivity(intent)
     }
 
     private fun setCompareAnswersByType(result: List<ComparisonResultListResult>) : ArrayList<CompareAnswer>{
