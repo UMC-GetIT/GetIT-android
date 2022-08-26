@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.mypage.settings
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -9,12 +10,14 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.getit.getit.R
 import com.getit.getit.databinding.SettingChangeProfileBinding
+import com.getit.getit.ui.login.LoginActivity
 import com.getit.getit.ui.main.mypage.MypageFragment
 import com.getit.getit.ui.main.mypage.settings.changeProfile.ChangeProfileApi
 import com.getit.getit.ui.main.mypage.settings.changeProfile.name.newname
@@ -59,27 +62,31 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         //완료하기 버튼
         binding.sucsses.setOnClickListener {
-
             changenameData()
-            super.onBackPressed()
 
-            //changeProfileData()
+            var dialog = AlertDialog.Builder(this)
+            dialog.setTitle("프로필을 변경합니다")
+            dialog.setMessage("프로필 변경 시 로그인 화면으로 넘어갑니다")
+            // dialog.setIcon 추후에 아이콘 삽입
 
-            //ApplicationClass.prefs.userId = binding.nickname.text.toString()
-            Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
 
-            val mFragmentManager = supportFragmentManager
-            val mFragmentTransaction = mFragmentManager.beginTransaction()
-            val mFragment = MypageFragment()
+            fun toast() {
+                Toast.makeText(this, "수정되었습니다.", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
 
-            val mBundle = Bundle()
-            mBundle.putString("name",change_name!!.text.toString())
-            mFragment.arguments = mBundle
-            mFragmentTransaction.add(R.id.mypage_layout,mFragment).commit()
-            //sharedPreferences 사용해서 텍스트 저장 성공!!!
-            // Creating a shared pref object
-            // with a file name "MySharedPref"
-            // in private mode
+
+            var dialogLister = DialogInterface.OnClickListener { p0, p1 ->
+                when (p1) {
+                    DialogInterface.BUTTON_POSITIVE -> toast()
+                }
+            }
+            dialog.setPositiveButton("네", dialogLister)
+            dialog.setNegativeButton("아니오", null)
+            dialog.show()
+
+
             val sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE)
 
             val myEdit = sharedPreferences.edit()
@@ -185,6 +192,7 @@ class ChangeProfileActivity : AppCompatActivity() {
         val call = newProfileRetrofit.changeprofile(image)!!
         call.enqueue(object : Callback<profile> {
             override fun onResponse(call: Call<profile>, response: Response<profile>) {
+                Log.d("테스트 이미지 변경", response.body().toString())
                 if (response.isSuccessful) {
                     Log.d("성공", response.body().toString())
 
