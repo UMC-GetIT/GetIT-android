@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ComparisonResultInterface {
-    @GET("/products/{productIdx1}/{productIdx2}")
+    @GET("/products/comparison/{productIdx1}/{productIdx2}")
     fun getComparisonResultProducts(
         @Path("productIdx1") productIdx1: String,
         @Path("productIdx2") productIdx2: String
