@@ -22,7 +22,7 @@ class ComparisonResultService {
                     call: Call<ComparisonResultResponse>,
                     response: Response<ComparisonResultResponse>
                 ) {
-                    Log.d("테스트 비교결과", response.toString())
+                    Log.d("테스트 비교결과", response.body().toString())
 
                     val resp: ComparisonResultResponse = response.body()!!
 

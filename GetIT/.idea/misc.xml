@@ -32,7 +32,11 @@
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_comparison_after.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_main.xml" value="0.22" />
+
+        <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_product_detail.xml" value="0.26220275344180227" />
+
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_product_detail.xml" value="0.18" />
+
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_search_result.xml" value="0.25" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/activity_signup.xml" value="0.3494791666666667" />
@@ -60,9 +64,11 @@
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/fragment_search.xml" value="0.22727272727272727" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_compare_answer.xml" value="0.33" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_detail_information.xml" value="0.25" />
+
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_mypage_likelist.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_mypage_product_like.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_mypage_product_review.xml" value="0.2861111111111111" />
+
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_product_detail_image.xml" value="0.34177215189873417" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_product_image_name_set.xml" value="0.24427083333333333" />
         <entry key="..\:/Users/82108/AndroidStudioProjects/GetIT_Android/GetIT-android/GetIT/app/src/main/res/layout/item_product_review.xml" value="0.26666666666666666" />
@@ -98,12 +104,14 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_button_on.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_chip.xml" value="0.1605" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_condition_box.xml" value="0.1215" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_dash_outline.xml" value="0.1775" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_detailed_category_button.xml" value="0.203" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_dropdown.xml" value="0.179" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_dropdown_popup.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_edittext_background.xml" value="0.1195" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_editview.xml" value="0.203" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_explane_itterm.xml" value="0.141" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_no_image.xml" value="0.186" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_speech_bubble.xml" value="0.141" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_spinner.xml" value="0.1535" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_summit_button.xml" value="0.1425" />
@@ -112,10 +120,11 @@
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_tag_button.xml" value="0.216" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_textview.xml" value="0.2135" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/drawable/style_top_rounded_corner.xml" value="0.203" />
-        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_comparison_after.xml" value="0.264" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_comparison_after.xml" value="0.31917631917631917" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_itterm_window.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_product_detail.xml" value="0.1" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_recommend.xml" value="0.2" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_recommend_question.xml" value="0.12" />
         <entry key="..\:/Users/yejin/Desktop/Study/2022/SookmyungUMC/GetIT-android/GetIT/app/src/main/res/layout/activity_recommend_result.xml" value="0.136" />
@@ -174,6 +183,7 @@
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/fragment_search.xml" value="0.11510416666666666" />
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/fragment_settings.xml" value="0.4" />
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/item_itterm.xml" value="0.25364583333333335" />
+        <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/item_mypage_product_like.xml" value="0.12335359675785208" />
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/item_product_review.xml" value="0.25364583333333335" />
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/item_search.xml" value="0.1" />
         <entry key="..\:/androidstudio/getIT0808/GetIT-android/GetIT/app/src/main/res/layout/list_like_item.xml" value="0.1" />

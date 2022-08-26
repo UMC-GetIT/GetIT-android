@@ -15,7 +15,7 @@ data class ComparisonResultListResult(
     @SerializedName("productIdx") val productIdx: String,
     @SerializedName("name") val name : String,
     @SerializedName("link") val link : String,
-    @SerializedName("imgurl") val imgurl : String,
+    @SerializedName("photolist") val imgurl : List<String>,
     @SerializedName("brand") val brand : String,
     @SerializedName("date") val date : String,
     @SerializedName("cpu") val cpu : String,

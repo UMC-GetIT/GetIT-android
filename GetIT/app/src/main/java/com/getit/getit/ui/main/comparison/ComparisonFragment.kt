@@ -89,7 +89,8 @@ class ComparisonFragment : BaseFragment<FragmentComparisonBinding>(FragmentCompa
                     var spinnerText = (p0?.getChildAt(0)) as TextView
                     spinnerText.textSize = 13f
                     spinnerText.setTextColor(getColor(requireContext(), R.color.normal))
-
+                    selectedProducts = arrayListOf<ProductIdImageDrawable>()
+                    setSelectedProducts()
                     if(binding.comparisonProductKindSp.selectedItem.toString() != "기기 종류")
                         attachLikeServer(binding.comparisonProductKindSp.selectedItem.toString())
                 }

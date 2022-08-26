@@ -11,10 +11,12 @@ import com.getit.getit.ui.BaseActivity
 import com.getit.getit.ui.main.comparison.data.CompareAnswer
 import com.getit.getit.ui.main.comparison.server.ComparisonResultListResult
 import com.getit.getit.ui.main.comparison.server.ComparisonResultService
+import com.getit.getit.utils.LoadingDialog
 
 class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(ActivityComparisonAfterBinding::inflate), ComparisonAfterView{
 
     var type : String? = ""
+    lateinit var loadingDialog : LoadingDialog
 
     override fun initAfterBinding() {
         val toolbar : Toolbar = binding.toolbar
@@ -31,6 +33,8 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
         Log.d("테 productIdx2", product2)
         type?.let { Log.d("테 type", it) }
 
+        loadingDialog = LoadingDialog(this)
+        loadingDialog.show()
         var comparisonResultService = ComparisonResultService()
         comparisonResultService.setComparisonAfterView(this)
         product1?.let { product2?.let { it1 ->
@@ -59,12 +63,13 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
     }
 
     override fun loadComparisonResult(code: Int, result: List<ComparisonResultListResult>) {
-        Glide.with(this).load(result[0].imgurl!!).into(binding.compareElement1Iv)
-        Glide.with(this).load(result[1].imgurl!!).into(binding.compareElement2Iv)
+        Glide.with(this).load(result[0].imgurl[0]!!).into(binding.compareElement1Iv)
+        Glide.with(this).load(result[1].imgurl[0]!!).into(binding.compareElement2Iv)
         binding.compareElement1Tv.text = result[0].name
         binding.compareElement2Tv.text = result[1].name
         var compareAnswers = setCompareAnswersByType(result)
         setResultProducts(compareAnswers)
+        loadingDialog.hide()
 
         //binding.compareResultProduct1Btn -> result[0].productIdx
         //binding.compareResultProduct2Btn -> result[1].productIdx
@@ -111,7 +116,6 @@ class CompareAfterActivity  : BaseActivity<ActivityComparisonAfterBinding>(Activ
                 compareAnswers.add(CompareAnswer(getString(R.string.ram), result[0].ram, result[1].ram))
                 compareAnswers.add(CompareAnswer(getString(R.string.cpurate), result[0].cpurate, result[1].cpurate))
                 compareAnswers.add(CompareAnswer(getString(R.string.innermemory), result[0].innermemory, result[1].innermemory))
-                compareAnswers.add(CompareAnswer(getString(R.string.communication), result[0].communication, result[1].communication))
                 compareAnswers.add(CompareAnswer(getString(R.string.os), result[0].os, result[1].os))
                 return compareAnswers
 
