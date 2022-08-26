@@ -57,9 +57,6 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         }
     }
 
-
-    
-
     private fun setOnClickListenerAtMyPage() {
         val buttonSequence = binding.container.children
         buttonSequence.forEach { btn ->
@@ -121,7 +118,7 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
         mypageRetrofit.getResponse().enqueue(object : Callback<UserInfo> {
 
             override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
-                    Log.d("테스트",response.body().toString())
+                    Log.d("테스트 마이페이지",response.body().toString())
                 if (response.isSuccessful) {
                     val body = response.body()
                     //val url = body.result

@@ -11,9 +11,8 @@ import java.io.File
 interface ChangeProfileApi {
     @Multipart//파일이나 이미지 업로드 할때 사용
     @POST("/users/profileImg")
-
     fun changeprofile(
-        @Part("profileImg") image: MultipartBody.Part?,
+        @Part profileImg: MultipartBody.Part?,
     ): Call<profile>
 
 
