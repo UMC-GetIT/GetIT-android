@@ -1,5 +1,6 @@
 package com.getit.getit.ui.main.category
 
+import com.getit.getit.data.Review
 import com.getit.getit.ui.main.category.detail.Like.IsLikeResponse
 import com.getit.getit.ui.main.category.detail.Like.LikeResponse
 import com.getit.getit.ui.main.category.detail.ProductDetailResponse
@@ -39,7 +40,6 @@ interface ProductsRetrofitInterface {
 
     @POST("/products/review")
     fun createReview(
-        @Body productId: String,
-        @Body review: String
+        @Body review: Review
     ): Call<CreateReviewResponse>
 }

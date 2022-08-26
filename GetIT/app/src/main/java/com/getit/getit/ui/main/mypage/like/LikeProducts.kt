@@ -15,6 +15,13 @@ data class result(
     val userIdx:Int
 )
 data class likeProduct(
-val image : String,
-val name: String
+    val productIdx : Int,
+    val name: String,
+    val brand : String,
+    val type : String,
+    val image : String,
+    val lowestprice: String,
+    val productId: String,
+    val productUrl: String
+
 )

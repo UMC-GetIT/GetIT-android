@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.category
 
 import android.util.Log
+import com.getit.getit.data.Review
 import com.getit.getit.ui.main.category.detail.Like.IsLikeResponse
 import com.getit.getit.ui.main.category.detail.Like.IsLikeView
 import com.getit.getit.ui.main.category.detail.Like.LikeResponse
@@ -126,12 +127,16 @@ class ProductsService {
 
         likeService.like(productId).enqueue(object: Callback<LikeResponse> {
             override fun onResponse(call: Call<LikeResponse>, response: Response<LikeResponse>) {
+                Log.d("LIKE", "response code = $response")
                 if(response.isSuccessful && response.code() == 200) {
                     val likeResponse: LikeResponse = response.body()!!
 
                     when (val code = likeResponse.code){
                         1000 -> likeView.onGetLikeSuccess(code, likeResponse.result)
-                        else -> likeView.onGetLikeFailure(code, likeResponse.message)
+                        else -> {
+                            likeView.onGetLikeFailure(code, likeResponse.message)
+                            Log.d("LIKE", "$code, ${likeResponse.message}")
+                        }
                     }
                 }
             }
@@ -189,10 +194,10 @@ class ProductsService {
         Log.d("REVIEW-LIST", "HELLO")
     }
 
-    fun createReview(productId: String, review: String) {
+    fun createReview(review: Review) {
         val createReviewService = ApplicationClass.retrofit.create(ProductsRetrofitInterface::class.java)
 
-        createReviewService.createReview(productId, review).enqueue(object: Callback<CreateReviewResponse>{
+        createReviewService.createReview(review).enqueue(object: Callback<CreateReviewResponse>{
             override fun onResponse(call: Call<CreateReviewResponse>, response: Response<CreateReviewResponse>) {
                 if(response.isSuccessful && response.code() == 200) {
                     val createReviewResponse: CreateReviewResponse = response.body()!!
