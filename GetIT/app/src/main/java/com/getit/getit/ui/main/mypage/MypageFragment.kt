@@ -37,7 +37,9 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
 
         MypageData()
 
-        getArguments()?.getString("name",binding.nickname!!.text.toString())
+      /*  val bundle = arguments
+        val message = bundle!!.getString("name")
+        binding.nickname.text = message*/
 
         setOnClickListenerAtMyPage()
 
@@ -54,6 +56,9 @@ class MypageFragment() : BaseFragment<FragmentMypageBinding>(FragmentMypageBindi
             }
         }
     }
+
+
+    
 
     private fun setOnClickListenerAtMyPage() {
         val buttonSequence = binding.container.children

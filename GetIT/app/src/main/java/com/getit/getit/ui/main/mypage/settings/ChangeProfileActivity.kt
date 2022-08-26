@@ -12,7 +12,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import com.getit.getit.R
 import com.getit.getit.databinding.SettingChangeProfileBinding
@@ -22,6 +21,7 @@ import com.getit.getit.ui.main.mypage.settings.changeProfile.name.newname
 import com.getit.getit.ui.main.mypage.settings.changeProfile.name.newnameRetrofit
 import com.getit.getit.ui.main.mypage.settings.changeProfile.profile
 import com.getit.getit.utils.ApplicationClass
+import com.getit.getit.utils.ApplicationClass.Companion.TAG
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -68,7 +68,14 @@ class ChangeProfileActivity : AppCompatActivity() {
             //ApplicationClass.prefs.userId = binding.nickname.text.toString()
             Toast.makeText(this, "수정완료되었습니다", Toast.LENGTH_SHORT).show()
 
+            val mFragmentManager = supportFragmentManager
+            val mFragmentTransaction = mFragmentManager.beginTransaction()
+            val mFragment = MypageFragment()
 
+            val mBundle = Bundle()
+            mBundle.putString("name",change_name!!.text.toString())
+            mFragment.arguments = mBundle
+            mFragmentTransaction.add(R.id.mypage_layout,mFragment).commit()
             //sharedPreferences 사용해서 텍스트 저장 성공!!!
             // Creating a shared pref object
             // with a file name "MySharedPref"
@@ -109,13 +116,15 @@ class ChangeProfileActivity : AppCompatActivity() {
                 val imageUri = result.data?.data
                 imageUri?.let {
                     val imageFile = File(getRealPathFromURI(it))
-                    val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
                     val body = MultipartBody.Part.createFormData("profileImg", imageFile.name, requestFile)
 
                     //이미지 불러오기
                     Glide.with(this)
                         .load(imageUri)
                         .into(binding.circleImage)
+
+                    Log.d(TAG,imageFile.name)
 
 
 
@@ -169,11 +178,12 @@ class ChangeProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun sendImage(image:MultipartBody.Part ){
+    fun sendImage(image: MultipartBody.Part){
 
 
         val newProfileRetrofit = ApplicationClass.retrofit.create(ChangeProfileApi::class.java)
-        newProfileRetrofit.changeprofile(image).enqueue(object : Callback<profile> {
+        val call = newProfileRetrofit.changeprofile(image)!!
+        call.enqueue(object : Callback<profile> {
             override fun onResponse(call: Call<profile>, response: Response<profile>) {
                 if (response.isSuccessful) {
                     Log.d("성공", response.body().toString())
