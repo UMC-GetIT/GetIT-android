@@ -64,8 +64,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
         val email: String = binding.loginIdEt.text.toString()
         val pwd: String = binding.loginPasswordEt.text.toString()
 
-
-        loadingDialog.show();
         val authService = AuthService()
         authService.setLoginView(this)
 
