@@ -1,6 +1,7 @@
 package com.getit.getit.ui.main.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
@@ -9,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.getit.getit.R
+import com.getit.getit.ui.main.category.detail.ProductDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,6 +49,16 @@ class MypageLikeRV(val MypageLikeList: List<likeProduct>, val context: Context)
         val price = itemView?.findViewById<TextView>(R.id.like_product_price)
 
         fun bind(itemLikeProducts: likeProduct, context: Context) {
+
+            itemView.setOnClickListener {
+                val intent = Intent(context, ProductDetailActivity::class.java)
+                intent.putExtra("productId", itemLikeProducts.productId)
+                intent.putExtra("productName", itemLikeProducts.name)
+//                intent.putExtra("price", strPrice)
+                intent.putExtra("imageUrl", itemLikeProducts.likeimage)
+                ContextCompat.startActivity(itemView.context, intent, null)
+            }
+
             //이미지 url 불러옴
             val urlString = itemLikeProducts?.likeimage.toString()
             if (urlString.isEmpty()) {

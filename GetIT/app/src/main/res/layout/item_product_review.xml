@@ -47,7 +47,6 @@
     <kr.co.prnd.readmore.ReadMoreTextView
         android:id="@+id/item_product_review_review_content_tv"
         android:layout_width="0dp"
-        android:autoSizeTextType="uniform"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="10dp"

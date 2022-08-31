@@ -10,7 +10,7 @@ data class ReviewProducts(
     val result: List<result>,
 
 
-    )
+)
 
 data class result(
     @SerializedName("productName")

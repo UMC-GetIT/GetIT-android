@@ -10,7 +10,7 @@ data class ProductDetailResponse(
         )
 
 data class ProductDetailResult(
-    @SerializedName("productIdx") val productIdx: String,
+    @SerializedName("productIdx") val productIdx: Long,
     @SerializedName("name") val name: String,
     @SerializedName("link") val link: String,
     @SerializedName("photolist") val photolist: List<String>,
